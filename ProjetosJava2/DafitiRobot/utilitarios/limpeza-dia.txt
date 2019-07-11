@@ -1,0 +1,16 @@
+
+
+
+Fazer limpeza de um dia
+
+1)
+delete  from preco_produto
+where preco_produto.data_ultima_visita = current_date() 
+and preco_produto.data_visita_inicial = current_date()
+
+2)
+delete from produto where data_inclusao = current_date()
+
+3)
+delete from categoria_produto_produto
+where id_produto_ra not in (select id_produto from produto)

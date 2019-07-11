@@ -1,0 +1,38 @@
+1- Definir quais objetos serao acessados ( ObjetosECargas.txt ) -> Gerenciador2005
+2- Definir quais objetos farao o trabalho de coletar os outros (ObjetosECargas.txt)
+3- Criar App e Obj, colocando as chamadas ao RegraColecao 
+	-> Padrão AtualizaLista;AtualizaDetalhe
+4- Criar o metodo no regra colecao  (Gerenciador2005)
+5- Implementacao dos metodos em RegraColecaoImpl - Acessando Adaptador
+
+CategoriaProdutoRegraColecaoAdaptador adaptador = new CategoriaProdutoRegraColecaoAdaptador();
+adaptador.atualizaDetalhe(conexao);
+return null;
+
+ObtemTodos os 'CategoriaProduto' pelo metodo dao.ListaCorrente
+
+6- Montar o Callback e o DadosParse
+
+-> trataProduto pode ser muito semelhante entre si.
+
+
+--------------------------------------------------------------------
+Montagem do Callback
+
+1- Usando o chrome Identificar o objeto de inicio de itens da lista.
+Exemplo -> product-catalog-list (.ul)
+
+
+
+-----------------------------------------------------------------------------
+PROCESSO
+
+1- Identificar o item de dado se deseja capturar ( exemplo: preco parcelado e desconto )
+2- Acessar a página e visualizar os itens
+3- Gerar os itens no Gerenciador ( objeto - base de dados )
+4- Acessar o callback responsavel
+5- Criar variaveis string para cada item ---> isso poderia ir para arquitetura
+( algumas vezes a relacao nao é um pra um - exemplo preco parcelado )
+6- Identificar o ponto de parse adequado olhando na pagina html
+7- Criar metodos se necessario para transformar os dados e colocar no objeto
+8- Testar

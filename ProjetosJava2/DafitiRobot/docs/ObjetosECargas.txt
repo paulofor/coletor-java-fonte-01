@@ -1,0 +1,12 @@
+Categoria-Produto
+-> Carrega na mao direto no banco de dados.
+
+Categoria-Produto-Produto
+-> Manutencao em CategoriaProdutoDetalhe ( observacao possui paginacao )
+
+Produto
+-> Manutencao em CategoriaProdutoDetalhe ( possui paginacaao )
+
+
+Preco-Produto
+-> Manutencao em CategoriaProdutoDetalhe ( possui paginacaao )

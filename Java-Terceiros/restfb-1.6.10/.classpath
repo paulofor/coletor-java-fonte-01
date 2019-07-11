@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="restfb-1.6.10/source/example"/>
+	<classpathentry kind="src" path="restfb-1.6.10/source/library"/>
+	<classpathentry kind="lib" path="restfb-1.6.10/restfb-1.6.10.jar"/>
+	<classpathentry kind="output" path="restfb-1.6.10/bin"/>
+</classpath>
