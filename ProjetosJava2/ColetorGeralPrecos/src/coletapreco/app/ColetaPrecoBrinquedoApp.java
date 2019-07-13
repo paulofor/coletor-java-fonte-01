@@ -20,7 +20,7 @@ public class ColetaPrecoBrinquedoApp {
 		ColetaPrecoBrinquedoObj obj = new ColetaPrecoBrinquedoObj();
 		try {
 			
-			//obj.executaParsing1();
+			obj.executaParsing1();
 			//obj.coletaPorCliente();
 			//obj.processaContagem();
 			//obj.montadorVitrineProduto();
@@ -37,7 +37,7 @@ public class ColetaPrecoBrinquedoApp {
 			//obj.chamaMobileCliente();
 			
 			
-			obj.montadorVitrineProduto();
+			//obj.montadorVitrineProduto();
 			//obj.enviaFacebook();
 			//obj.chamaMobile();
 			//obj.chamaMobileCliente();

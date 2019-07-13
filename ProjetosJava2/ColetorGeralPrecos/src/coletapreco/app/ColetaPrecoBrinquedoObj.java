@@ -144,7 +144,7 @@ public class ColetaPrecoBrinquedoObj implements Job{
 		LojaVirtualRegraColecao srv = FabricaRegra.getInstancia().getLojaVirtualRegraColecao();
 		
 		
-		srv.CorrigeTabelas();
+		//srv.CorrigeTabelas();
 		srv.AtualizaNotebook();  // voltar
 		//srv.AtualizaCamera();
 		srv.AtualizaCelular();

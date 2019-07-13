@@ -2,7 +2,6 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/WebParseLib-Rec"/>
 	<classpathentry kind="lib" path="/home/usuario/FontesJavaRec/Java-Terceiros/log4j-1.2.14.jar"/>
 	<classpathentry kind="lib" path="/home/usuario/FontesJavaRec/Java-Terceiros/quartz-all-2.0.2.jar"/>
 	<classpathentry kind="lib" path="/home/usuario/FontesJavaRec/Java-Terceiros/slf4j-api-1.6.1.jar"/>
@@ -12,5 +11,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/DaoLib-Rec"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ColetorBoaDica"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/restfb-1.6.10"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/WebParseLib-Rec"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

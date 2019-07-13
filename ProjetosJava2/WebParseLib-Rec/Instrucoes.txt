@@ -1,0 +1,25 @@
+1) Criar uma classe de CallbackParse
+
+Se for um parser de html extender CallbackParseHtml.
+
+Uma otima coisa a fazer é colocar um setDebug() ja no construtor. Isso vai ajudar a ver o parser da pagina sendo feito.
+
+
+2) Criar o objeto que vai atuar como VO implementando a interface IDadosParse
+
+
+3) Na execução chamar ExecutadorParse passando os objetos criados a acima.
+
+Exemplo:
+
+public class AcessaSitePrecoProdutoObj {
+	public void principal() {
+		System.out.println("Ola Mundo");
+		ExecutadorParse exec = new ExecutadorParse();
+		ICallbackParse callback = new NaturaProdutosCallbackParseHtml();
+		IDadosParse dadosParse = new NaturaProdutosModel();
+		exec.setCallbackParse(callback);
+		exec.setDadosParse(dadosParse);
+		exec.executa();
+	}
+} 

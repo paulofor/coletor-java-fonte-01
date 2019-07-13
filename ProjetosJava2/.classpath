@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="AmericanasRobot/src"/>
+	<classpathentry kind="src" path="ColetorBoaDica/src"/>
+	<classpathentry kind="src" path="ColetorGeralPrecos/src"/>
+	<classpathentry kind="src" path="DafitiRobot/src"/>
+	<classpathentry kind="lib" path="ColetorGeralPrecos/lib/commons-io-2.4.jar"/>
+	<classpathentry kind="lib" path="ColetorGeralPrecos/lib/org.json-20120521.jar"/>
+	<classpathentry kind="lib" path="ColetorGeralPrecos/lib/webparse.jar"/>
+	<classpathentry kind="output" path="ColetorBoaDica/bin"/>
+</classpath>
