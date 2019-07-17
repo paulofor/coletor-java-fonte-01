@@ -11,6 +11,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/DaoLib-Rec"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ColetorBoaDica"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/restfb-1.6.10"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/WebParseLib-Rec"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/coletor"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
