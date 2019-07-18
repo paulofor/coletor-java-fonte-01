@@ -28,7 +28,7 @@ import org.apache.http.util.EntityUtils;
 
 import br.com.digicom.parse.log.ArquivoLog;
 
-public class ConectorApache {
+public class ConectorApache extends Thread{
 	public final byte SEM_MENSAGEM = -1;
 	public final byte MENSAGEM_OK = 0;
 	public final byte MENSAGEM_ARQUIVO_NAO_ENCONTRADO = 1;
@@ -73,9 +73,9 @@ public class ConectorApache {
 		if (codigo == 0)
 			return "OK";
 		if (codigo == 1)
-			return "ARQUIVO N�O ENCONTRADO";
+			return "ARQUIVO NAO ENCONTRADO";
 		if (codigo == 2)
-			return "SERVIDOR N�O RESPONDE";
+			return "SERVIDOR NAO RESPONDE";
 		if (codigo == 10)
 			return "ERRO DESCONHECIDO";
 		return "" + codigo;
@@ -104,10 +104,10 @@ public class ConectorApache {
 		return this.inputStream;
 	}
 
-	public String getUrl() {
-		URL url = this.urlConexao.getURL();
-		return url.getProtocol() + "://" + url.getHost() + url.getFile();
-	}
+	//public String getUrl() {
+	//	URL url = this.urlConexao.getURL();
+	//	return url.getProtocol() + "://" + url.getHost() + url.getFile();
+	//}
 
 	public boolean isUnknownHostException() {
 		return (mensagem == 2);
@@ -117,22 +117,7 @@ public class ConectorApache {
 		this.mensagem = -1;
 		try {
 			//insereCookies(this.urlConexao); // Esta gerando java.lang.IllegalStateException: Already connected
-			if (camposPost!=null)
-				urlConexao = montaPost(urlConexao);
-			String encode = this.urlConexao.getContentEncoding();
-			
-			if (encode!=null && "gzip".endsWith(encode)) {
-				this.inputStream = new GZIPInputStream(this.urlConexao.getInputStream());
-			} else {
-				this.inputStream = this.urlConexao.getInputStream();
-				//this.inputStream = new InputStreamReader(urlConexao.getInputStream(), "UTF-8");
-			}
-			this.servidor = this.urlConexao.getHeaderField("server");
-
-			this.charSet = getCharSet(urlConexao);
-			
-			//criaCookies(this.urlConexao);
-			this.mensagem = 0;
+			main();
 		} catch (FileNotFoundException e) {
 			this.mensagem = 1;
 		} catch (UnknownHostException e) {
@@ -207,7 +192,7 @@ public class ConectorApache {
 		return charSet;
 	}
 	
-	private final void main(String[] args)  {
+	public void main() throws ClientProtocolException, IOException  {
         CloseableHttpClient httpclient = HttpClients.createDefault();
         try {
             HttpGet httpget = new HttpGet("https://www.revendadecosmeticos.com.br/marcas/macrilan.html");

@@ -5,7 +5,7 @@ import javax.xml.parsers.SAXParser;
 
 public abstract class ParserThread extends Thread
 {
-  public abstract void setConector(Conector paramConector);
+  public abstract void setConector(ConectorApache paramConector);
 
   public abstract void setParser(SAXParser paramSAXParser);
 

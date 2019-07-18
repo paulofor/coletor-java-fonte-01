@@ -34,7 +34,7 @@ public class ExecutadorParse {
 			this.callbackParse.setDados(this.dadosParse);
 			do {
 				ArquivoLog.getInstancia().salvaLog("inicio do loop");
-				Conector conector = new Conector();
+				ConectorApache conector = new ConectorApache();
 				URL url = this.callbackParse.getUrl();
 				//ArquivoLog.getInstancia().salvaLog("URL:");
 				if ("https".equals(url.getProtocol())) {
@@ -44,9 +44,9 @@ public class ExecutadorParse {
 				}
 				
 				ArquivoLog.getInstancia().salvaLog("Antes openConnection");
-				URLConnection urlconn = (URLConnection) url.openConnection();
-				urlconn.setConnectTimeout(TIMEOUT_VALUE);
-				urlconn.setReadTimeout(TIMEOUT_VALUE);
+				//URLConnection urlconn = (URLConnection) url.openConnection();
+				//urlconn.setConnectTimeout(TIMEOUT_VALUE);
+				//urlconn.setReadTimeout(TIMEOUT_VALUE);
 				ArquivoLog.getInstancia().salvaLog("Depois openConnection");
 				/*
 				 * urlconn.setDefaultUseCaches(false);
@@ -71,10 +71,10 @@ public class ExecutadorParse {
 				}
 				
 				//System.out.println("Encoder:" + urlconn.getContentEncoding());
-				if (urlconn==null) {
-					throw new ExecutadorParseException("url e null " + url.toString());
-				}
-				conector.setConexaoUrl(urlconn);
+				//if (urlconn==null) {
+				//	throw new ExecutadorParseException("url e null " + url.toString());
+				//}
+				conector.setUrl(url);
 				//ArquivoLog.getInstancia().salvaLog("conector.setConexaoUrl(urlconn);");
 				conector.start();
 				ArquivoLog.getInstancia().salvaLog("conector.start();");
@@ -129,7 +129,7 @@ public class ExecutadorParse {
 		ArquivoLog.getInstancia().salvaLog("Final executador");
 	}
 
-	private void executaParse(Conector conector) throws SAXException, ParserConfigurationException, InterruptedException, ExecutadorParseException {
+	private void executaParse(ConectorApache conector) throws SAXException, ParserConfigurationException, InterruptedException, ExecutadorParseException {
 		if (this.callbackParse == null)
 			throw new ExecutadorParseException("ExecutadorParse sem callbackParse");
 		if (this.dadosParse == null)

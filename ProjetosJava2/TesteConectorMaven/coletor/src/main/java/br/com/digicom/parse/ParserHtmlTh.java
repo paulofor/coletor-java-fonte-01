@@ -14,7 +14,7 @@ import br.com.digicom.parse.log.ArquivoLog;
 
 public class ParserHtmlTh extends ParserThread {
 	SAXParser parseDelegator = null;
-	Conector conector = null;
+	ConectorApache conector = null;
 	ICallbackParse callback = null;
 	
 	
@@ -24,16 +24,14 @@ public class ParserHtmlTh extends ParserThread {
 		this.callback = callback;
 	}
 
-	public void setConector(Conector conector) {
-		this.conector = conector;
-	}
+	
 
 	public void setParser(SAXParser parser) {
 		this.parseDelegator = parser;
 	}
 
 	private String getCharSet() {
-		if (this.conector.getCharSet()!=null) return this.conector.getCharSet();
+		//if (this.conector.getCharSet()!=null) return this.conector.getCharSet();
 		if (this.callback.getCharSet()!=null) return this.callback.getCharSet();
 		return CallbackParseHtml.HTML5_CHARSET;
 	}
@@ -69,6 +67,14 @@ public class ParserHtmlTh extends ParserThread {
 			this.conector.closeBuffer();
 			this.conector = null;
 		}
+	}
+
+
+
+	@Override
+	public void setConector(ConectorApache paramConector) {
+		// TODO Auto-generated method stub
+		conector = paramConector;
 	}
 }
 
