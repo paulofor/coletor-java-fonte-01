@@ -7,15 +7,13 @@ import java.io.InputStream;
 import java.net.CookieManager;
 import java.net.HttpCookie;
 import java.net.HttpURLConnection;
+import java.net.URI;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.net.UnknownHostException;
 import java.util.List;
 import java.util.Map;
-import java.util.zip.GZIPInputStream;
-
-import javax.net.ssl.HttpsURLConnection;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -41,6 +39,7 @@ public class ConectorApache extends Thread{
 	private byte mensagem;
 	private String charSet = null;
 	private static CookieManager msCookieManager = null;
+	private URI uri = null;
 	
 	private List camposPost = null;
 	public void setCamposPost(List valor) {
@@ -92,8 +91,12 @@ public class ConectorApache extends Thread{
 		msCookieManager = cookies;
 	}
 
-	public void setConexaoUrl(URLConnection urlConexao) {
-		this.urlConexao = urlConexao;
+	//substituir por setUrl
+	//public void setConexaoUrl(URLConnection urlConexao) {
+	//	this.urlConexao = urlConexao;
+	//}
+	public void setUri(URI uri) {
+		this.uri = uri;
 	}
 
 	public boolean conectou() {
@@ -103,11 +106,6 @@ public class ConectorApache extends Thread{
 	public InputStream getInputStream() {
 		return this.inputStream;
 	}
-
-	//public String getUrl() {
-	//	URL url = this.urlConexao.getURL();
-	//	return url.getProtocol() + "://" + url.getHost() + url.getFile();
-	//}
 
 	public boolean isUnknownHostException() {
 		return (mensagem == 2);
@@ -134,7 +132,7 @@ public class ConectorApache extends Thread{
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 		} finally {
-			System.out.println("Mensagem Conector:(" + getUrl() + ")" + mensagemErro(this.mensagem));
+			System.out.println("Mensagem Conector:(" + this.uri + ")" + mensagemErro(this.mensagem));
 		}
 	}
 
@@ -195,7 +193,7 @@ public class ConectorApache extends Thread{
 	public void main() throws ClientProtocolException, IOException  {
         CloseableHttpClient httpclient = HttpClients.createDefault();
         try {
-            HttpGet httpget = new HttpGet("https://www.revendadecosmeticos.com.br/marcas/macrilan.html");
+            HttpGet httpget = new HttpGet(this.uri);
 
             System.out.println("Executing request " + httpget.getRequestLine());
 

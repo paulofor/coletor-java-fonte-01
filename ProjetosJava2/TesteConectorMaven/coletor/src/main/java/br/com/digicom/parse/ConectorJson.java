@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class ConectorJson extends Conector {
+public class ConectorJson extends ConectorApache {
 
 	// Returns a json object from an input stream
 	public JSONObject getJsonObject() {

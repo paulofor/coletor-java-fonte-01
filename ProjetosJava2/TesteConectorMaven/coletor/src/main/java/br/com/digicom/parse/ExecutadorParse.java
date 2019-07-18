@@ -74,7 +74,7 @@ public class ExecutadorParse {
 				//if (urlconn==null) {
 				//	throw new ExecutadorParseException("url e null " + url.toString());
 				//}
-				conector.setUrl(url);
+				conector.setUri(url.toURI());
 				//ArquivoLog.getInstancia().salvaLog("conector.setConexaoUrl(urlconn);");
 				conector.start();
 				ArquivoLog.getInstancia().salvaLog("conector.start();");
@@ -97,9 +97,9 @@ public class ExecutadorParse {
 			URL urlJson = callbackParse.getJsonUrl();
 			ArquivoLog.getInstancia().salvaLog("urlJson: " + urlJson);
 			if (urlJson!=null) {
-				URLConnection urlJsonconn = (URLConnection) urlJson.openConnection();
+				//URLConnection urlJsonconn = (URLConnection) urlJson.openConnection();
 				ConectorJson conectorJson = new ConectorJson();
-				conectorJson.setConexaoUrl(urlJsonconn);
+				conectorJson.setUri(urlJson.toURI());
 				ArquivoLog.getInstancia().salvaLog("conector.start();");
 				conectorJson.start();
 				ArquivoLog.getInstancia().salvaLog("conector.join(180000L);");
