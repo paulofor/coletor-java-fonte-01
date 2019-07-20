@@ -37,11 +37,7 @@ public class ExecutadorParse {
 				ConectorApache conector = new ConectorApache();
 				URL url = this.callbackParse.getUrl();
 				//ArquivoLog.getInstancia().salvaLog("URL:");
-				if ("https".equals(url.getProtocol())) {
-					SSLContext ctx = SSLContext.getInstance("TLS");
-					ctx.init(new KeyManager[0], new TrustManager[] { new DefaultTrustManager() }, new SecureRandom());
-					SSLContext.setDefault(ctx);
-				}
+				
 				
 				ArquivoLog.getInstancia().salvaLog("Antes openConnection");
 				//URLConnection urlconn = (URLConnection) url.openConnection();

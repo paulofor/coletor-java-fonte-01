@@ -1,14 +1,14 @@
 package br.com.digicom.parse;
 
-import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Reader;
+import java.io.StringReader;
 import java.net.CookieManager;
 import java.net.HttpCookie;
 import java.net.HttpURLConnection;
 import java.net.URI;
-import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.net.UnknownHostException;
@@ -34,7 +34,7 @@ public class ConectorApache extends Thread{
 	public final byte MENSAGEM_ERRO_DESCONHECIDO = 19;
 	protected InputStream inputStream;
 
-	private BufferedReader buffer;
+	private Reader reader;
 	private String servidor;
 	private byte mensagem;
 	private String charSet = null;
@@ -178,12 +178,12 @@ public class ConectorApache extends Thread{
 	}
 
 	public void closeBuffer() {
-		try {
-			if (this.buffer != null)
-				this.buffer.close();
-		} catch (Exception e) {
-			System.out.println("Errconector: " + e);
-		}
+		//try {
+			//if (this.buffer != null)
+			//	this.buffer.close();
+		//} catch (Exception e) {
+			//System.out.println("Errconector: " + e);
+		//}
 	}
 
 	public String getCharSet() {
@@ -192,6 +192,7 @@ public class ConectorApache extends Thread{
 	
 	public void main() throws ClientProtocolException, IOException  {
         CloseableHttpClient httpclient = HttpClients.createDefault();
+        System.out.println("Entrou no main");
         try {
             HttpGet httpget = new HttpGet(this.uri);
 
@@ -213,10 +214,15 @@ public class ConectorApache extends Thread{
 
             };
             String responseBody = httpclient.execute(httpget, responseHandler);
+            reader = new StringReader(responseBody);
             System.out.println("----------------------------------------");
             System.out.println(responseBody);
         } finally {
             httpclient.close();
         }
     }
+	
+	public Reader getReader() {
+		return this.reader;
+	}
 }

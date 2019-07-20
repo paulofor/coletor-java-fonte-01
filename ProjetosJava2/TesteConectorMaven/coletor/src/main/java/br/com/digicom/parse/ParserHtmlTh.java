@@ -17,8 +17,6 @@ public class ParserHtmlTh extends ParserThread {
 	ConectorApache conector = null;
 	ICallbackParse callback = null;
 	
-	
-	
 
 	public void setCallback(ICallbackParse callback) {
 		this.callback = callback;
@@ -42,10 +40,10 @@ public class ParserHtmlTh extends ParserThread {
 			//this.conector.setCookies(this.callback.getCookies());
 			//BufferedReader read = new BufferedReader(new InputStreamReader(this.conector.getInputStream(), "UTF-8"));
 			//BufferedReader read = new BufferedReader(new InputStreamReader(this.conector.getInputStream(), this.conector.getCharSet()));
-			BufferedReader read = new BufferedReader(new InputStreamReader(this.conector.getInputStream(), getCharSet()));
+			//BufferedReader read = new BufferedReader(new InputStreamReader(this.conector.getInputStream(), getCharSet()));
 			
 			// Reader read = new
-			// InputStreamReader(this.conector.getInputStream());
+			// InputStr eamReader(this.conector.getInputStream());
 			// System.out.println("TESTE ************************");
 			//this.callback.setCookies(this.conector.getCookies());
 			
@@ -53,7 +51,7 @@ public class ParserHtmlTh extends ParserThread {
 			//while ((line = read.readLine()) != null) {
 			//	System.out.println(line);
 		    //}
-			new ParserDelegator().parse(read, (HTMLEditorKit.ParserCallback) this.callback, true);
+			new ParserDelegator().parse(this.conector.getReader(), (HTMLEditorKit.ParserCallback) this.callback, true);
 			this.callback.finalizacaoOk();
 		} catch (IOException e) {
 			e.printStackTrace();
