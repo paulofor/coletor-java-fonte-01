@@ -1,0 +1,12 @@
+(2019-7-22 20:29:13) - Kit de Pincéis para Maquiagem Macrilan c/12 Pincéis KP1-5E ( https://www.revendadecosmeticos.com.br/marcas/macrilan/kit-de-pinceis-para-maquiagem-macrilan-c-12-pinceis-kp1-5e.html ) 
+(2019-7-22 20:29:13) - java.lang.NullPointerException
+	at br.com.digicom.lib.dao.MySqlDataSource.getListaSql(MySqlDataSource.java:37)
+	at br.com.digicom.lib.dao.DaoBase.getObjeto(DaoBase.java:143)
+	at br.com.digicom.lib.dao.DaoBase.getObjeto(DaoBase.java:134)
+	at coletapreco.dao.ProdutoDaoExtendida.ObtemPorUrlProduto(ProdutoDaoExtendida.java:64)
+	at coletapreco.regracolecao.impl.ProdutoRegraColecaoImpl.ObtemPorUrlProduto(ProdutoRegraColecaoImpl.java:53)
+	at coletapreco.parse.dados.CategoriaLojaDadosParse.processaProduto(CategoriaLojaDadosParse.java:85)
+	at coletapreco.parse.dados.CategoriaLojaDadosParse.finalizacaoOkDetalhe(CategoriaLojaDadosParse.java:51)
+	at coletapreco.parse.callback.basico.CategoriaLojaDetalheCallbackHtmlBase.finalizacaoOk(CategoriaLojaDetalheCallbackHtmlBase.java:72)
+	at br.com.digicom.parse.ExecutadorParseApache.executa(ExecutadorParseApache.java:49)
+	at coletapreco.desen.TestaConectorApache.main(TestaConectorApache.java:38)

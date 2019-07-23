@@ -56,7 +56,7 @@ public class CategoriaLojaDadosParse extends CategoriaLojaDadosParseBase{
 				}
 				//System.out.println("Finalizaou loop");
 			} else {
-				ArquivoLog.getInstancia().salvaMonitoramento("Categoria " + itemDetalhe.getNome() + " ( " + itemDetalhe.getUrl() + " ) está vazia");
+				ArquivoLog.getInstancia().salvaMonitoramento("Categoria " + itemDetalhe.getNome() + " ( " + itemDetalhe.getUrl() + " ) estï¿½ vazia");
 			}
 		} catch (Exception e) {
 			ArquivoLog.getInstancia().salvaErro(e);
@@ -86,7 +86,7 @@ public class CategoriaLojaDadosParse extends CategoriaLojaDadosParseBase{
 			
 			
 			if (pesquisaProduto==null) {
-				ArquivoLog.getInstancia().salvaLog("Produto não existe");
+				ArquivoLog.getInstancia().salvaLog("Produto nao existe");
 				Marca pesquisaMarca = this.getMarca(produto);
 				if (pesquisaMarca!=null) {
 					produto.setMarcaPossui(pesquisaMarca);
@@ -168,10 +168,10 @@ public class CategoriaLojaDadosParse extends CategoriaLojaDadosParseBase{
 		System.out.println("Marca: " + produto.getMarcaPossui(false).getNomeMarca());
 		System.out.println("Url: " + produto.getUrl());
 		System.out.println("Url Origem: " + produto.getUrlOrigem());
-		System.out.println("Preço Venda: " + produto.getCorrentePrecoProduto_Possui().getPrecoVenda());
-		System.out.println("Preço Boleto: " + produto.getCorrentePrecoProduto_Possui().getPrecoBoleto());
-		System.out.println("Preço Regular: " + produto.getCorrentePrecoProduto_Possui().getPrecoRegular());
-		System.out.println("Preço Parcela: " + produto.getCorrentePrecoProduto_Possui().getPrecoParcela());
+		System.out.println("Preï¿½o Venda: " + produto.getCorrentePrecoProduto_Possui().getPrecoVenda());
+		System.out.println("Preï¿½o Boleto: " + produto.getCorrentePrecoProduto_Possui().getPrecoBoleto());
+		System.out.println("Preï¿½o Regular: " + produto.getCorrentePrecoProduto_Possui().getPrecoRegular());
+		System.out.println("Preï¿½o Parcela: " + produto.getCorrentePrecoProduto_Possui().getPrecoParcela());
 		System.out.println("Quantidade Parcelas: " + produto.getCorrentePrecoProduto_Possui().getQuantidadeParcela());
 	}
 

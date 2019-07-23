@@ -17,7 +17,7 @@ public class TestaConectorApache {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		String url = "https://www.extra.com.br/Informatica/Notebook/?Filtro=C56_C57";
-		url = "https://www.revendadecosmeticos.com.br/marcas/macrilan.html?limit=48&p=10";
+		url = "https://www.revendadecosmeticos.com.br/marcas/macrilan.html?limit=48";
 		ProdutoDao daoProduto = DBB.getInstancia().getProdutoDao();
 		DaoConexao conexao;
 		CategoriaLoja categoria = FabricaVo.criaCategoriaLoja();
@@ -32,6 +32,7 @@ public class TestaConectorApache {
 			ICallbackParse callback = new CategoriaLojaRevendaCosmeticosDetalheCallback();
 			ExecutadorParseApache exec = new ExecutadorParseApache();
 			CategoriaLojaDadosParse dadosParse = new CategoriaLojaDadosParse();
+			dadosParse.setConexao(conexao);
 			dadosParse.setItemDetalhe(categoria);
 			exec.setCallbackParse(callback); // Callback recebe dados parse -> manter ordem.
 			exec.setDadosParse(dadosParse);

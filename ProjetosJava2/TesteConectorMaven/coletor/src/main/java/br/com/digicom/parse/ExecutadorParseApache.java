@@ -22,6 +22,7 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.xml.sax.SAXException;
 
+import br.com.digicom.lib.dao.DaoException;
 import br.com.digicom.parse.callback.ICallbackParse;
 import br.com.digicom.parse.callback.IDadosParse;
 import br.com.digicom.parse.log.ArquivoLog;
@@ -39,12 +40,13 @@ public class ExecutadorParseApache {
 		this.dadosParse = dadosParse;
 	}
 
-	public void executa() {
+	public void executa() throws DaoException {
 		this.callbackParse.setDados(this.dadosParse);
 		CloseableHttpClient httpclient = HttpClients.createDefault();
 		do {
 			main();
 		} while (this.callbackParse.getLoop());
+		this.callbackParse.finalizacaoOk();
 	}
 	
 	public void main() {

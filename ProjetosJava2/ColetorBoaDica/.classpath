@@ -3,7 +3,7 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/DaoLib-Rec"/>
-	<classpathentry kind="lib" path="C:/Aplicacoes/coletor-java-fonte-01/Java-Terceiros/org.json-20120521.jar"/>
+	<classpathentry kind="lib" path="./../../Java-Terceiros/org.json-20120521.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/coletor"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
