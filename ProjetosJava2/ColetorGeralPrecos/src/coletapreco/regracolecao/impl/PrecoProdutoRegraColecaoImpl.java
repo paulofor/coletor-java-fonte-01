@@ -42,14 +42,14 @@ public  class PrecoProdutoRegraColecaoImpl  extends PrecoProdutoRegraColecao {
 	public synchronized  PrecoProduto AtualizaPreco(DaoConexao conexao) throws DaoException {
 		Produto pesquisa = getFiltro().getProduto();
 		PrecoProduto precoNovo = getFiltro().getItem();
-		ArquivoLog.getInstancia().salvaLog("Preço Produto: " + descricaoPreco(precoNovo));
+		ArquivoLog.getInstancia().salvaLog("PreÃ§o Produto: " + descricaoPreco(precoNovo));
 		PrecoProdutoDao dao = getDao();
 		dao.setConexao(conexao);
 		
 		PrecoProduto precoRecente = MaisRecentePorProduto(conexao);
 		
 		if (precoRecente==null) {
-			ArquivoLog.getInstancia().salvaLog("Não existe preço");
+			ArquivoLog.getInstancia().salvaLog("NÃ£o existe preÃ§o");
 			precoNovo.setProdutoPertenceA(pesquisa);
 			precoNovo.setDataUltimaVisita(UtilData.getDataHora());
 			precoNovo.setDataVisitaInicial(UtilData.getDataHora());
@@ -57,13 +57,13 @@ public  class PrecoProdutoRegraColecaoImpl  extends PrecoProdutoRegraColecao {
 			dao.insereItem(precoNovo);
 			
 		} else {
-			ArquivoLog.getInstancia().salvaLog("Preçco mais recente: " + descricaoPreco(precoRecente));
+			ArquivoLog.getInstancia().salvaLog("PreÃ§co mais recente: " + descricaoPreco(precoRecente));
 			if (precoRecente.getPrecoVenda()==precoNovo.getPrecoVenda()) {
-				ArquivoLog.getInstancia().salvaLog("Mesmo preço");
+				ArquivoLog.getInstancia().salvaLog("Mesmo preÃ§o");
 				precoRecente.setDataUltimaVisita(UtilData.getDataHora());
 				dao.alteraItem(precoRecente);
 			} else {
-				ArquivoLog.getInstancia().salvaLog("Mudança de preço");
+				ArquivoLog.getInstancia().salvaLog("MudanÃ§a de preÃ§o");
 				float percentual = 0;
 				if (precoRecente.getPrecoVenda()>0) {
 					percentual = (precoRecente.getPrecoVenda()-precoNovo.getPrecoVenda()) / precoRecente.getPrecoVenda();
@@ -71,7 +71,7 @@ public  class PrecoProdutoRegraColecaoImpl  extends PrecoProdutoRegraColecao {
 				} else {
 					percentual = 0;
 				}
-				ArquivoLog.getInstancia().salvaLog("Mudança de preço (Ajuste:" + percentual + ")");
+				ArquivoLog.getInstancia().salvaLog("MudanÃ§a de preÃ§o (Ajuste:" + percentual + ")");
 				precoNovo.setPercentualAjuste(percentual);
 
 				precoNovo.setProdutoPertenceA(pesquisa);
