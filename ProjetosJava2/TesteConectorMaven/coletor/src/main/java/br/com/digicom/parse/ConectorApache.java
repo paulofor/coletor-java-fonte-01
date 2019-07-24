@@ -16,17 +16,23 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.http.HttpEntity;
+import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
+import org.apache.http.auth.AuthScope;
+import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.CredentialsProvider;
 import org.apache.http.client.ResponseHandler;
+import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
 import br.com.digicom.parse.log.ArquivoLog;
 
-public class ConectorApache extends Thread{
+public class ConectorApache extends Thread {
 	public final byte SEM_MENSAGEM = -1;
 	public final byte MENSAGEM_OK = 0;
 	public final byte MENSAGEM_ARQUIVO_NAO_ENCONTRADO = 1;
@@ -40,12 +46,13 @@ public class ConectorApache extends Thread{
 	private String charSet = null;
 	private static CookieManager msCookieManager = null;
 	private URI uri = null;
-	
+
 	private List camposPost = null;
+
 	public void setCamposPost(List valor) {
 		camposPost = valor;
 	}
-	
+
 	private URLConnection montaPost(URLConnection conn) throws IOException {
 		StringBuilder postData = new StringBuilder();
 
@@ -59,7 +66,7 @@ public class ConectorApache extends Thread{
 		}
 		byte[] postDataBytes = postData.toString().getBytes("UTF-8");
 
-		((HttpURLConnection)conn).setRequestMethod("POST");
+		((HttpURLConnection) conn).setRequestMethod("POST");
 		conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
 		conn.setRequestProperty("Content-Length", String.valueOf(postDataBytes.length));
 		conn.setDoOutput(true);
@@ -81,7 +88,7 @@ public class ConectorApache extends Thread{
 	}
 
 	public CookieManager getCookieManager() {
-		if (msCookieManager==null) {
+		if (msCookieManager == null) {
 			msCookieManager = new CookieManager();
 		}
 		return msCookieManager;
@@ -91,10 +98,10 @@ public class ConectorApache extends Thread{
 		msCookieManager = cookies;
 	}
 
-	//substituir por setUrl
-	//public void setConexaoUrl(URLConnection urlConexao) {
-	//	this.urlConexao = urlConexao;
-	//}
+	// substituir por setUrl
+	// public void setConexaoUrl(URLConnection urlConexao) {
+	// this.urlConexao = urlConexao;
+	// }
 	public void setUri(URI uri) {
 		this.uri = uri;
 	}
@@ -110,11 +117,12 @@ public class ConectorApache extends Thread{
 	public boolean isUnknownHostException() {
 		return (mensagem == 2);
 	}
-	
+
 	public void run() {
 		this.mensagem = -1;
 		try {
-			//insereCookies(this.urlConexao); // Esta gerando java.lang.IllegalStateException: Already connected
+			// insereCookies(this.urlConexao); // Esta gerando
+			// java.lang.IllegalStateException: Already connected
 			main();
 		} catch (FileNotFoundException e) {
 			this.mensagem = 1;
@@ -136,26 +144,24 @@ public class ConectorApache extends Thread{
 		}
 	}
 
-	
 	private String getCharSet(URLConnection urlConexao2) {
 		String contentType = urlConexao2.getContentType();
-		if (contentType==null) return null;
+		if (contentType == null)
+			return null;
 		String[] values = contentType.split(";"); // values.length should be 2
 		String charset = null;
 
 		for (String value : values) {
-		    value = value.trim();
+			value = value.trim();
 
-		    if (value.toLowerCase().startsWith("charset=")) {
-		        charset = value.substring("charset=".length());
-		    }
+			if (value.toLowerCase().startsWith("charset=")) {
+				charset = value.substring("charset=".length());
+			}
 		}
 
 		return charset;
 	}
 
-	
-	
 	private void criaCookies(URLConnection conexao) {
 		Map<String, List<String>> headerFields = conexao.getHeaderFields();
 		List<String> cookiesHeader = headerFields.get("Set-Cookie");
@@ -178,50 +184,70 @@ public class ConectorApache extends Thread{
 	}
 
 	public void closeBuffer() {
-		//try {
-			//if (this.buffer != null)
-			//	this.buffer.close();
-		//} catch (Exception e) {
-			//System.out.println("Errconector: " + e);
-		//}
+		// try {
+		// if (this.buffer != null)
+		// this.buffer.close();
+		// } catch (Exception e) {
+		// System.out.println("Errconector: " + e);
+		// }
 	}
 
 	public String getCharSet() {
 		return charSet;
 	}
+
+	public void main() throws ClientProtocolException, IOException {
+		CloseableHttpClient httpclient = criaComProxy();
+
+		System.out.println("Entrou no main");
+		try {
+			HttpGet httpget = new HttpGet(this.uri);
+			httpget= setProxy(httpget);
+
+			System.out.println("Executing request " + httpget.getRequestLine());
+
+			// Create a custom response handler
+			ResponseHandler<String> responseHandler = new ResponseHandler<String>() {
+
+				@Override
+				public String handleResponse(final HttpResponse response) throws ClientProtocolException, IOException {
+					int status = response.getStatusLine().getStatusCode();
+					if (status >= 200 && status < 300) {
+						HttpEntity entity = response.getEntity();
+						return entity != null ? EntityUtils.toString(entity) : null;
+					} else {
+						throw new ClientProtocolException("Unexpected response status: " + status);
+					}
+				}
+
+			};
+			String responseBody = httpclient.execute(httpget, responseHandler);
+			reader = new StringReader(responseBody);
+			System.out.println("----------------------------------------");
+			System.out.println(responseBody);
+		} finally {
+			httpclient.close();
+		}
+	}
+
+	private CloseableHttpClient criaComProxy() {
+		CredentialsProvider credsProvider = new BasicCredentialsProvider();
+		credsProvider.setCredentials(new AuthScope("10.21.7.10", 82),  new UsernamePasswordCredentials("tr626987", "Piquet08"));
+		CloseableHttpClient httpclient = HttpClients.custom().setDefaultCredentialsProvider(credsProvider).build();
+		return httpclient;
+	}
+
+	private CloseableHttpClient criaSemProxy() {
+		return HttpClients.createDefault();
+	}
 	
-	public void main() throws ClientProtocolException, IOException  {
-        CloseableHttpClient httpclient = HttpClients.createDefault();
-        System.out.println("Entrou no main");
-        try {
-            HttpGet httpget = new HttpGet(this.uri);
+	private HttpGet setProxy(HttpGet httpget) {
+		HttpHost proxy = new HttpHost("10.21.7.10", 82, "http");
+		RequestConfig config = RequestConfig.custom().setProxy(proxy).build();
+		httpget.setConfig(config);
+		return httpget;
+	}
 
-            System.out.println("Executing request " + httpget.getRequestLine());
-
-            // Create a custom response handler
-            ResponseHandler<String> responseHandler = new ResponseHandler<String>() {
-
-                @Override
-                public String handleResponse(final HttpResponse response) throws ClientProtocolException, IOException {
-                    int status = response.getStatusLine().getStatusCode();
-                    if (status >= 200 && status < 300) {
-                        HttpEntity entity = response.getEntity();
-                        return entity != null ? EntityUtils.toString(entity) : null;
-                    } else {
-                        throw new ClientProtocolException("Unexpected response status: " + status);
-                    }
-                }
-
-            };
-            String responseBody = httpclient.execute(httpget, responseHandler);
-            reader = new StringReader(responseBody);
-            System.out.println("----------------------------------------");
-            System.out.println(responseBody);
-        } finally {
-            httpclient.close();
-        }
-    }
-	
 	public Reader getReader() {
 		return this.reader;
 	}
