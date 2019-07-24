@@ -46,10 +46,10 @@ public class ExecutadorParseApache {
 		do {
 			main();
 		} while (this.callbackParse.getLoop());
-		this.callbackParse.finalizacaoOk();
+		
 	}
 	
-	public void main() {
+	public void main() throws DaoException {
 		
 		this.callbackParse.setDados(this.dadosParse);
 		CloseableHttpClient httpclient = HttpClients.createDefault();
@@ -79,6 +79,7 @@ public class ExecutadorParseApache {
 			//System.out.println(responseBody);
 			this.callbackParse.inicializacao();
 			new ParserDelegator().parse(reader, (HTMLEditorKit.ParserCallback) this.callbackParse, true);
+			this.callbackParse.finalizacaoOk();
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
