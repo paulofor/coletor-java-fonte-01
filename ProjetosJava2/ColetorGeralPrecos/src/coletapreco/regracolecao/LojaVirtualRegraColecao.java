@@ -181,6 +181,18 @@ public abstract class LojaVirtualRegraColecao {
 	}
 	public abstract LojaVirtual AtualizaNotebook(final DaoConexao conexao)
 			throws DaoException;
+	public final LojaVirtual AtualizaCosmetico() throws DaoException {
+		LojaVirtual saida;
+		LojaVirtualDao dao = getDao();
+		preparaDaoParaConexao(dao);
+		DaoConexao conexao = null;
+		conexao = dao.criaConexao();
+		saida = AtualizaCosmetico(conexao);
+		dao.liberaConexao(conexao);
+		return saida;
+	}
+	public abstract LojaVirtual AtualizaCosmetico(final DaoConexao conexao)
+			throws DaoException;
 	public final LojaVirtual AtualizaTV() throws DaoException {
 		LojaVirtual saida;
 		LojaVirtualDao dao = getDao();

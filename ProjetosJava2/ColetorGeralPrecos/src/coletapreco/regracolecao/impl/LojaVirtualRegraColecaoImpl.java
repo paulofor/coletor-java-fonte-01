@@ -56,6 +56,8 @@ public  class LojaVirtualRegraColecaoImpl  extends LojaVirtualRegraColecao {
 	public static final String CODIGO_SAPATO_FEMININO = "SPFEM";
 	public static final String CODIGO_COMPUTADORES = "COMPT";
 	
+	public static final String CODIGO_COSMETICO = "COSME";
+	
 	
 	private final NaturezaProdutoRegraColecao naturezaServ = FabricaRegra.getInstancia().getNaturezaProdutoRegraColecao();
 	private final ContagemProdutoRegraColecao contagemSrv = FabricaRegra.getInstancia().getContagemProdutoRegraColecao();
@@ -264,6 +266,11 @@ public  class LojaVirtualRegraColecaoImpl  extends LojaVirtualRegraColecao {
 	@Override
 	public LojaVirtual AtualizaComputador(DaoConexao conexao) throws DaoException {
 		return atualizaNatureza(this.CODIGO_COMPUTADORES, conexao);
+	}
+
+	@Override
+	public LojaVirtual AtualizaCosmetico(DaoConexao conexao) throws DaoException {
+		return atualizaNatureza(this.CODIGO_COSMETICO, conexao);
 	}
 
 	

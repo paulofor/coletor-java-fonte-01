@@ -3,27 +3,29 @@ package coletapreco.parse.regracolecaoadaptador;
 import java.util.Iterator;
 import java.util.List;
 
-import coletapreco.dao.*;
-import coletapreco.modelo.*;
-import coletapreco.parse.callback.CategoriaLojaListaCallbackHtml;
-import coletapreco.parse.callback.CategoriaLojaDetalheCallbackHtml;
-import coletapreco.parse.dados.CategoriaLojaDadosParse;
 import br.com.digicom.lib.dao.DaoConexao;
 import br.com.digicom.lib.dao.DaoException;
 import br.com.digicom.parse.ExecutadorParse;
+import br.com.digicom.parse.ExecutadorParseApache;
 import br.com.digicom.parse.callback.ICallbackParse;
+import coletapreco.dao.CategoriaLojaDao;
+import coletapreco.dao.DBB;
+import coletapreco.modelo.CategoriaLoja;
+import coletapreco.parse.callback.CategoriaLojaDetalheCallbackHtml;
+import coletapreco.parse.callback.CategoriaLojaListaCallbackHtml;
+import coletapreco.parse.dados.CategoriaLojaDadosParse;
 
 // Instnaciar um filho desse.
 public abstract class CategoriaLojaRegraColecaoAdaptador  {
 
 
-	protected ExecutadorParse exec = null;
+	protected ExecutadorParseApache exec = null;
 	protected ICallbackParse callbackLista = null;
 	protected ICallbackParse callbackDetalhe = null;
 	protected CategoriaLojaDadosParse dadosParse = null;
 	
 	public CategoriaLojaRegraColecaoAdaptador() {
-		exec = new ExecutadorParse();
+		exec = new ExecutadorParseApache();
 		dadosParse = new CategoriaLojaDadosParse();
 	}
 	private ICallbackParse getCallbackLista() {
