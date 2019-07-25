@@ -30,16 +30,17 @@ public class TestaProxyDesen {
 
 		CloseableHttpClient httpclient = HttpClients.custom().setDefaultCredentialsProvider(credsProvider).build();
 		try {
-			HttpHost target = new HttpHost("www.revendadecosmeticos.com.br", 80, "http");
+			
+			//HttpHost target = new HttpHost("www.revendadecosmeticos.com.br", 80, "http");
 			HttpHost proxy = new HttpHost("10.21.7.10", 82);
 
 			RequestConfig config = RequestConfig.custom().setProxy(proxy).build();
-			HttpGet httpget = new HttpGet("/marcas/macrilan.html?limit=48");
+			HttpGet httpget = new HttpGet("https://www.revendadecosmeticos.com.br/marcas/macrilan.html?limit=48");
 			httpget.setConfig(config);
 
-			System.out.println("Executing request " + httpget.getRequestLine() + " to " + target + " via " + proxy);
+			//System.out.println("Executing request " + httpget.getRequestLine() + " to " + target + " via " + proxy);
 
-			CloseableHttpResponse response = httpclient.execute(target, httpget);
+			CloseableHttpResponse response = httpclient.execute(httpget);
 			try {
 				System.out.println("----------------------------------------");
 				System.out.println(response.getStatusLine());

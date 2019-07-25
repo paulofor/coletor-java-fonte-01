@@ -2,7 +2,7 @@ package coletapreco.desen;
 
 import br.com.digicom.lib.dao.DaoConexao;
 import br.com.digicom.lib.dao.DaoException;
-import br.com.digicom.parse.ExecutadorParseApache;
+import br.com.digicom.parse.ExecutadorParseApacheProxy;
 import br.com.digicom.parse.callback.ICallbackParse;
 import coletapreco.dao.DBB;
 import coletapreco.dao.LojaVirtualDao;
@@ -30,7 +30,7 @@ public class TestaConectorApache {
 			conexao = getDao().criaConexao();
 			daoProduto.setConexao(conexao);
 			ICallbackParse callback = new CategoriaLojaRevendaCosmeticosDetalheCallback();
-			ExecutadorParseApache exec = new ExecutadorParseApache();
+			ExecutadorParseApacheProxy exec = new ExecutadorParseApacheProxy();
 			CategoriaLojaDadosParse dadosParse = new CategoriaLojaDadosParse();
 			dadosParse.setConexao(conexao);
 			dadosParse.setItemDetalhe(categoria);

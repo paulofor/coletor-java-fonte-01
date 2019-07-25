@@ -1,5 +1,6 @@
 package coletapreco.log;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -14,7 +15,7 @@ public class ArquivoLog {
 	// private String _arquivoErro = "Erros.log";
 	// private String _arquivoErroDao = "ErroDao.log";
 	// private String _arquivoMonitoracao = "Monitoramento.log";
-	private static String _raiz = "\\logs";
+	private static String _raiz = File.separator + "logs";
 
 	
 	private static String getNomeArquivoServicos() {
@@ -22,46 +23,46 @@ public class ArquivoLog {
 	}
 	
 	private static String getNomeArquivoColetorDiario() {
-		return _raiz + "\\" + DCConvert.getDataDD_MM_AAAA() + "_ColetorDiario.log";
+		return _raiz + File.separator + DCConvert.getDataDD_MM_AAAA() + "_ColetorDiario.log";
 	}
 	
 	private static String getNomeArquivoMudancas() {
-		return _raiz + "\\" + DCConvert.getDataDD_MM_AAAA() + "_Mudancas.log";
+		return _raiz + File.separator + DCConvert.getDataDD_MM_AAAA() + "_Mudancas.log";
 	}
 	
 	private static String getNomeArquivoCallback() {
-		return _raiz + "\\" + DCConvert.getDataDD_MM_AAAA() + "_Callback.log";
+		return _raiz + File.separator + DCConvert.getDataDD_MM_AAAA() + "_Callback.log";
 	}
 	
 	private static String getNomeArquivoDebug() {
-		return _raiz + "\\" + DCConvert.getDataDD_MM_AAAA() + "_Debug.log";
+		return _raiz + File.separator + DCConvert.getDataDD_MM_AAAA() + "_Debug.log";
 	}
 	
 	private static String getNomeArquivo() {
-		return _raiz + "\\" + DCConvert.getDataDD_MM_AAAA() + "_Parse.log";
+		return _raiz + File.separator + DCConvert.getDataDD_MM_AAAA() + "_Parse.log";
 	}
 
 	private static String getNomeArquivoSalvaDao() {
-		return _raiz + "\\" + DCConvert.getDataDD_MM_AAAA() + "_SalvaDao.log";
+		return _raiz + File.separator + DCConvert.getDataDD_MM_AAAA() + "_SalvaDao.log";
 	}
 
 	private static String getNomeArquivoErro() {
-		return _raiz + "\\" + DCConvert.getDataDD_MM_AAAA() + "_Erros.log";
+		return _raiz + File.separator + DCConvert.getDataDD_MM_AAAA() + "_Erros.log";
 	}
 
 	private static String getNomeArquivoErroDao() {
-		return _raiz + "\\" + DCConvert.getDataDD_MM_AAAA() + "_ErrosDao.log";
+		return _raiz + File.separator + DCConvert.getDataDD_MM_AAAA() + "_ErrosDao.log";
 	}
 
 	private static String getNomeArquivoMonitoramento() {
-		return _raiz + "\\" + DCConvert.getDataDD_MM_AAAA() + "_Monitoramento.log";
+		return _raiz + File.separator + DCConvert.getDataDD_MM_AAAA() + "_Monitoramento.log";
 	}
 	private static String getNomeArquivoNomeProduto() {
-		return _raiz + "\\" + DCConvert.getDataDD_MM_AAAA() + "_NomeProduto.log";
+		return _raiz + File.separator + DCConvert.getDataDD_MM_AAAA() + "_NomeProduto.log";
 	}
 	
 	private static String getNomeArquivoEtapa() {
-		return _raiz + "\\Etapas.log";
+		return _raiz + File.separator +"Etapas.log";
 	} 
 
 	public static ArquivoLog getInstancia() {
