@@ -15,7 +15,7 @@ public class ArquivoLog {
 	// private String _arquivoErro = "Erros.log";
 	// private String _arquivoErroDao = "ErroDao.log";
 	// private String _arquivoMonitoracao = "Monitoramento.log";
-	private static String _raiz = File.separator + "logs";
+	private static String _raiz = "." + File.separator + "logs";
 
 	
 	private static String getNomeArquivoServicos() {
