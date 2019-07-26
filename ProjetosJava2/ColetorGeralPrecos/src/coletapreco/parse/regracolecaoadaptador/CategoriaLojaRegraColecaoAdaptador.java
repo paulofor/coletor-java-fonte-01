@@ -7,6 +7,7 @@ import br.com.digicom.lib.dao.DaoConexao;
 import br.com.digicom.lib.dao.DaoException;
 import br.com.digicom.parse.ExecutadorParse;
 import br.com.digicom.parse.ExecutadorParseApache;
+import br.com.digicom.parse.ExecutadorParseApacheProxy;
 import br.com.digicom.parse.callback.ICallbackParse;
 import coletapreco.dao.CategoriaLojaDao;
 import coletapreco.dao.DBB;

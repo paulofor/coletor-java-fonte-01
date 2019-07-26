@@ -9,15 +9,15 @@ import coletapreco.dao.LojaVirtualDao;
 import coletapreco.dao.ProdutoDao;
 import coletapreco.modelo.CategoriaLoja;
 import coletapreco.modelo.FabricaVo;
-import coletapreco.parse.callback.custom.CategoriaLojaAtacadoMaquiagemDetalheCallback;
+import coletapreco.parse.callback.custom.CategoriaLojaRevendaCosmeticosDetalheCallback;
 import coletapreco.parse.dados.CategoriaLojaDadosParse;
 
-public class TestaConectorApache {
+public class TestaConectorApache2 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		String url = "https://www.extra.com.br/Informatica/Notebook/?Filtro=C56_C57";
-		url = "https://www.atacadodemaquiagem.com.br/pagina/5c3a4/labios";
+		url = "https://www.revendadecosmeticos.com.br/marcas/macrilan.html?limit=48";
 		ProdutoDao daoProduto = DBB.getInstancia().getProdutoDao();
 		DaoConexao conexao;
 		CategoriaLoja categoria = FabricaVo.criaCategoriaLoja();
@@ -29,7 +29,7 @@ public class TestaConectorApache {
 		try {
 			conexao = getDao().criaConexao();
 			daoProduto.setConexao(conexao);
-			ICallbackParse callback = new CategoriaLojaAtacadoMaquiagemDetalheCallback();
+			ICallbackParse callback = new CategoriaLojaRevendaCosmeticosDetalheCallback();
 			ExecutadorParseApacheProxy exec = new ExecutadorParseApacheProxy();
 			CategoriaLojaDadosParse dadosParse = new CategoriaLojaDadosParse();
 			dadosParse.setConexao(conexao);

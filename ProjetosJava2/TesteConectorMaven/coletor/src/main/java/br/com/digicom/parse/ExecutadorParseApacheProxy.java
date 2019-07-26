@@ -77,7 +77,8 @@ public class ExecutadorParseApacheProxy {
 
 			CloseableHttpResponse response = httpclient.execute(httpget);
 			Reader reader = new StringReader(EntityUtils.toString(response.getEntity()));
-			//System.out.println(responseBody);
+			String saida = EntityUtils.toString(response.getEntity());
+			System.out.println(saida);
 			this.callbackParse.inicializacao();
 			new ParserDelegator().parse(reader, (HTMLEditorKit.ParserCallback) this.callbackParse, true);
 			this.callbackParse.finalizacaoOk();

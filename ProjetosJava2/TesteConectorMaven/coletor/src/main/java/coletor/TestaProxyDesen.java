@@ -35,7 +35,7 @@ public class TestaProxyDesen {
 			HttpHost proxy = new HttpHost("10.21.7.10", 82);
 
 			RequestConfig config = RequestConfig.custom().setProxy(proxy).build();
-			HttpGet httpget = new HttpGet("https://www.revendadecosmeticos.com.br/marcas/macrilan.html?limit=48");
+			HttpGet httpget = new HttpGet("https://www.atacadodemaquiagem.com.br/pagina/5c3a4/labios");
 			httpget.setConfig(config);
 
 			//System.out.println("Executing request " + httpget.getRequestLine() + " to " + target + " via " + proxy);
