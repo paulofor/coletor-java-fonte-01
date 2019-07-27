@@ -8,25 +8,34 @@ import coletapreco.parse.callback.CategoriaLojaDetalheCallbackHtml;
 
 public class CategoriaLojaAtacadoMaquiagemDetalheCallback extends CategoriaLojaDetalheCallbackHtml {
 
+	String dataImagem = null;
+	boolean passouRowTitulo = false;
+	
+	@Override
+	protected void handleImagem(MutableAttributeSet a) {
+		super.handleImagem(a);
+		if (a.getAttribute("data-original")!=null)
+			dataImagem = (String) a.getAttribute("data-original");
+	}
+	
 	public void handleText(char[] data, int pos) {
 		super.handleText(data, pos);
 		if (this.ligaColeta) {
 			String texto = String.copyValueOf(data);
 			String classe = this.getUltClasse2();
-			if ("product-name".equals(classe)) {
+			if ("catalogo-item-titulo".equals(classe)) {
 				this.nomeProduto = texto;
-				this.imagemProduto = this.getUltImagem2();
-				this.urlProduto = this.getUtlUrl();
+				this.imagemProduto = dataImagem;
+				this.urlProduto = "https://www.atacadodemaquiagem.com.br/" + this.getUtlUrl();
 				System.out.println("Produto:" + nomeProduto);
 				System.out.println("Imagem:" + this.imagemProduto);
 				System.out.println("URL:" + this.urlProduto);
 			}
-			if ("regular-price".equals(classe)
-					|| ("price".equals(this.getUltClasse()) && "price-box".equals(this.getUltClasse2()))
-					|| ("price".equals(this.getUltClasse()) && "special-price".equals(this.getUltClasse3()))) {
+			if ("catalogo-item-preco-por".equals(this.getUltClasse())) {
 				this.precoVenda = texto;
 				System.out.println("Preço:" + precoVenda);
 				this.desligaColeta();
+				System.out.println();
 			}
 		}
 	}
@@ -35,9 +44,9 @@ public class CategoriaLojaAtacadoMaquiagemDetalheCallback extends CategoriaLojaD
 	protected void handleUrl(String url, String classe, String titulo, String id) {
 		// TODO Auto-generated method stub
 		super.handleUrl(url, classe, titulo, id);
-		if ("next i-next".equals(classe)) {
+		if ("next_page".equals(classe)) {
 			loop = true;
-			urlCorrente = url;
+			urlCorrente = "https://www.atacadodemaquiagem.com.br/" + url;
 		}
 
 	}
@@ -45,7 +54,10 @@ public class CategoriaLojaAtacadoMaquiagemDetalheCallback extends CategoriaLojaD
 	@Override
 	protected void inicioTag(Tag t, String classeNome, String idNome) {
 		super.inicioTag(t, classeNome, idNome);
-		if (t == HTML.Tag.DIV && classeNome.indexOf("item-area") != -1) {
+		if (t == HTML.Tag.DIV && classeNome.indexOf("row titulo") != -1) {
+			passouRowTitulo = true;
+		}
+		if (passouRowTitulo && t == HTML.Tag.DIV && classeNome.indexOf("catalogo-item") != -1) {
 			ligaColeta();
 		}
 
