@@ -18,6 +18,7 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.xml.sax.SAXException;
@@ -42,7 +43,6 @@ public class ExecutadorParseApache {
 
 	public void executa() throws DaoException {
 		this.callbackParse.setDados(this.dadosParse);
-		CloseableHttpClient httpclient = HttpClients.createDefault();
 		do {
 			main();
 		} while (this.callbackParse.getLoop());
@@ -50,15 +50,12 @@ public class ExecutadorParseApache {
 	}
 	
 	public void main() throws DaoException {
-		
-		this.callbackParse.setDados(this.dadosParse);
-		CloseableHttpClient httpclient = HttpClients.createDefault();
-
+		//CloseableHttpClient httpclient = HttpClients.createDefault();
+		HttpClientBuilder httpClientBuilder = HttpClientBuilder.create();
+		CloseableHttpClient httpclient = httpClientBuilder.build();
 		try {
 			HttpGet httpget = new HttpGet(this.callbackParse.getUrl().toURI());
-
 			System.out.println("Executing request " + httpget.getRequestLine());
-
 			// Create a custom response handler
 			ResponseHandler<String> responseHandler = new ResponseHandler<String>() {
 
