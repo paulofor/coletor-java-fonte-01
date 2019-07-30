@@ -6,6 +6,7 @@ import coletapreco.modelo.NaturezaProduto;
 import coletapreco.parse.callback.CategoriaLojaDetalheCallbackHtml;
 import coletapreco.parse.callback.custom.CategoriaLojaAmericanasDetalheCallback;
 import coletapreco.parse.callback.custom.CategoriaLojaArezzoDetalheCallback;
+import coletapreco.parse.callback.custom.CategoriaLojaAtacadoMaquiagemDetalheCallback;
 import coletapreco.parse.callback.custom.CategoriaLojaCasasBahiaDetalheCallback;
 import coletapreco.parse.callback.custom.CategoriaLojaConceitoFashionDetalheCallback;
 import coletapreco.parse.callback.custom.CategoriaLojaDafitiDetalheCallback;
@@ -92,6 +93,9 @@ public class CategoriaLojaAdaptador extends CategoriaLojaRegraColecaoAdaptador {
 		}
 		if (item.getIdObj()==26) {
 			callback =  new CategoriaLojaRevendaCosmeticosDetalheCallback();
+		}
+		if (item.getIdObj()==27) {
+			callback =  new CategoriaLojaAtacadoMaquiagemDetalheCallback();
 		}
 		//callback.setNaturezaProduto(naturezaProduto);
 		return callback;

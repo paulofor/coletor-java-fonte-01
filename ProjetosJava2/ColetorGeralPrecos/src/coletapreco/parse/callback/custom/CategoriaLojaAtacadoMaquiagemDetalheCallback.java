@@ -26,7 +26,7 @@ public class CategoriaLojaAtacadoMaquiagemDetalheCallback extends CategoriaLojaD
 			if ("catalogo-item-titulo".equals(classe)) {
 				this.nomeProduto = texto;
 				this.imagemProduto = dataImagem;
-				this.urlProduto = "https://www.atacadodemaquiagem.com.br/" + this.getUtlUrl();
+				this.urlProduto = "https://www.atacadodemaquiagem.com.br" + this.getUtlUrl();
 				System.out.println("Produto:" + nomeProduto);
 				System.out.println("Imagem:" + this.imagemProduto);
 				System.out.println("URL:" + this.urlProduto);
@@ -46,7 +46,7 @@ public class CategoriaLojaAtacadoMaquiagemDetalheCallback extends CategoriaLojaD
 		super.handleUrl(url, classe, titulo, id);
 		if ("next_page".equals(classe)) {
 			loop = true;
-			urlCorrente = "https://www.atacadodemaquiagem.com.br/" + url;
+			urlCorrente = "https://www.atacadodemaquiagem.com.br" + url;
 		}
 
 	}
