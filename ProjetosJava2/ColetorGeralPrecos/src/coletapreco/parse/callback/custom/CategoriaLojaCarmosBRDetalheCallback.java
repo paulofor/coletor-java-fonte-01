@@ -10,6 +10,23 @@ public class CategoriaLojaCarmosBRDetalheCallback extends CategoriaLojaDetalheCa
 
 	String dataImagem = null;
 	boolean passouRowTitulo = false;
+	boolean insert = false;
+	
+	
+	
+	public CategoriaLojaCarmosBRDetalheCallback() {
+		//this.setDebug();
+	}
+	
+	
+	public void handleSimpleTag(HTML.Tag t, MutableAttributeSet a, int pos)  {
+		super.handleSimpleTag(t, a, pos);
+		//System.out.println("TAG:" + t.toString());
+		if ("del".equals(t.toString())) 
+			insert = false;
+		if ("ins".equals(t.toString())) 
+			insert = true;
+	}
 	
 	@Override
 	protected void handleImagem(MutableAttributeSet a) {
@@ -25,13 +42,13 @@ public class CategoriaLojaCarmosBRDetalheCallback extends CategoriaLojaDetalheCa
 			String classe = this.getUltClasse2();
 			if ("name product-title".equals(classe)) {
 				this.nomeProduto = texto;
-				this.imagemProduto = dataImagem;
+				this.imagemProduto = this.getUltImagem2();
 				this.urlProduto = this.getUtlUrl();
 				System.out.println("Produto:" + nomeProduto);
 				System.out.println("Imagem:" + this.imagemProduto);
 				System.out.println("URL:" + this.urlProduto);
 			}
-			if ("catalogo-item-preco-por".equals(this.getUltClasse())) {
+			if ("woocommerce-Price-amount amount".equals(classe) && texto.indexOf("$")==-1 && insert) {
 				this.precoVenda = texto;
 				System.out.println("Preço:" + precoVenda);
 				this.desligaColeta();
@@ -44,9 +61,9 @@ public class CategoriaLojaCarmosBRDetalheCallback extends CategoriaLojaDetalheCa
 	protected void handleUrl(String url, String classe, String titulo, String id) {
 		// TODO Auto-generated method stub
 		super.handleUrl(url, classe, titulo, id);
-		if ("next_page".equals(classe)) {
+		if ("next page-number".equals(classe)) {
 			loop = true;
-			urlCorrente = "https://www.atacadodemaquiagem.com.br" + url;
+			urlCorrente = url;
 		}
 
 	}

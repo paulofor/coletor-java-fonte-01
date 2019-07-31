@@ -78,7 +78,9 @@ public  class LojaVirtualRegraColecaoImpl  extends LojaVirtualRegraColecao {
 		
 		ContagemProduto contagem = null;
 		for (LojaNatureza lojaNat : listaLoja) {
+			
 			LojaVirtual loja = lojaNat.getCorrenteLojaVirtual_ReferenteA();
+			ArquivoLog.getInstancia().salvaObjeto("Tratando: Natureza: " + natureza.getNomeNaturezaProduto() + " Loja: " + loja.getNomeLojaVirtual());
 			loja.addListaLojaNatureza_Oferece(lojaNat);
 			if (loja.getIdObj()!=10) {
 			//if (loja.getIdObj()==7) {
@@ -125,6 +127,7 @@ public  class LojaVirtualRegraColecaoImpl  extends LojaVirtualRegraColecao {
 		for (CategoriaLoja categoria : listaCat ) {
 			daoProduto.atualizaPosicao(9999,categoria.getIdCategoriaLoja(),loja.getIdLojaVirtual());
 			ArquivoLog.getInstancia().salvaLog("Categoria:" + categoria.getNome());
+			ArquivoLog.getInstancia().salvaObjeto("Categoria:" + categoria.getNome() + "(" + categoria.getUrl() + ")");
 			System.out.println("Categoria:" + categoria.getNome());
 			adaptadorCategoria.setItem(loja);
 			adaptadorCategoria.atualizaDetalhe(categoria, conexao);
