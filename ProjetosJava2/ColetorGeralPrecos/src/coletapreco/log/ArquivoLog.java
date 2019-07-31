@@ -17,9 +17,11 @@ public class ArquivoLog {
 	// private String _arquivoMonitoracao = "Monitoramento.log";
 	private static String _raiz = "." + File.separator + "logs";
 
-	
+	private static String getNomeArquivoObjetos() {
+		return _raiz + File.separator + DCConvert.getDataDD_MM_AAAA() + "Objetos.log";
+	}
 	private static String getNomeArquivoServicos() {
-		return _raiz + "\\" + DCConvert.getDataDD_MM_AAAA() + "_Servico.log";
+		return _raiz  + File.separator +DCConvert.getDataDD_MM_AAAA() + "_Servico.log";
 	}
 	
 	private static String getNomeArquivoColetorDiario() {
@@ -85,7 +87,15 @@ public class ArquivoLog {
 		}
 	}
 
-	
+	public void salvaObjeto(String input) {
+		try {
+			FileWriter arq = new FileWriter(getNomeArquivoObjetos(), true);
+			arq.write("(" + DatasUtils.getHora() + ") " + input + "\r\n");
+			arq.close();
+		} catch (IOException e) {
+			System.out.println("*** Erro arquivo Logs ***" + e);
+		}
+	}
 	public void salvaDebug(String input) {
 		try {
 			FileWriter arq = new FileWriter(getNomeArquivoDebug(), true);

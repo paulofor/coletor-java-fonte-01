@@ -9,7 +9,8 @@ public class ColetaPrecoBrinquedoApp {
 	private final static LojaVirtualRegraColecao srv = FabricaRegra.getInstancia().getLojaVirtualRegraColecao();
 	
 	public static String getDataVersao() {
-		return "24-06-2017 (1) -> Start: 04:30";
+		//return "24-06-2017 (1) -> Start: 04:30";
+		return "30-07-2019";
 	}
 	
 	/**
