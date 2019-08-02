@@ -51,7 +51,7 @@ public class CategoriaLojaCarmosBRDetalheCallback extends CategoriaLojaDetalheCa
 			if ("woocommerce-Price-amount amount".equals(classe) && texto.indexOf("$")==-1 && insert) {
 				this.precoVenda = texto;
 				System.out.println("Preço:" + precoVenda);
-				this.desligaColeta();
+				this.finalizaProduto();
 				System.out.println();
 			}
 		}
@@ -75,7 +75,7 @@ public class CategoriaLojaCarmosBRDetalheCallback extends CategoriaLojaDetalheCa
 		//	passouRowTitulo = true;
 		//}
 		if (t == HTML.Tag.DIV && classeNome.indexOf("col-inner") != -1) {
-			ligaColeta();
+			this.inicializaProduto();
 		}
 
 	}

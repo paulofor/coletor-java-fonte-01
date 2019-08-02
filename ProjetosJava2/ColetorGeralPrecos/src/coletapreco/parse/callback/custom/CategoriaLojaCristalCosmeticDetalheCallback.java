@@ -21,7 +21,6 @@ public class CategoriaLojaCristalCosmeticDetalheCallback extends CategoriaLojaDe
 	
 	public void handleSimpleTag(HTML.Tag t, MutableAttributeSet a, int pos)  {
 		super.handleSimpleTag(t, a, pos);
-		//System.out.println("TAG:" + t.toString());
 		if ("del".equals(t.toString())) 
 			insert = false;
 		if ("ins".equals(t.toString())) 
@@ -51,7 +50,7 @@ public class CategoriaLojaCristalCosmeticDetalheCallback extends CategoriaLojaDe
 			if ("woocommerce-Price-amount amount".equals(classe) && texto.indexOf("$")==-1 && insert) {
 				this.precoVenda = texto;
 				System.out.println("Preço:" + precoVenda);
-				this.desligaColeta();
+				this.finalizaProduto();
 				System.out.println();
 			}
 		}
@@ -71,11 +70,8 @@ public class CategoriaLojaCristalCosmeticDetalheCallback extends CategoriaLojaDe
 	@Override
 	protected void inicioTag(Tag t, String classeNome, String idNome) {
 		super.inicioTag(t, classeNome, idNome);
-		//if (t == HTML.Tag.DIV && classeNome.indexOf("row titulo") != -1) {
-		//	passouRowTitulo = true;
-		//}
 		if (t == HTML.Tag.DIV && classeNome.indexOf("col-inner") != -1) {
-			ligaColeta();
+			this.inicializaProduto();
 		}
 
 	}

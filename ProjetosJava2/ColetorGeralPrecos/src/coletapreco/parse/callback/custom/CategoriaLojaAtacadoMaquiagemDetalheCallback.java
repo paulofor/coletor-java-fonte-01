@@ -34,7 +34,7 @@ public class CategoriaLojaAtacadoMaquiagemDetalheCallback extends CategoriaLojaD
 			if ("catalogo-item-preco-por".equals(this.getUltClasse())) {
 				this.precoVenda = texto;
 				System.out.println("Preço:" + precoVenda);
-				this.desligaColeta();
+				this.finalizaProduto();
 				System.out.println();
 			}
 		}
@@ -57,8 +57,8 @@ public class CategoriaLojaAtacadoMaquiagemDetalheCallback extends CategoriaLojaD
 		if (t == HTML.Tag.DIV && classeNome.indexOf("row titulo") != -1) {
 			passouRowTitulo = true;
 		}
-		if (!ligaColeta && passouRowTitulo && t == HTML.Tag.DIV && classeNome.indexOf("catalogo-item") != -1) {
-			ligaColeta();
+		if (passouRowTitulo && t == HTML.Tag.DIV && classeNome.indexOf("catalogo-item") != -1) {
+			this.inicializaProduto();
 		}
 
 	}

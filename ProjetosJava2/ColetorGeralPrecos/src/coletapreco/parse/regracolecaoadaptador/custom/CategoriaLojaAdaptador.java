@@ -7,8 +7,10 @@ import coletapreco.parse.callback.CategoriaLojaDetalheCallbackHtml;
 import coletapreco.parse.callback.custom.CategoriaLojaAmericanasDetalheCallback;
 import coletapreco.parse.callback.custom.CategoriaLojaArezzoDetalheCallback;
 import coletapreco.parse.callback.custom.CategoriaLojaAtacadoMaquiagemDetalheCallback;
+import coletapreco.parse.callback.custom.CategoriaLojaCarmosBRDetalheCallback;
 import coletapreco.parse.callback.custom.CategoriaLojaCasasBahiaDetalheCallback;
 import coletapreco.parse.callback.custom.CategoriaLojaConceitoFashionDetalheCallback;
+import coletapreco.parse.callback.custom.CategoriaLojaCristalCosmeticDetalheCallback;
 import coletapreco.parse.callback.custom.CategoriaLojaDafitiDetalheCallback;
 import coletapreco.parse.callback.custom.CategoriaLojaExtraDetalheCallback;
 import coletapreco.parse.callback.custom.CategoriaLojaLuizaDetalheCallback;
@@ -96,6 +98,12 @@ public class CategoriaLojaAdaptador extends CategoriaLojaRegraColecaoAdaptador {
 		}
 		if (item.getIdObj()==27) {
 			callback =  new CategoriaLojaAtacadoMaquiagemDetalheCallback();
+		}
+		if (item.getIdObj()==28) {
+			callback =  new CategoriaLojaCarmosBRDetalheCallback();
+		}
+		if (item.getIdObj()==29) {
+			callback =  new CategoriaLojaCristalCosmeticDetalheCallback();
 		}
 		//callback.setNaturezaProduto(naturezaProduto);
 		return callback;

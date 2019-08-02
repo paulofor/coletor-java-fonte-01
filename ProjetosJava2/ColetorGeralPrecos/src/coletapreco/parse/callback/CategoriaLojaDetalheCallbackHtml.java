@@ -24,7 +24,16 @@ public class CategoriaLojaDetalheCallbackHtml extends CategoriaLojaDetalheCallba
 	protected int contagem = 0;
 	protected boolean existeProduto = false;
 	
-	
+	protected void inicializaProduto() {
+		if (!ligaColeta) {
+			this.inicializaDados();
+		}
+		ligaColeta = true;
+	}
+	protected void finalizaProduto() {
+		ligaColeta = false;
+		this.insereObjetoLista();
+	}
 	
 	@Override
 	protected void finalizaObjeto() {
