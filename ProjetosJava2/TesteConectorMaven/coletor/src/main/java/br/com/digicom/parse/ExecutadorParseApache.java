@@ -70,10 +70,10 @@ public class ExecutadorParseApache {
 		HttpClientBuilder httpClientBuilder = HttpClientBuilder.create();
 		// this.setProxy(httpClientBuilder);
 		
-		
+		CloseableHttpClient httpclient = null;
 		try {
 			certificado(httpClientBuilder);
-			CloseableHttpClient httpclient = httpClientBuilder.build();
+			httpclient = httpClientBuilder.build();
 			HttpGet httpget = new HttpGet(this.callbackParse.getUrl().toURI());
 			System.out.println("Executing request " + httpget.getRequestLine());
 			// Base64.Encoder enc= Base64.getEncoder();

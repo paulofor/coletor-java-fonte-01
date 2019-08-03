@@ -19,35 +19,24 @@ public class CategoriaLojaCristalCosmeticDetalheCallback extends CategoriaLojaDe
 	}
 	
 	
-	public void handleSimpleTag(HTML.Tag t, MutableAttributeSet a, int pos)  {
-		super.handleSimpleTag(t, a, pos);
-		if ("del".equals(t.toString())) 
-			insert = false;
-		if ("ins".equals(t.toString())) 
-			insert = true;
-	}
 	
-	@Override
-	protected void handleImagem(MutableAttributeSet a) {
-		super.handleImagem(a);
-		if (a.getAttribute("data-original")!=null)
-			dataImagem = (String) a.getAttribute("data-original");
-	}
+	
+
 	
 	public void handleText(char[] data, int pos) {
 		super.handleText(data, pos);
 		if (this.ligaColeta) {
 			String texto = String.copyValueOf(data);
 			String classe = this.getUltClasse2();
-			if ("name product-title".equals(classe)) {
+			if ("product-name".equals(classe)) {
 				this.nomeProduto = texto;
-				this.imagemProduto = this.getUltImagem2();
+				this.imagemProduto = this.getUltImagem();
 				this.urlProduto = this.getUtlUrl();
 				System.out.println("Produto:" + nomeProduto);
 				System.out.println("Imagem:" + this.imagemProduto);
 				System.out.println("URL:" + this.urlProduto);
 			}
-			if ("woocommerce-Price-amount amount".equals(classe) && texto.indexOf("$")==-1 && insert) {
+			if ("price".equals(this.getUltClasse())) {
 				this.precoVenda = texto;
 				System.out.println("Preço:" + precoVenda);
 				this.finalizaProduto();
@@ -60,7 +49,7 @@ public class CategoriaLojaCristalCosmeticDetalheCallback extends CategoriaLojaDe
 	protected void handleUrl(String url, String classe, String titulo, String id) {
 		// TODO Auto-generated method stub
 		super.handleUrl(url, classe, titulo, id);
-		if ("next page-number".equals(classe)) {
+		if ("next i-next".equals(classe)) {
 			loop = true;
 			urlCorrente = url;
 		}
@@ -70,7 +59,7 @@ public class CategoriaLojaCristalCosmeticDetalheCallback extends CategoriaLojaDe
 	@Override
 	protected void inicioTag(Tag t, String classeNome, String idNome) {
 		super.inicioTag(t, classeNome, idNome);
-		if (t == HTML.Tag.DIV && classeNome.indexOf("col-inner") != -1) {
+		if (t == HTML.Tag.LI && classeNome.indexOf("col-xs-4") != -1) {
 			this.inicializaProduto();
 		}
 

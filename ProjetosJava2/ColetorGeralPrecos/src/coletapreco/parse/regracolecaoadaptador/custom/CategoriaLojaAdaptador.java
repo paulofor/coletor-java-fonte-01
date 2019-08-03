@@ -22,6 +22,7 @@ import coletapreco.parse.callback.custom.CategoriaLojaRiHappyDetalheCallback;
 import coletapreco.parse.callback.custom.CategoriaLojaRicardoDetalheCallback;
 import coletapreco.parse.callback.custom.CategoriaLojaSaraivaDetalheCallback;
 import coletapreco.parse.callback.custom.CategoriaLojaSubmarinoDetalheCallback;
+import coletapreco.parse.callback.custom.CategoriaLojaVirtualMakeDetalheCallback;
 import coletapreco.parse.callback.custom.CategoriaLojaWalmartDetalheCallback;
 import coletapreco.parse.callback.custom.CategoriaLojaZattiniDetalheCallback;
 import coletapreco.parse.regracolecaoadaptador.CategoriaLojaRegraColecaoAdaptador;
@@ -104,6 +105,9 @@ public class CategoriaLojaAdaptador extends CategoriaLojaRegraColecaoAdaptador {
 		}
 		if (item.getIdObj()==29) {
 			callback =  new CategoriaLojaCristalCosmeticDetalheCallback();
+		}
+		if (item.getIdObj()==30) {
+			callback =  new CategoriaLojaVirtualMakeDetalheCallback();
 		}
 		//callback.setNaturezaProduto(naturezaProduto);
 		return callback;
