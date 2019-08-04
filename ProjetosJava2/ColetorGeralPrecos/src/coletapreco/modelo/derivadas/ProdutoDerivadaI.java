@@ -11,5 +11,19 @@ public interface ProdutoDerivadaI
 
 	public String getCodigoImagemLocal();
 	public void setCodigoImagemLocal( String dado );
+	
+	
+	// ***  DESNORMALIZACAO *** BIG DATA
+	
+	public long getIdLojaVirtual();
+	public void setIdLojaVirtual(long id);
+	
+	public long getIdNaturezaProduto();
+	public void setIdNaturezaProduto(long id);
+	
+	public long getIdCategoraLoja();
+	public void setIdCategoriaLoja(long id);
+	
+	
 
 }

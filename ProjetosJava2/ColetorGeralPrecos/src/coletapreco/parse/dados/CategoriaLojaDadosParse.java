@@ -48,6 +48,8 @@ public class CategoriaLojaDadosParse extends CategoriaLojaDadosParseBase{
 					relac.getCorrenteProduto_ReferenteA().setIdLojaVirtualLe(itemDetalhe.getIdLojaVirtualPa());
 					relac.setCategoriaLojaReferenteA(itemDetalhe);
 					Produto produto =  relac.getCorrenteProduto_ReferenteA();
+					
+					// *****
 					produto = processaProduto(produto);
 					//System.out.println((cont++) + ":" + produto.getNome());
 					relac.setProdutoReferenteA(produto);
@@ -121,6 +123,11 @@ public class CategoriaLojaDadosParse extends CategoriaLojaDadosParseBase{
 			precoSrv.getFiltro().setProduto(produto);
 			precoSrv.getFiltro().setItem(produto.getCorrentePrecoProduto_Possui());
 			precoSrv.AtualizaPreco(getConexao());
+			
+			// Novos (BigData)
+			produto.setIdLojaVirtual(this.itemDetalhe.getIdLojaVirtualPa());
+			produto.setIdCategoriaLoja(this.itemDetalhe.getIdCategoriaLoja());
+			produto.setIdNaturezaProduto(this.itemDetalhe.getIdNaturezaProdutoRa());
 			
 			precoDiarioSrv.getFiltro().setProduto(produto);
 			precoDiarioSrv.RegistraPreco(getConexao());

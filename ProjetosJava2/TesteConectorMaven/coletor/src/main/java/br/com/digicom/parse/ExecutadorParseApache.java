@@ -75,10 +75,15 @@ public class ExecutadorParseApache {
 			certificado(httpClientBuilder);
 			httpclient = httpClientBuilder.build();
 			HttpGet httpget = new HttpGet(this.callbackParse.getUrl().toURI());
+			httpget.setHeader("User-Agent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.87 Safari/537.36");
+			//httpget.setHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
+			//httpget.setHeader("Accept-Charset", "ISO-8859-1,utf-8;q=0.7,*;q=0.3");
+			//httpget.setHeader("Accept-Encoding", "gzip,deflate,sdch");
+			//httpget.setHeader("Cache-Control", "max-age=0");
+		    //httpget.setHeader("Connection", "keep-alive");
+		    //httpget.setHeader("Content-Type", "application/x-www-form-urlencoded");
 			System.out.println("Executing request " + httpget.getRequestLine());
-			// Base64.Encoder enc= Base64.getEncoder();
-			// byte[] strenc =enc.encode("tr626987:Piquet08".getBytes("UTF-8"));
-			// httpget.addHeader("Authorization", "Basic "+ strenc);
+
 
 			// Create a custom response handler
 			ResponseHandler<String> responseHandler = new ResponseHandler<String>() {
@@ -97,7 +102,7 @@ public class ExecutadorParseApache {
 			};
 			String responseBody = httpclient.execute(httpget, responseHandler);
 			Reader reader = new StringReader(responseBody);
-			// System.out.println(responseBody);
+			//System.out.println(responseBody);
 			this.callbackParse.inicializacao();
 			new ParserDelegator().parse(reader, (HTMLEditorKit.ParserCallback) this.callbackParse, true);
 			this.callbackParse.finalizacaoOk();
@@ -110,7 +115,7 @@ public class ExecutadorParseApache {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (GeneralSecurityException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {

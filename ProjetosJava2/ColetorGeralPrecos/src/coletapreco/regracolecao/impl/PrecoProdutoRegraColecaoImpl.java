@@ -54,7 +54,13 @@ public  class PrecoProdutoRegraColecaoImpl  extends PrecoProdutoRegraColecao {
 			precoNovo.setDataUltimaVisita(UtilData.getDataHora());
 			precoNovo.setDataVisitaInicial(UtilData.getDataHora());
 			precoNovo.setPercentualAjuste(0);
-			dao.insereItem(precoNovo);
+			
+			// BigData novo
+			precoNovo.setIdCategoriaLoja(pesquisa.getIdCategoraLoja());
+			precoNovo.setIdLojaVirtual(pesquisa.getIdLojaVirtual());
+			precoNovo.setIdNaturezaProduto(pesquisa.getIdNaturezaProduto());
+			
+			dao.insereItemComIds(precoNovo);
 			
 		} else {
 			ArquivoLog.getInstancia().salvaLog("Preçco mais recente: " + descricaoPreco(precoRecente));

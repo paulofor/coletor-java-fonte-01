@@ -17,7 +17,8 @@ public class TesteLojaApp {
 		//url = "https://www.atacadodemaquiagem.com.br/pagina/5c3a4/labios";
 		//url = "https://www.carmosbr.com.br/categoria-produto/olhos/?orderby=popularity";
 		//url = "https://www.cristalcosmetic.com.br/maquiagem?dir=asc&limit=36&order=position";
-		url = "https://www.virtualmake.com.br/maquiagem?by=bestsellers%2Fdesc";
+		//url = "https://www.virtualmake.com.br/maquiagem?by=bestsellers%2Fdesc";
+		url = "https://www.americanas.com.br/categoria/beleza-e-perfumaria/maquiagem/labios?ordenacao=topSelling";
 		ProdutoDao daoProduto = DBB.getInstancia().getProdutoDao();
 		DaoConexao conexao;
 		CategoriaLoja categoria = FabricaVo.criaCategoriaLoja();
@@ -27,7 +28,7 @@ public class TesteLojaApp {
 		categoria.setDataInclusao("2019-07-19");
 		
 		LojaVirtual loja = FabricaVo.criaLojaVirtual();
-		loja.setIdLojaVirtual(30);
+		loja.setIdLojaVirtual(1);
 		
 		CategoriaLojaAdaptador adaptadorCategoria = new CategoriaLojaAdaptador();
 		//adaptadorCategoria.setItem(loja);

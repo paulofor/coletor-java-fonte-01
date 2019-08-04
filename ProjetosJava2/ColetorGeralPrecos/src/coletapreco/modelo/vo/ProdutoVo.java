@@ -501,6 +501,40 @@ public class ProdutoVo implements Produto
 	public void setIdMarcaP(long _valor) {
 		idMarcaP = _valor;
 	}
+
+	@Override
+	public long getIdLojaVirtual() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	
+	// DESNORMALIZACAO -- BIGDATA
+	
+	@Override
+	public void setIdLojaVirtual(long id) {
+		this.derivada.setIdLojaVirtual(id);
+	}
+
+	@Override
+	public long getIdNaturezaProduto() {
+		return derivada.getIdNaturezaProduto();
+	}
+
+	@Override
+	public void setIdNaturezaProduto(long id) {
+		this.derivada.setIdNaturezaProduto(id);
+	}
+
+	@Override
+	public long getIdCategoraLoja() {
+		return this.derivada.getIdCategoraLoja();
+	}
+
+	@Override
+	public void setIdCategoriaLoja(long id) {
+		this.derivada.setIdCategoriaLoja(id);
+	}
 	
 	
 	

@@ -31,4 +31,7 @@ public interface PrecoProdutoDao
 	void atualizaMediaProduto(String string) throws DaoException;
 
 	void atualizaMinimoProduto(String string) throws DaoException;
+	
+
+	void insereItemComIds(PrecoProduto precoNovo) throws DaoException;
 }

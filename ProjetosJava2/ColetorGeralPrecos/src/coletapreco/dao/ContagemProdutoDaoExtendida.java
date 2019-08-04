@@ -54,7 +54,7 @@ public  class ContagemProdutoDaoExtendida  extends ContagemProdutoDaoBase implem
 					" inner join categoria_loja_produto on categoria_loja_produto.id_produto_ra = preco_produto.id_produto_pa   " +
 					" inner join categoria_loja on categoria_loja.id_categoria_loja = categoria_loja_produto.id_categoria_loja_ra " + 
 					" where date(preco_produto.data_ultima_visita) = curdate()  " +
-					" group by id_loja_virtual_pa, categoria_loja.id_natureza_produto_ra " +
+					" group by id_loja_virtual_pa, categoria_loja.id_natureza_produto_ra,  date(preco_produto.data_ultima_visita) " +
 					" ) as tabela " +
 					" set contagem_produto.quantidade = tabela.qtde " +
 					" where contagem_produto.id_loja_virtual_ra = tabela.id_loja_virtual_pa and " +

@@ -32,7 +32,7 @@ public class CategoriaLojaAmericanasDetalheCallback  extends CategoriaLojaDetalh
 	
 		
 	public CategoriaLojaAmericanasDetalheCallback() {
-		//this.setDebug();
+		this.setDebug();
 	}
 	
 
@@ -66,7 +66,7 @@ public class CategoriaLojaAmericanasDetalheCallback  extends CategoriaLojaDetalh
 		super.finalizaObjeto();
 		if (offset< TOTAL) {
 			offset+= 24;
-			loop = true;
+			//loop = true;
 			urlCorrente = dadosParse.getUrlDetalhe() + "?limite=" + limite + "&offset=" + offset;
 		} else {
 			loop = false;

@@ -265,4 +265,5 @@ public class PrecoDiarioVo implements PrecoDiario
 	//-------------------------------------------------------
 	
 	
+
 }

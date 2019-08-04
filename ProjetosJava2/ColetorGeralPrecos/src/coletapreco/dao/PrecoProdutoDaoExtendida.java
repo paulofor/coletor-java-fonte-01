@@ -4,6 +4,7 @@ package coletapreco.dao;
 import java.util.List;
 
 import br.com.digicom.lib.dao.DaoException;
+import br.com.digicom.lib.util.DCConvert;
 import coletapreco.dao.basica.PrecoProdutoDaoBase;
 import coletapreco.modelo.PrecoProduto;
 
@@ -109,4 +110,55 @@ public  class PrecoProdutoDaoExtendida  extends PrecoProdutoDaoBase implements P
 		this.executaSql(sql);
 		
 	}
+
+
+
+	@Override
+	public void insereItemComIds(PrecoProduto item) throws DaoException {
+		// TODO Auto-generated method stub
+		String sql;
+        sql = "insert into " + tabelaSelect() +
+        		camposInsertComIds() + " values " + valoresInsertComIds(item);
+        this.executaSql(sql);
+	}
+	
+	protected String camposInsertComIds() 
+	{
+		return " ( id_preco_produto " 
+		+ " ,preco_boleto " 
+		+ " ,data_visita_inicial " 
+		+ " ,quantidade_parcela " 
+		+ " ,preco_parcela " 
+		+ " ,preco_venda " 
+		+ " ,preco_regular " 
+		+ " ,data_ultima_visita " 
+		+ " ,percentual_ajuste " 
+		+ " ,media_2meses " 
+		+ " ,minimo_3meses " 
+		+ " ,id_produto_pa " 
+		+ " ,id_loja_virtual " 
+		+ " ,id_natureza_produto "
+		+ " ,id_categoria_loja "
+		+ " ) ";
+	}
+	
+	protected String valoresInsertComIds(PrecoProduto item) {
+		return " ( '" + item.getIdPrecoProduto() + "'  " 
+		+ " ,'" +  DCConvert.ToDataBase(item.getPrecoBoleto()) + "'  "
+		+ " ," + (item.getDataVisitaInicial()==null?"null": DCConvert.ToDataSqlAAAA_MM_DD_HHMMSS(item.getDataVisitaInicial()) ) + "  "
+		+ " ,'" + item.getQuantidadeParcela() + "'  "
+		+ " ,'" +  DCConvert.ToDataBase(item.getPrecoParcela()) + "'  "
+		+ " ,'" +  DCConvert.ToDataBase(item.getPrecoVenda()) + "'  "
+		+ " ,'" +  DCConvert.ToDataBase(item.getPrecoRegular()) + "'  "
+		+ " ," + (item.getDataUltimaVisita()==null?"null": DCConvert.ToDataSqlAAAA_MM_DD_HHMMSS(item.getDataUltimaVisita()) ) + "  "
+		+ " ,'" +  DCConvert.ToDataBase(item.getPercentualAjuste()) + "'  "
+		+ " ,'" +  DCConvert.ToDataBase(item.getMedia2meses()) + "'  "
+		+ " ,'" +  DCConvert.ToDataBase(item.getMinimo3meses()) + "'  "
+		+ " ," + item.getIdProdutoPa() + "  "
+		+ " ," + item.getIdLojaVirtual() + "  "
+		+ " ," + item.getIdNaturezaProduto() + "  "
+		+ " ," + item.getIdCategoraLoja() + "  "
+		+ " ) ";
+	}
+	
 }
