@@ -1,20 +1,22 @@
 package coletapreco.dao;
 
 
-import java.util.*;
+import java.util.List;
 
-import br.com.digicom.lib.dao.*;
-import br.com.digicom.lib.*;
-import br.com.digicom.lib.util.*;
-
-
-import coletapreco.dao.*;
-import coletapreco.dao.basica.*;
+import br.com.digicom.lib.dao.DaoException;
+import coletapreco.dao.basica.CategoriaLojaDaoBase;
+import coletapreco.dao.basica.DataSourceNuvem;
+import coletapreco.dao.basica.NaturezaProdutoDaoBase;
 import coletapreco.modelo.NaturezaProduto;
 
 
 public  class NaturezaProdutoDaoExtendida  extends NaturezaProdutoDaoBase implements NaturezaProdutoDao {
 
+	
+	public NaturezaProdutoDaoExtendida() {
+		super(new DataSourceNuvem());
+	}
+	
 	@Override
 	public List ListaNaoRelacionadaEmCategoriaLojaListaPossui(long idCategoriaLoja) throws DaoException {
 		throw new UnsupportedOperationException();

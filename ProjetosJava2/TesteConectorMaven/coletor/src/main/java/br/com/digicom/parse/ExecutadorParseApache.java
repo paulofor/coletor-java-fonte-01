@@ -68,7 +68,7 @@ public class ExecutadorParseApache {
 	public void main() throws DaoException {
 		// CloseableHttpClient httpclient = HttpClients.createDefault();
 		HttpClientBuilder httpClientBuilder = HttpClientBuilder.create();
-		// this.setProxy(httpClientBuilder);
+		this.setProxy(httpClientBuilder);
 		
 		CloseableHttpClient httpclient = null;
 		try {

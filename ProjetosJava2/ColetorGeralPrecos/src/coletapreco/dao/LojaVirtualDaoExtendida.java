@@ -15,6 +15,10 @@ import coletapreco.modelo.LojaVirtual;
 
 public  class LojaVirtualDaoExtendida  extends LojaVirtualDaoBase implements LojaVirtualDao {
 
+	public LojaVirtualDaoExtendida() {
+		super(new DataSourceNuvem());
+	}
+	
 	@Override
 	public List ListaNaoRelacionadaEmProdutoListaPossui(long idProduto)
 			throws DaoException {
