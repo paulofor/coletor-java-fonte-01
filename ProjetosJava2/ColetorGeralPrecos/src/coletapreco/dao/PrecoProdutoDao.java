@@ -34,4 +34,6 @@ public interface PrecoProdutoDao
 	
 
 	void insereItemComIds(PrecoProduto precoNovo) throws DaoException;
+
+	void atualizaDiferencaPosicao7Dias() throws DaoException;
 }

@@ -333,6 +333,19 @@ public abstract class PrecoProdutoRegraColecao {
 		PrecoProdutoDao dao = getDao(conn);
 		return dao.ListaPorProdutoPertenceA(id);
 	}
+
+
 	
-	
+	public final PrecoProduto CalculaDiferencaPosicao() throws DaoException {
+		PrecoProduto saida;
+		PrecoProdutoDao dao = getDao();
+		preparaDaoParaConexao(dao);
+		DaoConexao conexao = null;
+		conexao = dao.criaConexao();
+		saida = CalculaDiferencaPosicao(conexao);
+		dao.liberaConexao(conexao);
+		return saida;
+	}
+	public abstract PrecoProduto CalculaDiferencaPosicao(final DaoConexao conexao)
+			throws DaoException;
 }

@@ -46,12 +46,12 @@ public class CategoriaLojaAmericanasDetalheCallback extends CategoriaLojaDetalhe
 			if (this.getUltClasse().indexOf("TitleUI") != -1) {
 				this.nomeProduto = texto;
 				this.urlProduto = "https://www.americanas.com.br" + this.getUtlUrl();
-				System.out.println("Produto: " + this.nomeProduto);
-				System.out.println("Url: " + this.urlProduto);
+				//System.out.println("Produto: " + this.nomeProduto);
+				//System.out.println("Url: " + this.urlProduto);
 			}
 			if (this.getUltClasse().indexOf("PriceUI") != -1 && texto.indexOf("$") == -1) {
 				this.precoRegular = texto;
-				System.out.println("Preço: " + this.precoRegular);
+				//System.out.println("Preço: " + this.precoRegular);
 				this.finalizaProduto();
 			}
 		}

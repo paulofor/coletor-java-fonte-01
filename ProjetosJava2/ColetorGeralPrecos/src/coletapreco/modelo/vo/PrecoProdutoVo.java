@@ -272,4 +272,14 @@ public class PrecoProdutoVo implements PrecoProduto {
 		return this.derivada.getIdLojaVirtual();
 	}
 
+	@Override
+	public long getPosicao() {
+		return this.derivada.getPosicao();
+	}
+
+	@Override
+	public void setPosicao(long valor) {
+		this.derivada.setPosicao(valor);
+	}
+
 }

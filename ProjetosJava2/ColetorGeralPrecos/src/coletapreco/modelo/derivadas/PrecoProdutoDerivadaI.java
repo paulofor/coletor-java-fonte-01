@@ -18,4 +18,8 @@ public interface PrecoProdutoDerivadaI {
 	public long getIdCategoraLoja();
 
 	public void setIdCategoriaLoja(long id);
+	
+	public void setPosicao(long pos);
+	
+	public long getPosicao();
 }

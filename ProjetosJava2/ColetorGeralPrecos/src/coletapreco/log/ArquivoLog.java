@@ -18,7 +18,7 @@ public class ArquivoLog {
 	private static String _raiz = "." + File.separator + "logs";
 
 	private static String getNomeArquivoObjetos() {
-		return _raiz + File.separator + DCConvert.getDataDD_MM_AAAA() + "Objetos.log";
+		return _raiz + File.separator + DCConvert.getDataDD_MM_AAAA() + "_Objetos.log";
 	}
 	private static String getNomeArquivoServicos() {
 		return _raiz  + File.separator +DCConvert.getDataDD_MM_AAAA() + "_Servico.log";

@@ -59,6 +59,7 @@ public  class PrecoProdutoRegraColecaoImpl  extends PrecoProdutoRegraColecao {
 			precoNovo.setIdCategoriaLoja(pesquisa.getIdCategoraLoja());
 			precoNovo.setIdLojaVirtual(pesquisa.getIdLojaVirtual());
 			precoNovo.setIdNaturezaProduto(pesquisa.getIdNaturezaProduto());
+			precoNovo.setPosicao(pesquisa.getPosicao());
 			
 			dao.insereItemComIds(precoNovo);
 			
@@ -142,7 +143,14 @@ public  class PrecoProdutoRegraColecaoImpl  extends PrecoProdutoRegraColecao {
 		PrecoProdutoDao dao = getDao(conexao);
 		dao.atualizaMediaProduto(listaIdProduto.toString());
 		dao.atualizaMinimoProduto(listaIdProduto.toString());
-		// TODO Auto-generated method stub
+
+		return null;
+	}
+
+	@Override
+	public PrecoProduto CalculaDiferencaPosicao(DaoConexao conexao) throws DaoException {
+		PrecoProdutoDao dao = getDao(conexao);
+		dao.atualizaDiferencaPosicao7Dias();
 		return null;
 	}
 

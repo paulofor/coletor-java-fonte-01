@@ -62,6 +62,11 @@ public class OportunidadeDiaRegraColecaoImpl extends OportunidadeDiaRegraColecao
 		precoProdutoSrv.CalculaMedioMinimoAjustePositivo(conexao);
 	}
 	
+	private void CalculaDiferencaPosicao(DaoConexao conexao) throws DaoException {
+		PrecoProdutoRegraColecao precoProdutoSrv = FabricaRegra.getInstancia().getPrecoProdutoRegraColecao();
+		precoProdutoSrv.CalculaDiferencaPosicao(conexao);
+	}
+	
 	public OportunidadeDia CalculaOportunidadesHoje(DaoConexao conexao) throws DaoException {
 
 		PrecoDiarioRegraColecao precoDiarioSrv = FabricaRegra.getInstancia().getPrecoDiarioRegraColecao();
@@ -71,7 +76,9 @@ public class OportunidadeDiaRegraColecaoImpl extends OportunidadeDiaRegraColecao
 		conexao = dsLocal.criaConexao();
 		
 		// Calculando Medias e Minimos.
-		CalculaMediaMinimo(conexao);
+		this.CalculaMediaMinimo(conexao);
+		// Produtos que evoluiram
+		this.CalculaDiferencaPosicao(conexao);
 		System.out.println("Calculando media e minimos");
 		
 		ProdutoRegraColecao produtoSrv = FabricaRegra.getInstancia().getProdutoRegraColecao();
@@ -138,7 +145,7 @@ public class OportunidadeDiaRegraColecaoImpl extends OportunidadeDiaRegraColecao
 					dao.insereItem(oportunidade);
 				}
 			} else {
-				//System.out.println("Preço zerado.");
+				//System.out.println("Preï¿½o zerado.");
 				zerados++;
 			}
 		}
@@ -149,7 +156,7 @@ public class OportunidadeDiaRegraColecaoImpl extends OportunidadeDiaRegraColecao
 
 	@Override
 	public OportunidadeDia ChamaMobile(DaoConexao conexao) throws DaoException {
-		System.out.println("Inicialização GCM Monitor");
+		System.out.println("Inicializaï¿½ï¿½o GCM Monitor");
 		
 		
 		final String API_KEY = "AIzaSyBKcizXgFgdxxcghw8ZaO2kGZiokX-Vptk";
@@ -196,7 +203,7 @@ public class OportunidadeDiaRegraColecaoImpl extends OportunidadeDiaRegraColecao
 
 	@Override
 	public OportunidadeDia ChamaMobileCliente(DaoConexao conexao) throws DaoException {
-		System.out.println("Inicialização GCM Cliente");
+		System.out.println("Inicializaï¿½ï¿½o GCM Cliente");
 		
 		final String API_KEY = "AIzaSyCUB834-d0XXNS4f-YGBHTvpOzvtZGG6qU";
 		   

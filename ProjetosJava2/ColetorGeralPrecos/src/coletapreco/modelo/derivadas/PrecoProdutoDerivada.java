@@ -6,6 +6,8 @@ import coletapreco.modelo.*;
 
 public class PrecoProdutoDerivada implements PrecoProdutoDerivadaI {
 
+	private long posicao;
+	
 	private long idLojaVirtual;
 	private long idNaturezaProduto;
 	private long idCategoriaLoja;
@@ -44,5 +46,15 @@ public class PrecoProdutoDerivada implements PrecoProdutoDerivadaI {
 	@Override
 	public void setIdCategoriaLoja(long id) {
 		this.idCategoriaLoja = id;
+	}
+	
+	@Override
+	public long getPosicao() {
+		return this.posicao;
+	}
+
+	@Override
+	public void setPosicao(long pos) {
+		this.posicao = pos;
 	}
 }

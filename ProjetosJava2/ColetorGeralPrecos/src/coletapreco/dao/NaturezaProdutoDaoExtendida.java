@@ -13,9 +13,9 @@ import coletapreco.modelo.NaturezaProduto;
 public  class NaturezaProdutoDaoExtendida  extends NaturezaProdutoDaoBase implements NaturezaProdutoDao {
 
 	
-	public NaturezaProdutoDaoExtendida() {
-		super(new DataSourceNuvem());
-	}
+	//public NaturezaProdutoDaoExtendida() {
+	//	super(new DataSourceNuvem());
+	//}
 	
 	@Override
 	public List ListaNaoRelacionadaEmCategoriaLojaListaPossui(long idCategoriaLoja) throws DaoException {

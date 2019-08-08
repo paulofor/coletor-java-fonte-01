@@ -160,5 +160,29 @@ public  class PrecoProdutoDaoExtendida  extends PrecoProdutoDaoBase implements P
 		+ " ," + item.getIdCategoraLoja() + "  "
 		+ " ) ";
 	}
+
+
+
+	@Override
+	public void atualizaDiferencaPosicao7Dias() throws DaoException {
+		
+		String sql2 = "update preco_produto " + 
+				"set diferenca_posicao7 = (posicao7 - posicao0) " +
+				"where preco_produto.data_ultima_visita = current_date()";
+		this.executaSql(sql2);
+		
+		String sql = "update preco_produto " + 
+				"set posicao7 = posicao6, " + 
+				"posicao6 = posicao5, " + 
+				"posicao5 = posicao4, " + 
+				"posicao4 = posicao3, " + 
+				"posicao3 = posicao2, " + 
+				"posicao2 = posicao1, " + 
+				"posicao1 = posicao0  " + 
+				"where preco_produto.data_ultima_visita = current_date()";
+		this.executaSql(sql);
+		
+		
+	}
 	
 }
