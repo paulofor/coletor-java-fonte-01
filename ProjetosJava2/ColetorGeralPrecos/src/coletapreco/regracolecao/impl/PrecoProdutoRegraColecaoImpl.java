@@ -55,12 +55,7 @@ public  class PrecoProdutoRegraColecaoImpl  extends PrecoProdutoRegraColecao {
 			precoNovo.setDataVisitaInicial(UtilData.getDataHora());
 			precoNovo.setPercentualAjuste(0);
 			
-			// BigData novo
-			precoNovo.setIdCategoriaLoja(pesquisa.getIdCategoraLoja());
-			precoNovo.setIdLojaVirtual(pesquisa.getIdLojaVirtual());
-			precoNovo.setIdNaturezaProduto(pesquisa.getIdNaturezaProduto());
-			precoNovo.setPosicao(pesquisa.getPosicao());
-			
+			this.preparaPrecoBigData(precoNovo);
 			dao.insereItemComIds(precoNovo);
 			
 		} else {
@@ -68,6 +63,7 @@ public  class PrecoProdutoRegraColecaoImpl  extends PrecoProdutoRegraColecao {
 			if (precoRecente.getPrecoVenda()==precoNovo.getPrecoVenda()) {
 				ArquivoLog.getInstancia().salvaLog("Mesmo preço");
 				precoRecente.setDataUltimaVisita(UtilData.getDataHora());
+				this.preparaPrecoBigData(precoRecente);
 				dao.alteraItem(precoRecente);
 			} else {
 				ArquivoLog.getInstancia().salvaLog("Mudança de preço");
@@ -84,6 +80,7 @@ public  class PrecoProdutoRegraColecaoImpl  extends PrecoProdutoRegraColecao {
 				precoNovo.setProdutoPertenceA(pesquisa);
 				precoNovo.setDataUltimaVisita(UtilData.getDataHora());
 				precoNovo.setDataVisitaInicial(UtilData.getDataHora());
+				this.preparaPrecoBigData(precoNovo);
 				dao.insereItem(precoNovo);
 			}
 		}
@@ -91,6 +88,12 @@ public  class PrecoProdutoRegraColecaoImpl  extends PrecoProdutoRegraColecao {
 		return null;
 	}
 
+	private void preparaPrecoBigData(PrecoProduto preco) {
+		preco.setPosicao(getFiltro().getProduto().getPosicaoProduto());
+		preco.setIdCategoriaLoja(getFiltro().getProduto().getIdCategoraLoja());
+		preco.setIdLojaVirtual(getFiltro().getProduto().getIdLojaVirtual());
+		preco.setIdNaturezaProduto(getFiltro().getProduto().getIdNaturezaProduto());
+	}
 
 	
 

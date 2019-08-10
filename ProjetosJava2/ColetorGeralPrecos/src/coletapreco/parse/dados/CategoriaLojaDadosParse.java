@@ -119,15 +119,18 @@ public class CategoriaLojaDadosParse extends CategoriaLojaDadosParseBase{
 				produto = pesquisaProduto;
 	
 			}
-			// Alterado em 06-01-2017
-			precoSrv.getFiltro().setProduto(produto);
-			precoSrv.getFiltro().setItem(produto.getCorrentePrecoProduto_Possui());
-			precoSrv.AtualizaPreco(getConexao());
 			
 			// Novos (BigData)
 			produto.setIdLojaVirtual(this.itemDetalhe.getIdLojaVirtualPa());
 			produto.setIdCategoriaLoja(this.itemDetalhe.getIdCategoriaLoja());
 			produto.setIdNaturezaProduto(this.itemDetalhe.getIdNaturezaProdutoRa());
+			
+			// Alterado em 06-01-2017
+			precoSrv.getFiltro().setProduto(produto);
+			precoSrv.getFiltro().setItem(produto.getCorrentePrecoProduto_Possui());
+			precoSrv.AtualizaPreco(getConexao());
+			
+			
 			
 			precoDiarioSrv.getFiltro().setProduto(produto);
 			precoDiarioSrv.RegistraPreco(getConexao());
@@ -135,6 +138,7 @@ public class CategoriaLojaDadosParse extends CategoriaLojaDadosParseBase{
 		} catch (Exception e) {
 			try {
 				String mensagem = produto.getNome() + " ( " + produto.getUrl() + " ) ";
+				e.printStackTrace();
 				ArquivoLog.getInstancia().salvaErro(e, mensagem);
 			} catch (Exception e2) {
 				ArquivoLog.getInstancia().salvaErro(e2);

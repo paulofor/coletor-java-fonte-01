@@ -513,27 +513,27 @@ public class ProdutoVo implements Produto
 	
 	@Override
 	public void setIdLojaVirtual(long id) {
-		this.derivada.setIdLojaVirtual(id);
+		this.getDerivada().setIdLojaVirtual(id);
 	}
 
 	@Override
 	public long getIdNaturezaProduto() {
-		return derivada.getIdNaturezaProduto();
+		return getDerivada().getIdNaturezaProduto();
 	}
 
 	@Override
 	public void setIdNaturezaProduto(long id) {
-		this.derivada.setIdNaturezaProduto(id);
+		this.getDerivada().setIdNaturezaProduto(id);
 	}
 
 	@Override
 	public long getIdCategoraLoja() {
-		return this.derivada.getIdCategoraLoja();
+		return this.getDerivada().getIdCategoraLoja();
 	}
 
 	@Override
 	public void setIdCategoriaLoja(long id) {
-		this.derivada.setIdCategoriaLoja(id);
+		this.getDerivada().setIdCategoriaLoja(id);
 	}
 	
 	

@@ -139,6 +139,7 @@ public  class PrecoProdutoDaoExtendida  extends PrecoProdutoDaoBase implements P
 		+ " ,id_loja_virtual " 
 		+ " ,id_natureza_produto "
 		+ " ,id_categoria_loja "
+		+ " ,posicao "
 		+ " ) ";
 	}
 	
@@ -158,6 +159,7 @@ public  class PrecoProdutoDaoExtendida  extends PrecoProdutoDaoBase implements P
 		+ " ," + item.getIdLojaVirtual() + "  "
 		+ " ," + item.getIdNaturezaProduto() + "  "
 		+ " ," + item.getIdCategoraLoja() + "  "
+		+ " ," + item.getPosicao() + "  "
 		+ " ) ";
 	}
 
@@ -167,7 +169,7 @@ public  class PrecoProdutoDaoExtendida  extends PrecoProdutoDaoBase implements P
 	public void atualizaDiferencaPosicao7Dias() throws DaoException {
 		
 		String sql2 = "update preco_produto " + 
-				"set diferenca_posicao7 = (posicao7 - posicao0) " +
+				"set diferenca_posicao7 = (posicao7 - posicao) " +
 				"where preco_produto.data_ultima_visita = current_date()";
 		this.executaSql(sql2);
 		
@@ -178,11 +180,80 @@ public  class PrecoProdutoDaoExtendida  extends PrecoProdutoDaoBase implements P
 				"posicao4 = posicao3, " + 
 				"posicao3 = posicao2, " + 
 				"posicao2 = posicao1, " + 
-				"posicao1 = posicao0  " + 
+				"posicao1 = posicao  " + 
 				"where preco_produto.data_ultima_visita = current_date()";
 		this.executaSql(sql);
 		
 		
+	}
+	
+	
+	@Override
+	public void insereItem(PrecoProduto item) throws DaoException {
+		String sql;
+        sql = "insert into " + tabelaSelect() +
+            camposInsertPlus() + " values " + valoresInsertPlus(item);
+        this.executaSql(sql);
+	}
+	private String camposInsertPlus() 
+	{
+		return " ( id_preco_produto " 
+		+ " ,preco_boleto " 
+		+ " ,data_visita_inicial " 
+		+ " ,quantidade_parcela " 
+		+ " ,preco_parcela " 
+		+ " ,preco_venda " 
+		+ " ,preco_regular " 
+		+ " ,data_ultima_visita " 
+		+ " ,percentual_ajuste " 
+		+ " ,media_2meses " 
+		+ " ,minimo_3meses " 
+		+ " ,id_produto_pa " 
+		+ " ,posicao "
+		+ " ) ";
+	}
+	private String valoresInsertPlus(PrecoProduto item) {
+		return " ( '" + item.getIdPrecoProduto() + "'  " 
+		+ " ,'" +  DCConvert.ToDataBase(item.getPrecoBoleto()) + "'  "
+		+ " ," + (item.getDataVisitaInicial()==null?"null": DCConvert.ToDataSqlAAAA_MM_DD_HHMMSS(item.getDataVisitaInicial()) ) + "  "
+		+ " ,'" + item.getQuantidadeParcela() + "'  "
+		+ " ,'" +  DCConvert.ToDataBase(item.getPrecoParcela()) + "'  "
+		+ " ,'" +  DCConvert.ToDataBase(item.getPrecoVenda()) + "'  "
+		+ " ,'" +  DCConvert.ToDataBase(item.getPrecoRegular()) + "'  "
+		+ " ," + (item.getDataUltimaVisita()==null?"null": DCConvert.ToDataSqlAAAA_MM_DD_HHMMSS(item.getDataUltimaVisita()) ) + "  "
+		+ " ,'" +  DCConvert.ToDataBase(item.getPercentualAjuste()) + "'  "
+		+ " ,'" +  DCConvert.ToDataBase(item.getMedia2meses()) + "'  "
+		+ " ,'" +  DCConvert.ToDataBase(item.getMinimo3meses()) + "'  "
+		+ " ," + item.getIdProdutoPa() + "  "
+		+ " ," + item.getPosicao() + "  "
+		+ " ) ";
+	}
+	
+	
+	@Override
+	public void alteraItem(PrecoProduto item) throws DaoException {
+		String sql;
+        sql = "update " + tabelaSelect() +
+            " set " + camposValoresUpdateEdicaoPlus(item) + 
+            " where id_preco_produto = " + item.getIdPrecoProduto();
+        this.executaSql(sql);
+ 	}
+	
+	protected String camposValoresUpdateEdicaoPlus(PrecoProduto item) {
+		return " id_preco_produto = '" + item.getIdPrecoProduto() + "'  " 
+		+ " , preco_boleto = '" +  DCConvert.ToDataBase(item.getPrecoBoleto()) + "'  " 
+		+ " , data_visita_inicial = " + (item.getDataVisitaInicial()==null?"null": DCConvert.ToDataSqlAAAA_MM_DD_HHMMSS(item.getDataVisitaInicial()) ) + "  " 
+		+ " , quantidade_parcela = '" + item.getQuantidadeParcela() + "'  " 
+		+ " , preco_parcela = '" +  DCConvert.ToDataBase(item.getPrecoParcela()) + "'  " 
+		+ " , preco_venda = '" +  DCConvert.ToDataBase(item.getPrecoVenda()) + "'  " 
+		+ " , preco_regular = '" +  DCConvert.ToDataBase(item.getPrecoRegular()) + "'  " 
+		+ " , data_ultima_visita = " + (item.getDataUltimaVisita()==null?"null": DCConvert.ToDataSqlAAAA_MM_DD_HHMMSS(item.getDataUltimaVisita()) ) + "  " 
+		+ " , percentual_ajuste = '" +  DCConvert.ToDataBase(item.getPercentualAjuste()) + "'  " 
+		+ " , media_2meses = '" +  DCConvert.ToDataBase(item.getMedia2meses()) + "'  " 
+		+ " , minimo_3meses = '" +  DCConvert.ToDataBase(item.getMinimo3meses()) + "'  " 
+		+ " , id_produto_pa = " + item.getIdProdutoPa() + "  " 
+		+ " , posicao = " + item.getPosicao() + "  " 
+		;
 	}
 	
 }
