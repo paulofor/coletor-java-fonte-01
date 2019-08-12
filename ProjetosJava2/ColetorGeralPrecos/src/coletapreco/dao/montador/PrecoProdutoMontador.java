@@ -61,7 +61,19 @@ public class PrecoProdutoMontador   implements MontadorDaoI {
 	  	objeto.setMedia2meses(resultadoLista.getFloat(pos++));  
 	  	objeto.setMinimo3meses(resultadoLista.getFloat(pos++));  
 	  	objeto.setIdProdutoPa(resultadoLista.getInt(pos++));
-      	return objeto;
+	  	
+	  	/*
+	  	objeto.setPosicao(resultadoLista.getInt(pos++));
+	  	objeto.setPosicao1(resultadoLista.getInt(pos++));
+	  	objeto.setPosicao2(resultadoLista.getInt(pos++));
+	  	objeto.setPosicao3(resultadoLista.getInt(pos++));
+	  	objeto.setPosicao4(resultadoLista.getInt(pos++));
+	  	objeto.setPosicao5(resultadoLista.getInt(pos++));
+	  	objeto.setPosicao6(resultadoLista.getInt(pos++));
+	  	objeto.setPosicao7(resultadoLista.getInt(pos++));
+	  	objeto.setDiferencaPosicao7(resultadoLista.getInt(pos++));
+	  	*/
+	  	return objeto;
 	}
 		
 	public int quantidadeCampos()  {

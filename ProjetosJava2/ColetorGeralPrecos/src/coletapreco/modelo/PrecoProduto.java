@@ -70,5 +70,8 @@ public interface PrecoProduto extends DCIObjetoDominio , PrecoProdutoAgregadoI ,
 	
 	public long getPosicao();
 	public void setPosicao(long valor);
+	
+	public void descolaPosicao();
+	public void calculaDiferencaPosicao();
 }
 

@@ -14,7 +14,8 @@ import coletapreco.parse.callback.CategoriaLojaDetalheCallbackHtml;
 
 public class CategoriaLojaAmericanasDetalheCallback extends CategoriaLojaDetalheCallbackHtml {
 
-	private int TOTAL = 500;
+	private int LIMITE_PAGINA = 500;
+	private int contaPagina;
 
 	public CategoriaLojaAmericanasDetalheCallback() {
 		//this.setDebug();
@@ -50,7 +51,7 @@ public class CategoriaLojaAmericanasDetalheCallback extends CategoriaLojaDetalhe
 				//System.out.println("Url: " + this.urlProduto);
 			}
 			if (this.getUltClasse().indexOf("PriceUI") != -1 && texto.indexOf("$") == -1) {
-				this.precoRegular = texto;
+				this.precoVenda = texto;
 				//System.out.println("Preço: " + this.precoRegular);
 				this.finalizaProduto();
 			}

@@ -222,6 +222,10 @@ public abstract class CallbackParseHtml extends HTMLEditorKit.ParserCallback imp
 
 	protected void handleUrl(String url, String classe, String titulo, String id) {
 	}
+	
+
+	public void antesLoop() {
+	}
 }
 
 /*

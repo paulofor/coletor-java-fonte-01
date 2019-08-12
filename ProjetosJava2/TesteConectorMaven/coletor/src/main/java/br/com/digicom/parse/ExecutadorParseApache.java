@@ -59,8 +59,18 @@ public class ExecutadorParseApache {
 
 	public void executa() throws DaoException {
 		this.callbackParse.setDados(this.dadosParse);
+		this.callbackParse.antesLoop();
+		int contaPagina = 0;
 		do {
 			main();
+			contaPagina++;
+			if (contaPagina % 80 == 0) {
+				try {
+					Thread.sleep(120000); // 2 minutos
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
 		} while (this.callbackParse.getLoop());
 
 	}

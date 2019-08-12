@@ -24,6 +24,8 @@ public class CategoriaLojaDetalheCallbackHtml extends CategoriaLojaDetalheCallba
 	protected int contagem = 0;
 	protected boolean existeProduto = false;
 	
+	
+	
 	protected void inicializaProduto() {
 		if (!ligaColeta) {
 			this.inicializaDados();
@@ -114,5 +116,7 @@ public class CategoriaLojaDetalheCallbackHtml extends CategoriaLojaDetalheCallba
 			url = url.substring(0, posic);
 		return url;
 	}
+
+
 
 }

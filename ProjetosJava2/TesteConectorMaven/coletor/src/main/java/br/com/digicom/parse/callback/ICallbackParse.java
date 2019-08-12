@@ -39,6 +39,8 @@ public abstract interface ICallbackParse {
 	
 
 	public abstract URL getJsonUrl() throws MalformedURLException;
+	
+	public void antesLoop();
 }
 
 /*

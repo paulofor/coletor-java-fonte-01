@@ -243,33 +243,32 @@ public class PrecoProdutoVo implements PrecoProduto {
 	// DESNORMALIZACAO -- BIGDATA
 
 	@Override
+	public long getIdLojaVirtual() {
+		return this.getDerivada().getIdLojaVirtual();
+	}
+	@Override
 	public void setIdLojaVirtual(long id) {
 		this.getDerivada().setIdLojaVirtual(id);
 	}
 
+	
 	@Override
 	public long getIdNaturezaProduto() {
 		return getDerivada().getIdNaturezaProduto();
 	}
-
 	@Override
 	public void setIdNaturezaProduto(long id) {
 		this.getDerivada().setIdNaturezaProduto(id);
 	}
 
+	
 	@Override
 	public long getIdCategoraLoja() {
 		return this.getDerivada().getIdCategoraLoja();
 	}
-
 	@Override
 	public void setIdCategoriaLoja(long id) {
 		this.getDerivada().setIdCategoriaLoja(id);
-	}
-
-	@Override
-	public long getIdLojaVirtual() {
-		return this.getDerivada().getIdLojaVirtual();
 	}
 
 	@Override
@@ -281,5 +280,92 @@ public class PrecoProdutoVo implements PrecoProduto {
 	public void setPosicao(long valor) {
 		this.getDerivada().setPosicao(valor);
 	}
+	
+	// -------------------------------------------------------
+	// Posicao
+	@Override
+	public int getPosicao1() {
+		return this.getDerivada().getPosicao1();
+	}
+	@Override
+	public void setPosicao1(int valor) {
+		this.getDerivada().setPosicao1(valor);
+	}
+	
+	@Override
+	public int getPosicao2() {
+		return this.getDerivada().getPosicao2();
+	}
+	@Override
+	public void setPosicao2(int valor) {
+		this.getDerivada().setPosicao2(valor);
+	}
+	
+	@Override
+	public int getPosicao3() {
+		return this.getDerivada().getPosicao3();
+	}
+	@Override
+	public void setPosicao3(int valor) {
+		this.getDerivada().setPosicao3(valor);
+	}
+	
+	@Override
+	public int getPosicao4() {
+		return this.getDerivada().getPosicao4();
+	}
+	@Override
+	public void setPosicao4(int valor) {
+		this.getDerivada().setPosicao4(valor);
+	}
+	
+	@Override
+	public int getPosicao5() {
+		return this.getDerivada().getPosicao5();
+	}
+	@Override
+	public void setPosicao5(int valor) {
+		this.getDerivada().setPosicao5(valor);
+	}
+	
+	@Override
+	public int getPosicao6() {
+		return this.getDerivada().getPosicao6();
+	}
+	@Override
+	public void setPosicao6(int valor) {
+		this.getDerivada().setPosicao6(valor);
+	}
+	
+	@Override
+	public int getPosicao7() {
+		return this.getDerivada().getPosicao7();
+	}
+	@Override
+	public void setPosicao7(int valor) {
+		this.getDerivada().setPosicao7(valor);
+	}
+	
+	
+	@Override
+	public int getDiferencaPosicao7() {
+		return this.getDerivada().getDiferencaPosicao7();
+	}
+	@Override
+	public void setDiferencaPosicao7(int valor) {
+		this.getDerivada().setDiferencaPosicao7(valor);
+	}
 
+	@Override
+	public void descolaPosicao() {
+		this.getDerivada().descolaPosicao();
+		
+	}
+
+	@Override
+	public void calculaDiferencaPosicao() {
+		this.getDerivada().calculaDiferencaPosicao();
+	}
+	
+	
 }

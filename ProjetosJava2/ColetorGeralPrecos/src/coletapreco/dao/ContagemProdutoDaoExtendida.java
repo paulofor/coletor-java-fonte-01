@@ -46,21 +46,18 @@ public  class ContagemProdutoDaoExtendida  extends ContagemProdutoDaoBase implem
 	
 	@Override
 	public void AtualizaQuantidadesDia() throws DaoException {
-		String sql = "update contagem_produto , " +
-					" ( " +
-					" select id_loja_virtual_pa, categoria_loja.id_natureza_produto_ra , count(*) as qtde, date(preco_produto.data_ultima_visita) as data_ultima_visita" + 
-					" from preco_produto " +
-					" inner join produto on produto.id_produto = preco_produto.id_produto_pa  " +
-					" inner join categoria_loja_produto on categoria_loja_produto.id_produto_ra = preco_produto.id_produto_pa   " +
-					" inner join categoria_loja on categoria_loja.id_categoria_loja = categoria_loja_produto.id_categoria_loja_ra " + 
-					" where date(preco_produto.data_ultima_visita) = curdate()  " +
-					" group by id_loja_virtual_pa, categoria_loja.id_natureza_produto_ra,  date(preco_produto.data_ultima_visita) " +
-					" ) as tabela " +
-					" set contagem_produto.quantidade = tabela.qtde " +
-					" where contagem_produto.id_loja_virtual_ra = tabela.id_loja_virtual_pa and " +
-					" contagem_produto.id_natureza_produto_ra = tabela.id_natureza_produto_ra and " + 
-					" contagem_produto.data = date(tabela.data_ultima_visita) ";
-		this.executaSql(sql);
+		String sql1 = "delete from contagem_produto where data = curdate() ";
+		this.executaSql(sql1);
+		String sql2 =
+				"insert into contagem_produto (id_loja_virtual_ra, id_natureza_produto_ra, quantidade, data) " +
+				"select id_loja_virtual_pa, categoria_loja.id_natureza_produto_ra , count(*) as qtde, date(preco_produto.data_ultima_visita) as data_ultima_visita " +
+				"from preco_produto " +
+				"inner join produto on produto.id_produto = preco_produto.id_produto_pa " + 
+				"inner join categoria_loja_produto on categoria_loja_produto.id_produto_ra = preco_produto.id_produto_pa " +  
+				"inner join categoria_loja on categoria_loja.id_categoria_loja = categoria_loja_produto.id_categoria_loja_ra " +
+				"where date(preco_produto.data_ultima_visita) = curdate() " +
+				"group by id_loja_virtual_pa, categoria_loja.id_natureza_produto_ra,  date(preco_produto.data_ultima_visita)"; 
+		this.executaSql(sql2);
 	}
 	
 	@Override

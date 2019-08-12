@@ -8,10 +8,13 @@ import coletapreco.regracolecao.LojaVirtualRegraColecao;
 public class ColetaCosmeticoApp {
 
 	public static void main(String[] args) {
+		System.out.println("Versao: 12-08-2019 (1)");
+		
 		LojaVirtualRegraColecao srv = FabricaRegra.getInstancia().getLojaVirtualRegraColecao();
 		ContagemProdutoRegraColecao contagemSrv = FabricaRegra.getInstancia().getContagemProdutoRegraColecao();
 		
 		try {
+			
 			srv.AtualizaCosmetico();
 			contagemSrv.RegistraQuantidadesDia();
 			

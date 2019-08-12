@@ -68,6 +68,15 @@ public abstract class PrecoProdutoDaoBase extends DaoAplicacao implements PrecoP
 		+ " ,preco_produto.media_2meses " 
 		+ " ,preco_produto.minimo_3meses " 
 		+ " ,preco_produto.id_produto_pa " 
+		//+ " ,preco_produto.posicao " 
+		//+ " ,preco_produto.posicao1 " 
+		//+ " ,preco_produto.posicao2 " 
+		//+ " ,preco_produto.posicao3 " 
+		//+ " ,preco_produto.posicao4 " 
+		//+ " ,preco_produto.posicao5 " 
+		//+ " ,preco_produto.posicao6 " 
+		//+ " ,preco_produto.posicao7 "
+		//+ " ,preco_produto.diferenca_posicao7 " 
 		;
 	}
 
