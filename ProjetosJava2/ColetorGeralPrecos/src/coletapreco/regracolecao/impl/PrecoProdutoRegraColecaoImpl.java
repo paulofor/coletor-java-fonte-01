@@ -160,5 +160,12 @@ public  class PrecoProdutoRegraColecaoImpl  extends PrecoProdutoRegraColecao {
 		return null;
 	}
 
+	@Override
+	public List<PrecoProduto> ObtemMelhorPosicaoDia(DaoConexao conexao) throws DaoException {
+		PrecoProdutoDao dao = getDao(conexao);
+		List<PrecoProduto> lista = dao.obtemMelhorPosicaoDia(this.getFiltro().getIdLoja(), this.getFiltro().getQtdePosicao());
+		return lista;
+	}
+
 	
 }

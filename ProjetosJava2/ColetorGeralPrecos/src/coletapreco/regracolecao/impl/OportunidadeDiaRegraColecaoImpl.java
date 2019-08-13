@@ -21,12 +21,14 @@ import coletapreco.dao.basica.DataSourceAplicacao;
 import coletapreco.log.ArquivoLog;
 import coletapreco.modelo.FabricaVo;
 import coletapreco.modelo.FacebookFanpage;
+import coletapreco.modelo.LojaVirtual;
 import coletapreco.modelo.NaturezaProduto;
 import coletapreco.modelo.OportunidadeDia;
 import coletapreco.modelo.PrecoDiario;
 import coletapreco.modelo.PrecoProduto;
 import coletapreco.modelo.Produto;
 import coletapreco.regracolecao.FabricaRegra;
+import coletapreco.regracolecao.LojaVirtualRegraColecao;
 import coletapreco.regracolecao.NaturezaProdutoRegraColecao;
 import coletapreco.regracolecao.OportunidadeDiaRegraColecao;
 import coletapreco.regracolecao.PrecoDiarioRegraColecao;
@@ -156,7 +158,7 @@ public class OportunidadeDiaRegraColecaoImpl extends OportunidadeDiaRegraColecao
 
 	@Override
 	public OportunidadeDia ChamaMobile(DaoConexao conexao) throws DaoException {
-		System.out.println("Inicializa��o GCM Monitor");
+		System.out.println("Inicializacao GCM Monitor");
 		
 		
 		final String API_KEY = "AIzaSyBKcizXgFgdxxcghw8ZaO2kGZiokX-Vptk";
@@ -290,6 +292,56 @@ public class OportunidadeDiaRegraColecaoImpl extends OportunidadeDiaRegraColecao
 			return lista.subList(0,(int) fanpage.getQuantidadeDia()-1);
 		else
 			return lista;
+	}
+
+
+	@Override
+	public OportunidadeDia CalculaOportunidadesPosicaoHoje(DaoConexao conexao) throws DaoException {
+		OportunidadeDiaDao dao = getDao(conexao);
+		dao.limparTabela();
+		
+		PrecoProdutoRegraColecao precoDiarioSrv = FabricaRegra.getInstancia().getPrecoProdutoRegraColecao();
+		LojaVirtualRegraColecao lojaSrv = FabricaRegra.getInstancia().getLojaVirtualRegraColecao();
+		LojaVirtual loja = null;
+		
+		precoDiarioSrv.getFiltro().setIdLoja(26);
+		precoDiarioSrv.getFiltro().setQtdePosicao(30);
+		loja = lojaSrv.obtemPorChave(26, conexao);
+		List<PrecoProduto> listaProduto1 = precoDiarioSrv.ObtemMelhorPosicaoDia(conexao);
+		System.out.println(loja.getNomeLojaVirtual() + " : " + listaProduto1.size());
+		this.geraOportunidadeDia(loja, listaProduto1, conexao);
+		
+		precoDiarioSrv.getFiltro().setIdLoja(27);
+		precoDiarioSrv.getFiltro().setQtdePosicao(30);
+		loja = lojaSrv.obtemPorChave(27, conexao);
+		List<PrecoProduto> listaProduto2 = precoDiarioSrv.ObtemMelhorPosicaoDia(conexao);
+		System.out.println(loja.getNomeLojaVirtual() + " : " + listaProduto2.size());
+		this.geraOportunidadeDia(loja, listaProduto2, conexao);
+		
+		precoDiarioSrv.getFiltro().setIdLoja(28);
+		precoDiarioSrv.getFiltro().setQtdePosicao(30);
+		loja = lojaSrv.obtemPorChave(28, conexao);
+		List<PrecoProduto> listaProduto3 = precoDiarioSrv.ObtemMelhorPosicaoDia(conexao);
+		System.out.println(loja.getNomeLojaVirtual() + " : " + listaProduto3.size());
+		this.geraOportunidadeDia(loja, listaProduto3, conexao);
+		
+		
+		return null;
+	}
+	
+	private void geraOportunidadeDia(LojaVirtual loja, List<PrecoProduto> listaPrecoProduto, DaoConexao conexao) throws DaoException {
+		OportunidadeDiaDao dao = getDao(conexao);
+		OportunidadeDia oportunidade = FabricaVo.criaOportunidadeDia();
+		for (PrecoProduto precoProduto : listaPrecoProduto) {
+			oportunidade.setIdProdutoRa(precoProduto.getIdProdutoPa());
+			oportunidade.setIdNaturezaProdutoPa(precoProduto.getIdNaturezaProduto());
+			oportunidade.setPrecoVendaAtual(precoProduto.getPrecoVenda());
+			oportunidade.setNomeProduto(precoProduto.getProdutoPertenceA(false).getNome());
+			oportunidade.setUrlImagem(precoProduto.getProdutoPertenceA(false).getImagem());
+			oportunidade.setUrlProduto(precoProduto.getProdutoPertenceA(false).getUrl());
+			oportunidade.setNomeLojaVirtual(loja.getNomeLojaVirtual());
+			dao.insereItem(oportunidade);
+		}
 	}
 
 }

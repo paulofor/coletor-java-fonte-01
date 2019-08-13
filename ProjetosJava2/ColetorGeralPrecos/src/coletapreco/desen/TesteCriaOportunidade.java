@@ -11,7 +11,7 @@ public class TesteCriaOportunidade {
 		OportunidadeDiaRegraColecao srv = FabricaRegra.getInstancia().getOportunidadeDiaRegraColecao();
 		try {
 			System.out.println("Vai calcular oportunidades...");
-			srv.CalculaOportunidadesHoje();
+			srv.CalculaOportunidadesPosicaoHoje();
 			System.out.println("Final de calculando oportunidades...");
 			srv.EnviaParaServidor();
 			System.out.println("Final de envio para o servidor...");

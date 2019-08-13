@@ -94,9 +94,27 @@ public class PrecoProdutoFiltro {
 			return getListaIneresse ();
 		}
 		
+		
 
 
 		//public List ListaIneresse;
+		
+		// Colocados na mão -- 2019
+		int idLoja;
+		int qtdePosicao;
+		public int getIdLoja() {
+			return idLoja;
+		}
+		public void setIdLoja(int idLoja) {
+			this.idLoja = idLoja;
+		}
+		public int getQtdePosicao() {
+			return qtdePosicao;
+		}
+		public void setQtdePosicao(int qtdePosicao) {
+			this.qtdePosicao = qtdePosicao;
+		}
+		
 
 		
 }

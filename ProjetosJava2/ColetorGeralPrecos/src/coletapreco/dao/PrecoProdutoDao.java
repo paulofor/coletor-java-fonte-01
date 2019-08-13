@@ -36,4 +36,6 @@ public interface PrecoProdutoDao
 	void insereItemComIds(PrecoProduto precoNovo) throws DaoException;
 
 	void atualizaDiferencaPosicao7Dias() throws DaoException;
+
+	List<PrecoProduto> obtemMelhorPosicaoDia(int idLoja, int qtdePosicao) throws DaoException;
 }

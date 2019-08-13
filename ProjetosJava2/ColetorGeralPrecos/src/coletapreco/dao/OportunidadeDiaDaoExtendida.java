@@ -6,6 +6,7 @@ import java.util.List;
 import br.com.digicom.lib.dao.DaoConexao;
 import br.com.digicom.lib.dao.DaoException;
 import br.com.digicom.lib.dao.DataFonte;
+import br.com.digicom.lib.util.DCConvert;
 import coletapreco.dao.basica.DataSourceAplicacao;
 import coletapreco.dao.basica.DataSourceNuvem;
 import coletapreco.dao.basica.OportunidadeDiaDaoBase;
@@ -21,7 +22,39 @@ public  class OportunidadeDiaDaoExtendida  extends OportunidadeDiaDaoBase implem
 		throw new UnsupportedOperationException();
 	}
 
+	private String camposInsertNuvem() 
+	{
+		return " ( id " 
+		+ " ,precoVendaAtual " 
+		+ " ,precoVendaAnterior " 
+		+ " ,nomeProduto " 
+		+ " ,urlProduto " 
+		+ " ,nomeMarca " 
+		+ " ,idProduto " 
+		+ " ,nomeLojaVirtual " 
+		+ " ,imagemProduto " 
+		+ " ) ";
+	}
 	
+	private String valoresInsertNuvem(OportunidadeDia item) {
+		return " ( '" + item.getIdOportunidadeDia() + "'  " 
+				+ " ,'" +  DCConvert.ToDataBase(item.getPrecoVendaAtual()) + "'  "
+				+ " ,'" +  DCConvert.ToDataBase(item.getPrecoVendaAnterior()) + "'  "
+				+ " ,'" + item.getNomeProduto() + "'  "
+				+ " ,'" + item.getUrlProduto() + "'  "
+				+ " ,'" + item.getNomeMarca() + "'  "
+				+ " ," + item.getIdProdutoRa() + "  "
+				+ " ,'" + item.getNomeLojaVirtual() + "'  "
+				+ " ,'" + item.getUrlImagem() + "'  "
+				+ " ) ";
+	}
+
+	public void insereItemNuvem(OportunidadeDia item) throws DaoException {
+		String sql;
+        sql = "insert into Cosmetic_OportunidadeDia " +
+            camposInsertNuvem() + " values " + valoresInsertNuvem(item);
+        this.executaSql(sql);
+	}
 
 	@Override
 	public void limparTabela() throws DaoException {
@@ -37,7 +70,7 @@ public  class OportunidadeDiaDaoExtendida  extends OportunidadeDiaDaoBase implem
 		this.setConexao(conexao);
 		limpaTabela();
 		for (OportunidadeDia item : listaOportunidade) {
-			this.insereItem(item);
+			this.insereItemNuvem(item);
 		}
 		ds = new DataSourceAplicacao();
 		this.setDataSource(ds);

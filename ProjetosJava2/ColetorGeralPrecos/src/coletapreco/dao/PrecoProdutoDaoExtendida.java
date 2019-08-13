@@ -237,4 +237,18 @@ public class PrecoProdutoDaoExtendida extends PrecoProdutoDaoBase implements Pre
 				
 	}
 
+	@Override
+	public List<PrecoProduto> obtemMelhorPosicaoDia(int idLoja, int qtdePosicao) throws DaoException {
+		super.setObtemProduto_PertenceA();
+		String sql = "select " + camposOrdenadosJoin() + 
+				" from " + tabelaSelect() +
+				this.innerJoinProduto_PertenceA() +
+				" where id_loja_virtual = " + idLoja + " and " +
+				" date(data_ultima_visita) = current_date()  " +
+				" order by diferenca_posicao7 desc " +
+				" limit " + qtdePosicao;
+		this.setMontador(getMontadorAgrupado());
+		return super.getListaSql(sql);
+	}
+
 }

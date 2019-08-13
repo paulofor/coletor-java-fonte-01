@@ -334,8 +334,8 @@ public abstract class PrecoProdutoRegraColecao {
 		return dao.ListaPorProdutoPertenceA(id);
 	}
 
-
 	
+	// Criadas na mao -- 2019
 	public final PrecoProduto CalculaDiferencaPosicao() throws DaoException {
 		PrecoProduto saida;
 		PrecoProdutoDao dao = getDao();
@@ -347,5 +347,19 @@ public abstract class PrecoProdutoRegraColecao {
 		return saida;
 	}
 	public abstract PrecoProduto CalculaDiferencaPosicao(final DaoConexao conexao)
+			throws DaoException;
+
+	
+	public final List<PrecoProduto> ObtemMelhorPosicaoDia() throws DaoException {
+		List<PrecoProduto> saida;
+		PrecoProdutoDao dao = getDao();
+		preparaDaoParaConexao(dao);
+		DaoConexao conexao = null;
+		conexao = dao.criaConexao();
+		saida = ObtemMelhorPosicaoDia(conexao);
+		dao.liberaConexao(conexao);
+		return saida;
+	}
+	public abstract List<PrecoProduto> ObtemMelhorPosicaoDia(final DaoConexao conexao)
 			throws DaoException;
 }
