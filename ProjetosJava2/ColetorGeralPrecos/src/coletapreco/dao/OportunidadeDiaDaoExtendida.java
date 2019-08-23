@@ -33,6 +33,7 @@ public  class OportunidadeDiaDaoExtendida  extends OportunidadeDiaDaoBase implem
 		+ " ,idProduto " 
 		+ " ,nomeLojaVirtual " 
 		+ " ,imagemProduto " 
+		+ " ,dataInsercao "
 		+ " ) ";
 	}
 	
@@ -46,6 +47,7 @@ public  class OportunidadeDiaDaoExtendida  extends OportunidadeDiaDaoBase implem
 				+ " ," + item.getIdProdutoRa() + "  "
 				+ " ,'" + item.getNomeLojaVirtual() + "'  "
 				+ " ,'" + item.getUrlImagem() + "'  "
+				+ " ,'" + DCConvert.getDataAAAA_MM_DD_HHMMSS() + "' "
 				+ " ) ";
 	}
 
@@ -78,7 +80,7 @@ public  class OportunidadeDiaDaoExtendida  extends OportunidadeDiaDaoBase implem
 	} 
 	
 	private void limpaTabela() throws DaoException {
-		String sql = "delete from oportunidade_dia";
+		String sql = "delete from Cosmetic_OportunidadeDia";
 		this.executaSql(sql);
 	}
 

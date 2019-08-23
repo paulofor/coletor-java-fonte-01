@@ -147,7 +147,7 @@ public class OportunidadeDiaRegraColecaoImpl extends OportunidadeDiaRegraColecao
 					dao.insereItem(oportunidade);
 				}
 			} else {
-				//System.out.println("Pre�o zerado.");
+				//System.out.println("Preco zerado.");
 				zerados++;
 			}
 		}
@@ -205,7 +205,7 @@ public class OportunidadeDiaRegraColecaoImpl extends OportunidadeDiaRegraColecao
 
 	@Override
 	public OportunidadeDia ChamaMobileCliente(DaoConexao conexao) throws DaoException {
-		System.out.println("Inicializa��o GCM Cliente");
+		System.out.println("Inicializacao GCM Cliente");
 		
 		final String API_KEY = "AIzaSyCUB834-d0XXNS4f-YGBHTvpOzvtZGG6qU";
 		   
