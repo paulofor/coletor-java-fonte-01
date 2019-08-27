@@ -86,13 +86,15 @@ public class ExecutadorParseApache {
 			httpclient = httpClientBuilder.build();
 			HttpGet httpget = new HttpGet(this.callbackParse.getUrl().toURI());
 			httpget.setHeader("User-Agent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.87 Safari/537.36");
-			//httpget.setHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
-			//httpget.setHeader("Accept-Charset", "ISO-8859-1,utf-8;q=0.7,*;q=0.3");
-			//httpget.setHeader("Accept-Encoding", "gzip,deflate,sdch");
-			//httpget.setHeader("Cache-Control", "max-age=0");
-		    //httpget.setHeader("Connection", "keep-alive");
-		    //httpget.setHeader("Content-Type", "application/x-www-form-urlencoded");
-			System.out.println("Executing request " + httpget.getRequestLine());
+			
+			httpget.setHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
+			httpget.setHeader("Accept-Charset", "ISO-8859-1,utf-8;q=0.7,*;q=0.3");
+			httpget.setHeader("Accept-Encoding", "gzip,deflate,sdch");
+			httpget.setHeader("Cache-Control", "max-age=0");
+		    httpget.setHeader("Connection", "keep-alive");
+		    httpget.setHeader("Content-Type", "application/x-www-form-urlencoded");
+			
+		    System.out.println("Executing request " + httpget.getRequestLine());
 
 
 			// Create a custom response handler
