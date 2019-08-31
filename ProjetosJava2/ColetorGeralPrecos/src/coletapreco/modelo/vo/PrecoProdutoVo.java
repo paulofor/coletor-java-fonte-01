@@ -366,6 +366,31 @@ public class PrecoProdutoVo implements PrecoProduto {
 	public void calculaDiferencaPosicao() {
 		this.getDerivada().calculaDiferencaPosicao();
 	}
+
+	@Override
+	public float getPrecoSugestao() {
+		return this.getDerivada().getPrecoSugestao();
+	}
+	@Override
+	public void setPrecoSugestao(float preco) {
+		this.getDerivada().setPrecoSugestao(preco);
+	}
+
+	@Override
+	public void calculaPrecoSugestao() {
+		this.getDerivada().calculaPrecoSugestao();
+	}
+
+	@Override
+	public void processaDiario(Produto produto) {
+		this.getDerivada().processaDiario(produto);
+	}
+
+	@Override
+	public void processaParaOportunidade(Produto produto) {
+		this.getDerivada().processaParaOportunidade(produto);
+	}
+	
 	
 	
 }

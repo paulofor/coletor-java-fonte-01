@@ -14,5 +14,8 @@ public interface OportunidadeDiaDerivadaI
 
 	public String getLinkAplicativo();
 	public void setLinkAplicativo( String dado );
+	
+	public float getPrecoSugestao();
+	public void setPrecoSugestao( float preco );
 
 }

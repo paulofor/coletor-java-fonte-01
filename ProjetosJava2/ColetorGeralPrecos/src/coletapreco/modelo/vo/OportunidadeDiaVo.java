@@ -582,6 +582,16 @@ public class OportunidadeDiaVo implements OportunidadeDia
 	public void setIdNaturezaProdutoPa(long _valor) {
 		idNaturezaProdutoPa = _valor;
 	}
+
+	@Override
+	public float getPrecoSugestao() {
+		return this.getDerivada().getPrecoSugestao();
+	}
+
+	@Override
+	public void setPrecoSugestao(float preco) {
+		this.getDerivada().setPrecoSugestao(preco);
+	}
 	
 	
 	

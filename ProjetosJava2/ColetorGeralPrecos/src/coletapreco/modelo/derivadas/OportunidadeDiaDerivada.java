@@ -39,8 +39,8 @@ public  class OportunidadeDiaDerivada   implements OportunidadeDiaDerivadaI {
 		String marca = (oportunidade.getNomeMarca()!=null?oportunidade.getNomeMarca() + " - ":"");
 		if ("null".equals(oportunidade.getNomeMarca().trim())) marca = "";
 		String tituloProduto = oportunidade.getNomeProduto();
-		String precoMedio = "Preço médio (60 dias) : R$ " + oportunidade.getPrecoMedioFormatada();
-		String precoMinimo = "Preço mínimo (60 dias) : R$ " + oportunidade.getPrecoMinimoFormatada();
+		String precoMedio = "Preco medio (60 dias) : R$ " + oportunidade.getPrecoMedioFormatada();
+		String precoMinimo = "Preco minimo (60 dias) : R$ " + oportunidade.getPrecoMinimoFormatada();
 		String precoAtual = "Oportunidade : (" + datas(oportunidade.getDataInicioPrecoAtual()) + ") : R$ " + oportunidade.getPrecoVendaAtualFormatada();
 		String loja = "Loja: " + oportunidade.getNomeLojaVirtual();
 		//String link = "Baixe o aplicativo: https://play.google.com/store/apps/details?id=br.com.lojadigicom.coletorprecocliente";
@@ -55,10 +55,10 @@ public  class OportunidadeDiaDerivada   implements OportunidadeDiaDerivadaI {
 	}
 	
 	private String getMensagem(OportunidadeDia oportunidade) {
-		String linha1 = "Acompanhe produtos com redução de preço no dia.";
+		String linha1 = "Acompanhe produtos com reducao de preco no dia.";
 		String linha2 = "\n";
-		String linha3 = "Preço em " + datas(oportunidade.getDataInicioPrecoAtual()) + " : R$ "  + oportunidade.getPrecoVendaAtualFormatada();
-		String linha4 = "Preço médio (60 dias) : R$ " + oportunidade.getPrecoMedioFormatada();
+		String linha3 = "PreÃ§o em " + datas(oportunidade.getDataInicioPrecoAtual()) + " : R$ "  + oportunidade.getPrecoVendaAtualFormatada();
+		String linha4 = "PreÃ§o mÃ©dio (60 dias) : R$ " + oportunidade.getPrecoMedioFormatada();
 		String linha5 =  "Loja: " + oportunidade.getNomeLojaVirtual();
 		
 		return linha1 + "\n" + linha2 + "\n" + linha3 + "\n" + linha4 + "\n" +linha5;
@@ -98,4 +98,17 @@ public  class OportunidadeDiaDerivada   implements OportunidadeDiaDerivadaI {
 		// TODO Auto-generated method stub
 		
 	}
+
+	private float precoSugestao;
+	
+	@Override
+	public float getPrecoSugestao() {
+		return precoSugestao;
+	}
+	@Override
+	public void setPrecoSugestao(float preco) {
+		this.precoSugestao = preco;
+	}
+	
+	
 }

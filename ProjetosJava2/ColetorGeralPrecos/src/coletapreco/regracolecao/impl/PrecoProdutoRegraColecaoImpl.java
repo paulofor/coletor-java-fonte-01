@@ -90,12 +90,7 @@ public  class PrecoProdutoRegraColecaoImpl  extends PrecoProdutoRegraColecao {
 
 	private void preparaPrecoBigData(PrecoProduto preco) {
 		Produto produto = this.getFiltro().getProduto();
-		preco.descolaPosicao();
-		preco.setPosicao(produto.getPosicaoProduto());
-		preco.calculaDiferencaPosicao();
-		preco.setIdCategoriaLoja(produto.getIdCategoraLoja());
-		preco.setIdLojaVirtual(produto.getIdLojaVirtual());
-		preco.setIdNaturezaProduto(produto.getIdNaturezaProduto());
+		preco.processaDiario(produto);
 	}
 
 	

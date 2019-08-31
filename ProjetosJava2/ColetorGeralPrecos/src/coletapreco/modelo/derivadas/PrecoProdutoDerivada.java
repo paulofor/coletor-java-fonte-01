@@ -21,6 +21,8 @@ public class PrecoProdutoDerivada implements PrecoProdutoDerivadaI {
 	private int posicao7;
 	private int diferencaPosicao7;
 	
+	private float precoSugestao;
+	
 	
 
 	private PrecoProduto principal;
@@ -145,6 +147,36 @@ public class PrecoProdutoDerivada implements PrecoProdutoDerivadaI {
 	public void calculaDiferencaPosicao() {
 		this.diferencaPosicao7 = this.posicao7 - (int)this.posicao; // de hoje contra mesmo dia semana passada.
 	}
+
+	@Override
+	public float getPrecoSugestao() {
+		return precoSugestao;
+	}
+	@Override
+	public void setPrecoSugestao(float preco) {
+		this.precoSugestao = preco;
+	}
 	
+	public void calculaPrecoSugestao() {
+		this.precoSugestao = (float) (this.principal.getPrecoVenda() * 1.3);
+	}
+
+	
+	
+	@Override
+	public void processaDiario(Produto produto) {
+		descolaPosicao();
+		setPosicao(produto.getPosicaoProduto());
+		calculaDiferencaPosicao();
+		setIdCategoriaLoja(produto.getIdCategoraLoja());
+		setIdLojaVirtual(produto.getIdLojaVirtual());
+		setIdNaturezaProduto(produto.getIdNaturezaProduto());
+		calculaPrecoSugestao();
+	}
+	
+
+	@Override
+	public void processaParaOportunidade(Produto produto) {
+	}
 	
 }

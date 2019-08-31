@@ -34,6 +34,7 @@ public  class OportunidadeDiaDaoExtendida  extends OportunidadeDiaDaoBase implem
 		+ " ,nomeLojaVirtual " 
 		+ " ,imagemProduto " 
 		+ " ,dataInsercao "
+		+ " ,precoSugestao "
 		+ " ) ";
 	}
 	
@@ -48,6 +49,7 @@ public  class OportunidadeDiaDaoExtendida  extends OportunidadeDiaDaoBase implem
 				+ " ,'" + item.getNomeLojaVirtual() + "'  "
 				+ " ,'" + item.getUrlImagem() + "'  "
 				+ " ,'" + DCConvert.getDataAAAA_MM_DD_HHMMSS() + "' "
+				+ " ,'" +  DCConvert.ToDataBase(item.getPrecoSugestao()) + "'  "
 				+ " ) ";
 	}
 

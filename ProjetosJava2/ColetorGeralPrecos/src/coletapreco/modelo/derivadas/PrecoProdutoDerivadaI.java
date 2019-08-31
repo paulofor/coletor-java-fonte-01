@@ -1,7 +1,6 @@
 package coletapreco.modelo.derivadas;
 
-import br.com.digicom.lib.*;
-import java.util.List;
+import coletapreco.modelo.Produto;
 
 public interface PrecoProdutoDerivadaI {
 
@@ -49,6 +48,9 @@ public interface PrecoProdutoDerivadaI {
 	public int getDiferencaPosicao7();
 	public void setDiferencaPosicao7(int pos);
 	
+	public float getPrecoSugestao();
+	public void setPrecoSugestao(float preco);
+	
 	/*
 	public int getPosicao8();
 	public void setPosicao8(int pos);
@@ -71,4 +73,13 @@ public interface PrecoProdutoDerivadaI {
 	public int getPosicao14();
 	public void setPosicao14(int pos);
 	*/
+	
+	//*** Processamento BigData   ***
+	public void descolaPosicao();
+	public void calculaDiferencaPosicao();
+	public void calculaPrecoSugestao();
+	
+	
+	public void processaDiario(Produto produto);
+	public void processaParaOportunidade(Produto produto);
 }

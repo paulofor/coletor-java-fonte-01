@@ -181,7 +181,7 @@ public class PrecoProdutoDaoExtendida extends PrecoProdutoDaoBase implements Pre
 		return " ( id_preco_produto " + " ,preco_boleto " + " ,data_visita_inicial " + " ,quantidade_parcela "
 				+ " ,preco_parcela " + " ,preco_venda " + " ,preco_regular " + " ,data_ultima_visita "
 				+ " ,percentual_ajuste " + " ,media_2meses " + " ,minimo_3meses " + " ,id_produto_pa " + " ,posicao "
-				+ " ,posicao1, posicao2, posicao3, posicao4, posicao5, posicao6, posicao7 "
+				+ " ,posicao1, posicao2, posicao3, posicao4, posicao5, posicao6, posicao7, preco_sugestao "
 				+ " ) ";
 	}
 
@@ -199,7 +199,7 @@ public class PrecoProdutoDaoExtendida extends PrecoProdutoDaoBase implements Pre
 				+ "  " + " ,'" + DCConvert.ToDataBase(item.getPercentualAjuste()) + "'  " + " ,'"
 				+ DCConvert.ToDataBase(item.getMedia2meses()) + "'  " + " ,'"
 				+ DCConvert.ToDataBase(item.getMinimo3meses()) + "'  " + " ," + item.getIdProdutoPa() + "  " + " ,"
-				+ item.getPosicao() + " , 0, 0, 0, 0, 0, 0, 0 " + " ) ";
+				+ item.getPosicao() + " , 0, 0, 0, 0, 0, 0, 0 , " + DCConvert.ToDataBase(item.getPrecoSugestao()) + " ) ";
 	}
 
 	@Override
@@ -232,7 +232,9 @@ public class PrecoProdutoDaoExtendida extends PrecoProdutoDaoBase implements Pre
 				+ "  " + " , posicao5 = " + item.getPosicao5() + "  "
 				+ "  " + " , posicao6 = " + item.getPosicao6() + "  "
 				+ "  " + " , posicao7 = " + item.getPosicao7() + "  "
-		        + "  " + " , diferenca_posicao7 = " + item.getDiferencaPosicao7() + "  ";
+		        + "  " + " , diferenca_posicao7 = " + item.getDiferencaPosicao7() + "  "
+		        + "  " + " , preco_sugestao = " + DCConvert.ToDataBase(item.getPrecoSugestao())  + "  "
+		        ;
 				
 				
 	}

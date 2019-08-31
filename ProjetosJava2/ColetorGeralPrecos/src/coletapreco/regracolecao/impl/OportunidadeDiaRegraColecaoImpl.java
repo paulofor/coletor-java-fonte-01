@@ -102,6 +102,8 @@ public class OportunidadeDiaRegraColecaoImpl extends OportunidadeDiaRegraColecao
 			if (item.getListaPrecoProduto_Possui().size() > 1) {
 				PrecoProduto precoAtual = (PrecoProduto) item.getListaPrecoProduto_Possui().get(0);
 				PrecoProduto precoAnterior = (PrecoProduto) item.getListaPrecoProduto_Possui().get(1);
+				
+				precoAtual.processaParaOportunidade(item);
 
 				if (precoAtual.getPrecoVenda() != 0 && precoAnterior.getPrecoVenda() != 0) {
 
@@ -140,9 +142,14 @@ public class OportunidadeDiaRegraColecaoImpl extends OportunidadeDiaRegraColecao
 					oportunidade.setPrecoMedio(precoAtual.getMedia2meses());
 					oportunidade.setPrecoMinimo(precoAtual.getMinimo3meses());
 					
+					// Preco Sugestao
+					oportunidade.setPrecoSugestao(precoAtual.getPrecoSugestao());
+					
 					precoDiarioSrv.getFiltro().setIdProduto(item.getIdProduto());
 					PrecoDiario preco = precoDiarioSrv.ObtemMaisRecentePorIdProduto(conexao);
 					oportunidade.setPosicaoProduto(preco.getPosicaoProduto());
+					
+					
 					
 					dao.insereItem(oportunidade);
 				}
@@ -326,6 +333,13 @@ public class OportunidadeDiaRegraColecaoImpl extends OportunidadeDiaRegraColecao
 		this.geraOportunidadeDia(loja, listaProduto3, conexao);
 		
 		
+		precoDiarioSrv.getFiltro().setIdLoja(1);
+		precoDiarioSrv.getFiltro().setQtdePosicao(30);
+		loja = lojaSrv.obtemPorChave(1, conexao);
+		List<PrecoProduto> listaProduto4 = precoDiarioSrv.ObtemMelhorPosicaoDia(conexao);
+		System.out.println(loja.getNomeLojaVirtual() + " : " + listaProduto4.size());
+		this.geraOportunidadeDia(loja, listaProduto4, conexao);
+		
 		return null;
 	}
 	
@@ -333,13 +347,18 @@ public class OportunidadeDiaRegraColecaoImpl extends OportunidadeDiaRegraColecao
 		OportunidadeDiaDao dao = getDao(conexao);
 		OportunidadeDia oportunidade = FabricaVo.criaOportunidadeDia();
 		for (PrecoProduto precoProduto : listaPrecoProduto) {
+			Produto produto = precoProduto.getProdutoPertenceA(false);
+			precoProduto.processaParaOportunidade(produto);
+			
 			oportunidade.setIdProdutoRa(precoProduto.getIdProdutoPa());
 			oportunidade.setIdNaturezaProdutoPa(precoProduto.getIdNaturezaProduto());
 			oportunidade.setPrecoVendaAtual(precoProduto.getPrecoVenda());
-			oportunidade.setNomeProduto(precoProduto.getProdutoPertenceA(false).getNome());
-			oportunidade.setUrlImagem(precoProduto.getProdutoPertenceA(false).getImagem());
-			oportunidade.setUrlProduto(precoProduto.getProdutoPertenceA(false).getUrl());
+			oportunidade.setNomeProduto(produto.getNome());
+			oportunidade.setUrlImagem(produto.getImagem());
+			oportunidade.setUrlProduto(produto.getUrl());
 			oportunidade.setNomeLojaVirtual(loja.getNomeLojaVirtual());
+			oportunidade.setPrecoSugestao(precoProduto.getPrecoSugestao());
+			
 			dao.insereItem(oportunidade);
 		}
 	}
