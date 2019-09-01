@@ -43,7 +43,7 @@ public class OportunidadeDiaRegraColecaoImpl extends OportunidadeDiaRegraColecao
 
 	public OportunidadeDia EnviaParaServidor(DaoConexao conexao) throws DaoException {
 		OportunidadeDiaDao dao = getDao(conexao);
-		List<OportunidadeDia> listaOportunidade = dao.ListaCorrente();
+		List<OportunidadeDia> listaOportunidade = dao.ListaCorrentePlus();
 		dao.enviaListaNuvem(listaOportunidade);
 		ArquivoLog.getInstancia().salvaMonitoramento("Envando para nuvem " + listaOportunidade.size() + " itens.");
 		/*
@@ -332,13 +332,14 @@ public class OportunidadeDiaRegraColecaoImpl extends OportunidadeDiaRegraColecao
 		System.out.println(loja.getNomeLojaVirtual() + " : " + listaProduto3.size());
 		this.geraOportunidadeDia(loja, listaProduto3, conexao);
 		
-		
+		/*
 		precoDiarioSrv.getFiltro().setIdLoja(1);
 		precoDiarioSrv.getFiltro().setQtdePosicao(30);
 		loja = lojaSrv.obtemPorChave(1, conexao);
 		List<PrecoProduto> listaProduto4 = precoDiarioSrv.ObtemMelhorPosicaoDia(conexao);
 		System.out.println(loja.getNomeLojaVirtual() + " : " + listaProduto4.size());
 		this.geraOportunidadeDia(loja, listaProduto4, conexao);
+		*/
 		
 		return null;
 	}
@@ -353,13 +354,14 @@ public class OportunidadeDiaRegraColecaoImpl extends OportunidadeDiaRegraColecao
 			oportunidade.setIdProdutoRa(precoProduto.getIdProdutoPa());
 			oportunidade.setIdNaturezaProdutoPa(precoProduto.getIdNaturezaProduto());
 			oportunidade.setPrecoVendaAtual(precoProduto.getPrecoVenda());
-			oportunidade.setNomeProduto(produto.getNome());
+			oportunidade.setNomeProduto(produto.getNome().replaceAll("\\?","-"));
 			oportunidade.setUrlImagem(produto.getImagem());
 			oportunidade.setUrlProduto(produto.getUrl());
 			oportunidade.setNomeLojaVirtual(loja.getNomeLojaVirtual());
 			oportunidade.setPrecoSugestao(precoProduto.getPrecoSugestao());
+			oportunidade.setPosicaoProduto(produto.getPosicaoProduto());
 			
-			dao.insereItem(oportunidade);
+			dao.insereItemPlus(oportunidade);
 		}
 	}
 

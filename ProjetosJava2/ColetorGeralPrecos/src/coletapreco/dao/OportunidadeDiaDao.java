@@ -29,5 +29,7 @@ public interface OportunidadeDiaDao
 	List<OportunidadeDia> ListaPorFanpageData(long idFacebookFanpage, String data)  throws DaoException;
 
 
+	void insereItemPlus( OportunidadeDia item )  throws  DaoException;
+	List ListaCorrentePlus() throws DaoException;
 
 }

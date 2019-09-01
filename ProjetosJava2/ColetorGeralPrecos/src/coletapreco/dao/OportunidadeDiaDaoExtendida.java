@@ -10,6 +10,7 @@ import br.com.digicom.lib.util.DCConvert;
 import coletapreco.dao.basica.DataSourceAplicacao;
 import coletapreco.dao.basica.DataSourceNuvem;
 import coletapreco.dao.basica.OportunidadeDiaDaoBase;
+import coletapreco.dao.montador.OportunidadeDiaMontadorPlus;
 import coletapreco.modelo.OportunidadeDia;
 
 
@@ -35,6 +36,7 @@ public  class OportunidadeDiaDaoExtendida  extends OportunidadeDiaDaoBase implem
 		+ " ,imagemProduto " 
 		+ " ,dataInsercao "
 		+ " ,precoSugestao "
+		+ " ,posicaoProduto"
 		+ " ) ";
 	}
 	
@@ -50,6 +52,7 @@ public  class OportunidadeDiaDaoExtendida  extends OportunidadeDiaDaoBase implem
 				+ " ,'" + item.getUrlImagem() + "'  "
 				+ " ,'" + DCConvert.getDataAAAA_MM_DD_HHMMSS() + "' "
 				+ " ,'" +  DCConvert.ToDataBase(item.getPrecoSugestao()) + "'  "
+				+ " ," + item.getPosicaoProduto() + "  "
 				+ " ) ";
 	}
 
@@ -107,5 +110,85 @@ public  class OportunidadeDiaDaoExtendida  extends OportunidadeDiaDaoBase implem
 				" where id_facebook_fanpage = " + idFacebookFanpage +
 				" and id_produto_ra not in (select id_produto_d from facebook_post where data_hora >= '" + dataLimite + "')";
 		return this.getListaSql(sql);
+	}
+	
+	@Override
+	public void insereItemPlus(OportunidadeDia item) throws DaoException {
+		String sql;
+        sql = "insert into " + tabelaSelect() +
+        	camposInsertPlus() + 
+            " values " + 
+            valoresInsertPlus(item);
+        this.executaSql(sql);
+	}
+	protected String camposInsertPlus() 
+	{
+		return " ( id_oportunidade_dia " 
+		+ " ,url_produto " 
+		+ " ,nome_produto " 
+		+ " ,data_inicio_preco_atual " 
+		+ " ,nome_marca " 
+		+ " ,url_afiliado " 
+		+ " ,data_ultima_preco_anterior " 
+		+ " ,imagem_local " 
+		+ " ,url_imagem " 
+		+ " ,posicao_produto " 
+		+ " ,preco_venda_anterior " 
+		+ " ,preco_venda_atual " 
+		+ " ,preco_boleto_anterior " 
+		+ " ,preco_boleto_atual " 
+		+ " ,preco_parcela_anterior " 
+		+ " ,preco_parcela_atual " 
+		+ " ,quantidade_parcela_anterior " 
+		+ " ,quantidade_parcela_atual " 
+		+ " ,percentual_ajuste_venda " 
+		+ " ,percentual_ajuste_boleto " 
+		+ " ,nome_loja_virtual " 
+		+ " ,preco_minimo " 
+		+ " ,preco_medio " 
+		+ " ,id_produto_ra " 
+		+ " ,id_natureza_produto_pa " 
+		+ " ,preco_sugestao " 
+		+ " ) ";
+	}
+	protected String valoresInsertPlus(OportunidadeDia item) {
+		return " ( '" + item.getIdOportunidadeDia() + "'  " 
+		+ " ,'" + item.getUrlProduto() + "'  "
+		+ " ,'" + item.getNomeProduto() + "'  "
+		+ " ," + (item.getDataInicioPrecoAtual()==null?"null":DCConvert.ToDataSqlAAAA_MM_DD(item.getDataInicioPrecoAtual()) ) + "  "
+		+ " ,'" + item.getNomeMarca() + "'  "
+		+ " ,'" + item.getUrlAfiliado() + "'  "
+		+ " ," + (item.getDataUltimaPrecoAnterior()==null?"null":DCConvert.ToDataSqlAAAA_MM_DD(item.getDataUltimaPrecoAnterior()) ) + "  "
+		+ " ,'" + item.getImagemLocal() + "'  "
+		+ " ,'" + item.getUrlImagem() + "'  "
+		+ " ,'" + item.getPosicaoProduto() + "'  "
+		+ " ,'" +  DCConvert.ToDataBase(item.getPrecoVendaAnterior()) + "'  "
+		+ " ,'" +  DCConvert.ToDataBase(item.getPrecoVendaAtual()) + "'  "
+		+ " ,'" +  DCConvert.ToDataBase(item.getPrecoBoletoAnterior()) + "'  "
+		+ " ,'" +  DCConvert.ToDataBase(item.getPrecoBoletoAtual()) + "'  "
+		+ " ,'" +  DCConvert.ToDataBase(item.getPrecoParcelaAnterior()) + "'  "
+		+ " ,'" +  DCConvert.ToDataBase(item.getPrecoParcelaAtual()) + "'  "
+		+ " ,'" + item.getQuantidadeParcelaAnterior() + "'  "
+		+ " ,'" + item.getQuantidadeParcelaAtual() + "'  "
+		+ " ,'" +  DCConvert.ToDataBase(item.getPercentualAjusteVenda()) + "'  "
+		+ " ,'" +  DCConvert.ToDataBase(item.getPercentualAjusteBoleto()) + "'  "
+		+ " ,'" + item.getNomeLojaVirtual() + "'  "
+		+ " ,'" +  DCConvert.ToDataBase(item.getPrecoMinimo()) + "'  "
+		+ " ,'" +  DCConvert.ToDataBase(item.getPrecoMedio()) + "'  "
+		+ " ," + item.getIdProdutoRa() + "  "
+		+ " ," + item.getIdNaturezaProdutoPa() + "  "
+		+ " ,'" +  DCConvert.ToDataBase(item.getPrecoSugestao()) + "'  "
+		+ " ) ";
+	}
+	
+
+	public List ListaCorrentePlus() throws DaoException {
+		setMontador(new OportunidadeDiaMontadorPlus());
+		String sql;
+      	sql = "select " + 
+		camposOrdenados() + 
+		" , oportunidade_dia.preco_sugestao " +
+		" from " + tabelaSelect() + orderByLista();
+      	return getListaSql(sql);
 	}
 }

@@ -307,7 +307,7 @@ public abstract class PrecoProdutoDaoBase extends DaoAplicacao implements PrecoP
 	
 	// Relacionamento onde esse objeto ? chave estrangeira de outro. ????
 	
-	private boolean _obtemProduto_PertenceA = false;
+	protected boolean _obtemProduto_PertenceA = false;
 	public void setObtemProduto_PertenceA() {
 		_obtemProduto_PertenceA = true;
 	}

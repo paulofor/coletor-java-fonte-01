@@ -159,6 +159,7 @@ public class PrecoProdutoDerivada implements PrecoProdutoDerivadaI {
 	
 	public void calculaPrecoSugestao() {
 		this.precoSugestao = (float) (this.principal.getPrecoVenda() * 1.3);
+		//this.precoSugestao = 1;
 	}
 
 	
@@ -171,12 +172,13 @@ public class PrecoProdutoDerivada implements PrecoProdutoDerivadaI {
 		setIdCategoriaLoja(produto.getIdCategoraLoja());
 		setIdLojaVirtual(produto.getIdLojaVirtual());
 		setIdNaturezaProduto(produto.getIdNaturezaProduto());
-		calculaPrecoSugestao();
+		//calculaPrecoSugestao();
 	}
 	
 
 	@Override
 	public void processaParaOportunidade(Produto produto) {
+		calculaPrecoSugestao();
 	}
 	
 }

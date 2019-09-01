@@ -3,9 +3,14 @@ package coletapreco.dao;
 import java.util.List;
 
 import br.com.digicom.lib.dao.DaoException;
+import br.com.digicom.lib.dao.MontadorDaoComposite;
+import br.com.digicom.lib.dao.MontadorDaoI;
 import br.com.digicom.lib.util.DCConvert;
 import coletapreco.dao.basica.PrecoProdutoDaoBase;
+import coletapreco.dao.basica.ProdutoDaoBase;
+import coletapreco.dao.montador.PrecoProdutoParaOportunidadeMontador;
 import coletapreco.dao.montador.PrecoProdutoPosicaoMontador;
+import coletapreco.dao.montador.ProdutoMontador;
 import coletapreco.modelo.PrecoProduto;
 
 public class PrecoProdutoDaoExtendida extends PrecoProdutoDaoBase implements PrecoProdutoDao {
@@ -239,10 +244,18 @@ public class PrecoProdutoDaoExtendida extends PrecoProdutoDaoBase implements Pre
 				
 	}
 
+	
+	protected String camposOrdenadosJoinPlus()
+    {
+        String saida = camposOrdenados();
+        saida += " , preco_produto.preco_sugestao ";
+        saida += (this._obtemProduto_PertenceA?" , " +ProdutoDaoBase.camposOrdenados():"");
+        return saida;
+    }
 	@Override
 	public List<PrecoProduto> obtemMelhorPosicaoDia(int idLoja, int qtdePosicao) throws DaoException {
 		super.setObtemProduto_PertenceA();
-		String sql = "select " + camposOrdenadosJoin() + 
+		String sql = "select " + camposOrdenadosJoinPlus() + 
 				" from " + tabelaSelect() +
 				this.innerJoinProduto_PertenceA() +
 				" where id_loja_virtual = " + idLoja + " and " +
@@ -250,8 +263,16 @@ public class PrecoProdutoDaoExtendida extends PrecoProdutoDaoBase implements Pre
 				" and posicao <> 0 " +
 				" order by diferenca_posicao7 desc " +
 				" limit " + qtdePosicao;
-		this.setMontador(getMontadorAgrupado());
+		this.setMontador(getMontadorAgrupadoOportunidade());
 		return super.getListaSql(sql);
 	}
+	private MontadorDaoI getMontadorAgrupadoOportunidade()
+    {
+        MontadorDaoComposite montador = new MontadorDaoComposite();
+        montador.adicionaMontador(new PrecoProdutoParaOportunidadeMontador(), null);
+		if (this._obtemProduto_PertenceA)
+            montador.adicionaMontador(new ProdutoMontador(), "Produto_PertenceA");
+         return montador;
+    }
 
 }
