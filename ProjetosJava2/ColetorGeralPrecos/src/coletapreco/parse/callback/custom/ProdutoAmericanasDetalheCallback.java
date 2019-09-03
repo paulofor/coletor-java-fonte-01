@@ -9,6 +9,7 @@ public class ProdutoAmericanasDetalheCallback extends ProdutoDetalheCallbackHtml
 	private String preco = null;
 	private String nome = null;
 	
+	private String fotoProduto = null;
 	
 	public ProdutoAmericanasDetalheCallback() {
 		//this.setDebug();
@@ -16,6 +17,7 @@ public class ProdutoAmericanasDetalheCallback extends ProdutoDetalheCallbackHtml
 	
 	public void handleText(char[] data, int pos) {
 		super.handleText(data, pos);
+		/*
 		String texto = String.copyValueOf(data);
 		if (preco==null && "sales-price".equals(this.getUltClasse())) {
 			preco = texto;
@@ -26,6 +28,17 @@ public class ProdutoAmericanasDetalheCallback extends ProdutoDetalheCallbackHtml
 			((ProdutoDadosParse)dadosParse).setNomeDetalhe(texto);
 			//System.out.println(texto);
 		}
-		
+		*/
 	}
+
+	@Override
+	protected void handleImagem(String imagem) {
+		super.handleImagem(imagem);
+		if (fotoProduto==null) {
+			fotoProduto = imagem;
+			this.dadosParse.setsetImagemDetalhe(imagem);
+		}
+	}
+	
+	
 }

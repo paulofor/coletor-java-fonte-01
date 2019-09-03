@@ -24,6 +24,7 @@ public class ProdutoDadosParse extends ProdutoDadosParseBase{
 	
 	private String precoDetalhe = null;
 	private String nomeDetalhe = null;
+	private String imagemDetalhe = null;
 	
 	private boolean possuiJson = false;
 	
@@ -32,6 +33,9 @@ public class ProdutoDadosParse extends ProdutoDadosParseBase{
 	}
 	public void setNomeDetalhe(String valor) {
 		nomeDetalhe = valor;
+	}
+	public void setImagemDetalhe(String valor) {
+		imagemDetalhe = valor;
 	}
 	
 	public void setSku(String valor) {
@@ -112,25 +116,20 @@ public class ProdutoDadosParse extends ProdutoDadosParseBase{
 				}
 			} else {
 				// Dafiti
-				dao = DBB.getInstancia().getProdutoDao();
-				dao.setConexao(getConexao());
-				dao.alteraNome(itemDetalhe);
+				//dao = DBB.getInstancia().getProdutoDao();
+				//dao.setConexao(getConexao());
+				//dao.alteraNome(itemDetalhe);
+			}
+			if (this.imagemDetalhe!=null) {
+				itemDetalhe.setImagem(imagemDetalhe);
+				this.dao.alteraImagem(imagemDetalhe);
 			}
 			
 		} catch (DaoException e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
-		/*
-		try {
-			dao = DBB.getInstancia().getProdutoDao();
-			dao.setConexao(getConexao());
-			dao.alteraItem(itemDetalhe);
-		} catch (DaoException e) {
-			System.out.println(e.getMessage());
-			e.printStackTrace();
-		}
-		*/
+
 	}
 	
 	

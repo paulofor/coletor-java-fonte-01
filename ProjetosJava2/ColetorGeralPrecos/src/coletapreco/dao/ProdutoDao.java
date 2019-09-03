@@ -39,4 +39,6 @@ public interface ProdutoDao
 	void atualizaPosicao(int i, long idCategoriaLoja, long idLojaVirtual) throws DaoException ;
 
 	void AtualizaProdutoExistente(Produto produto) throws DaoException ;
+
+	void alteraImagem(Produto itemDetalhe) throws DaoException ;
 }

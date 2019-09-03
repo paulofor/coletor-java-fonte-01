@@ -18,6 +18,8 @@ public class ColetaCosmeticoApp {
 			srv.AtualizaCosmetico();
 			contagemSrv.RegistraQuantidadesDia();
 			
+			
+			
 		} catch (DaoException e) {
 			e.printStackTrace();
 		}

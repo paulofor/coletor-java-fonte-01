@@ -351,6 +351,16 @@ public  class ProdutoDaoExtendida  extends ProdutoDaoBase implements ProdutoDao 
         this.executaSql(sql);	
 	}
 
+
+
+	@Override
+	public void alteraImagem(Produto itemDetalhe) throws DaoException {
+		String sql = "update " + tabelaSelect() + " set imagem = '" + itemDetalhe.getImagem() + "', " +
+				" where id_produto = " + itemDetalhe.getIdObj();
+		this.executaSql(sql);
+		
+	}
+
 	
 	
 }
