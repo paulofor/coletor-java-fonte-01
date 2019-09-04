@@ -111,7 +111,7 @@ public class ProdutoRegraColecaoImpl extends ProdutoRegraColecao {
 				rel.addListaProduto_ReferenteA(produtoSemelhante);
 				modeloProduto.addListaModeloProdutoProduto_ReferenteA(rel);
 			}
-			// SALVAR EM UM MODELO - Sem salvar não vai acabar nunca.
+			// SALVAR EM UM MODELO - Sem salvar nï¿½o vai acabar nunca.
 			modeloSrv.getFiltro().setModeloNovo(modeloProduto);
 			modeloSrv.CriaModeloNovo(); // cria com os relacionamentos de
 										// produtos.
@@ -214,6 +214,18 @@ public class ProdutoRegraColecaoImpl extends ProdutoRegraColecao {
 		ProdutoDao dao = getDao(conexao);
 		dao.AtualizaProdutoExistente(produto);
 		return produto;
+	}
+
+	@Override
+	public Produto CorrigeImagemLista(DaoConexao conexao) throws DaoException {
+		List<Produto> entrada = this.getListaEntradaItem();
+		ProdutoAdaptador adaptador = new ProdutoAdaptador();
+		for (Produto produto : entrada) {
+			if (produto.getIdLojaVirtualLe()==1) {
+				adaptador.atualizaDetalhe(produto, conexao);
+			}
+		}
+		return null;
 	}
 
 }

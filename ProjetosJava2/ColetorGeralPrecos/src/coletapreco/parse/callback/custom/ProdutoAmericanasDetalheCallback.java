@@ -36,7 +36,7 @@ public class ProdutoAmericanasDetalheCallback extends ProdutoDetalheCallbackHtml
 		super.handleImagem(imagem);
 		if (fotoProduto==null) {
 			fotoProduto = imagem;
-			this.dadosParse.setsetImagemDetalhe(imagem);
+			((ProdutoDadosParse) this.dadosParse).setImagemDetalhe(imagem);
 		}
 	}
 	

@@ -311,6 +311,15 @@ public class OportunidadeDiaRegraColecaoImpl extends OportunidadeDiaRegraColecao
 		LojaVirtualRegraColecao lojaSrv = FabricaRegra.getInstancia().getLojaVirtualRegraColecao();
 		LojaVirtual loja = null;
 		
+		precoDiarioSrv.getFiltro().setIdLoja(1);
+		precoDiarioSrv.getFiltro().setQtdePosicao(30);
+		loja = lojaSrv.obtemPorChave(1, conexao);
+		List<PrecoProduto> listaProduto4 = precoDiarioSrv.ObtemMelhorPosicaoDia(conexao);
+		System.out.println(loja.getNomeLojaVirtual() + " : " + listaProduto4.size());
+		this.geraOportunidadeDia(loja, listaProduto4, conexao);
+		
+		--> 
+		
 		precoDiarioSrv.getFiltro().setIdLoja(26);
 		precoDiarioSrv.getFiltro().setQtdePosicao(30);
 		loja = lojaSrv.obtemPorChave(26, conexao);
@@ -333,12 +342,7 @@ public class OportunidadeDiaRegraColecaoImpl extends OportunidadeDiaRegraColecao
 		this.geraOportunidadeDia(loja, listaProduto3, conexao);
 		
 		/*
-		precoDiarioSrv.getFiltro().setIdLoja(1);
-		precoDiarioSrv.getFiltro().setQtdePosicao(30);
-		loja = lojaSrv.obtemPorChave(1, conexao);
-		List<PrecoProduto> listaProduto4 = precoDiarioSrv.ObtemMelhorPosicaoDia(conexao);
-		System.out.println(loja.getNomeLojaVirtual() + " : " + listaProduto4.size());
-		this.geraOportunidadeDia(loja, listaProduto4, conexao);
+		
 		*/
 		
 		return null;
@@ -360,6 +364,11 @@ public class OportunidadeDiaRegraColecaoImpl extends OportunidadeDiaRegraColecao
 			oportunidade.setNomeLojaVirtual(loja.getNomeLojaVirtual());
 			oportunidade.setPrecoSugestao(precoProduto.getPrecoSugestao());
 			oportunidade.setPosicaoProduto(produto.getPosicaoProduto());
+
+			
+			if ("null".equals(oportunidade.getUrlImagem())) {
+				
+			}
 			
 			dao.insereItemPlus(oportunidade);
 		}

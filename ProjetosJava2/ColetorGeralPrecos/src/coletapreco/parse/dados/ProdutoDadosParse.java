@@ -99,6 +99,8 @@ public class ProdutoDadosParse extends ProdutoDadosParseBase{
 	public void finalizacaoOkDetalhe() {
 		// deve ser sobrescrito caso nao seja um update de objeto.
 		try {
+			dao = DBB.getInstancia().getProdutoDao();
+			dao.setConexao(getConexao());
 			if (precoDetalhe!=null) {
 				float precoNum = extraiValorPreco(precoDetalhe);
 				System.out.println(precoNum);
@@ -110,8 +112,6 @@ public class ProdutoDadosParse extends ProdutoDadosParseBase{
 				if (valor !=0) {
 					// Precisa atualizar
 					itemDetalhe.setNome(nomeDetalhe);
-					dao = DBB.getInstancia().getProdutoDao();
-					dao.setConexao(getConexao());
 					dao.alteraNome(itemDetalhe);
 				}
 			} else {
@@ -122,7 +122,7 @@ public class ProdutoDadosParse extends ProdutoDadosParseBase{
 			}
 			if (this.imagemDetalhe!=null) {
 				itemDetalhe.setImagem(imagemDetalhe);
-				this.dao.alteraImagem(imagemDetalhe);
+				dao.alteraImagem(itemDetalhe);
 			}
 			
 		} catch (DaoException e) {

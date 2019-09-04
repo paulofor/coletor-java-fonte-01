@@ -15,7 +15,7 @@ public class TestaGetImagemAmericanas {
 		// TODO Auto-generated method stub
 		ProdutoRegraColecao produtoSrv = FabricaRegra.getInstancia().getProdutoRegraColecao();
 		try {
-			Produto produto = produtoSrv.obtemPorChave(1066234);
+			Produto produto = produtoSrv.obtemPorChave(1066235);
 			
 			ProdutoAdaptador adaptadorProduto = new ProdutoAdaptador();
 			

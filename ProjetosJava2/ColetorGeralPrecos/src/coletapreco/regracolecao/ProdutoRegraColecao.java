@@ -18,6 +18,8 @@ public abstract class ProdutoRegraColecao {
 		_filtro = null;
 	}
 
+	
+	
 	public List ListaCorrente(DaoConexao conexao) throws DaoException {
 		ProdutoDao dao = getDao();
 		dao.setConexao(conexao);
@@ -388,4 +390,17 @@ public abstract class ProdutoRegraColecao {
 	}
 	
 	
+	// Manual
+	public final Produto CorrigeImagemLista() throws DaoException {
+		Produto saida;
+		ProdutoDao dao = getDao();
+		preparaDaoParaConexao(dao);
+		DaoConexao conexao = null;
+		conexao = dao.criaConexao();
+		saida = CorrigeImagemLista(conexao);
+		dao.liberaConexao(conexao);
+		return saida;
+	}
+	public abstract Produto CorrigeImagemLista(final DaoConexao conexao)
+			throws DaoException;
 }
