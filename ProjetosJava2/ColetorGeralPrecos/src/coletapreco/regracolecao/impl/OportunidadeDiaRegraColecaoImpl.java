@@ -6,6 +6,7 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.io.IOUtils;
@@ -309,6 +310,7 @@ public class OportunidadeDiaRegraColecaoImpl extends OportunidadeDiaRegraColecao
 		
 		PrecoProdutoRegraColecao precoDiarioSrv = FabricaRegra.getInstancia().getPrecoProdutoRegraColecao();
 		LojaVirtualRegraColecao lojaSrv = FabricaRegra.getInstancia().getLojaVirtualRegraColecao();
+		ProdutoRegraColecao produtoSrv = FabricaRegra.getInstancia().getProdutoRegraColecao();
 		LojaVirtual loja = null;
 		
 		precoDiarioSrv.getFiltro().setIdLoja(1);
@@ -316,9 +318,16 @@ public class OportunidadeDiaRegraColecaoImpl extends OportunidadeDiaRegraColecao
 		loja = lojaSrv.obtemPorChave(1, conexao);
 		List<PrecoProduto> listaProduto4 = precoDiarioSrv.ObtemMelhorPosicaoDia(conexao);
 		System.out.println(loja.getNomeLojaVirtual() + " : " + listaProduto4.size());
+		List<Produto> listaProdutoPuro = new ArrayList<Produto>();
+		for (PrecoProduto precoProduto : listaProduto4) {
+			listaProdutoPuro.add(precoProduto.getCorrenteProduto_PertenceA());
+		}
+		produtoSrv.setListaEntradaItem(listaProdutoPuro);
+		produtoSrv.CorrigeImagemLista(conexao);
+		listaProduto4 = precoDiarioSrv.ObtemMelhorPosicaoDia(conexao);
 		this.geraOportunidadeDia(loja, listaProduto4, conexao);
 		
-		--> 
+		
 		
 		precoDiarioSrv.getFiltro().setIdLoja(26);
 		precoDiarioSrv.getFiltro().setQtdePosicao(30);

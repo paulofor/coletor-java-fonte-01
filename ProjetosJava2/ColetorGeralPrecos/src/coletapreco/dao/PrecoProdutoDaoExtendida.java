@@ -260,6 +260,7 @@ public class PrecoProdutoDaoExtendida extends PrecoProdutoDaoBase implements Pre
 				this.innerJoinProduto_PertenceA() +
 				" where id_loja_virtual = " + idLoja + " and " +
 				" date(data_ultima_visita) = current_date()  " +
+				//" date(data_ultima_visita) = '2019-09-03'  " +
 				" and posicao <> 0 " +
 				" order by diferenca_posicao7 desc " +
 				" limit " + qtdePosicao;

@@ -36,8 +36,15 @@ public class ProdutoAmericanasDetalheCallback extends ProdutoDetalheCallbackHtml
 		super.handleImagem(imagem);
 		if (fotoProduto==null) {
 			fotoProduto = imagem;
+			System.out.println("Imagem:" + imagem);
 			((ProdutoDadosParse) this.dadosParse).setImagemDetalhe(imagem);
 		}
+	}
+
+	@Override
+	public void antesLoop() {
+		super.antesLoop();
+		this.fotoProduto = null;
 	}
 	
 	
