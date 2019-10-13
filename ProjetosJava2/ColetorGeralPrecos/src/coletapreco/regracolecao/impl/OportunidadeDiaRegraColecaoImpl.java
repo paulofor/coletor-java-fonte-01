@@ -39,7 +39,7 @@ import coletapreco.util.UtilData;
 
 public class OportunidadeDiaRegraColecaoImpl extends OportunidadeDiaRegraColecao {
 
-	private float PERCENTUAL_OPORTUNIDADE = 15.0F;
+	private float PERCENTUAL_OPORTUNIDADE = 10.0F;
 	private int QTDE_DIAS_OPORTUNIDADE = 15;
 
 	public OportunidadeDia EnviaParaServidor(DaoConexao conexao) throws DaoException {
@@ -88,7 +88,7 @@ public class OportunidadeDiaRegraColecaoImpl extends OportunidadeDiaRegraColecao
 		NaturezaProdutoRegraColecao naturezaSrv = FabricaRegra.getInstancia().getNaturezaProdutoRegraColecao();
 		String dataInicio = DatasUtils.getDataAAAA_MM_DD_Add(this.QTDE_DIAS_OPORTUNIDADE * -1);
 		produtoSrv.getFiltro().setDataInicioOportunidade(dataInicio);
-		//produtoSrv.getFiltro().setPercentualMinimoOportunidade(this.PERCENTUAL_OPORTUNIDADE);
+		produtoSrv.getFiltro().setPercentualMinimoOportunidade(this.PERCENTUAL_OPORTUNIDADE);
 		System.out.println("Antes de obter a lista de produto");
 		List<Produto> listaProduto = produtoSrv.OportunidadeDia(conexao);
 		System.out.println("Depois de obter a lista de produto");

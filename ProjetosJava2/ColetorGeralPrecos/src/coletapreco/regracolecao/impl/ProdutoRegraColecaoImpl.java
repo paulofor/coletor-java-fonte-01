@@ -58,11 +58,11 @@ public class ProdutoRegraColecaoImpl extends ProdutoRegraColecao {
 	public List<Produto> OportunidadeDia(DaoConexao conexao) throws DaoException {
 		ProdutoDao dao = getDao(conexao);
 		this.getFiltro().validaDataInicioOportunidade();
-		// this.getFiltro().validaPercentualMinimoOportunidade();
-		// List<Produto> lista =
-		// dao.OportunidadeDia(getFiltro().getDataInicioOportunidade(), "" +
-		// getFiltro().getPercentualMinimoOportunidade());
-		List<Produto> lista = dao.OportunidadeDiaMediaMinimo(getFiltro().getDataInicioOportunidade());
+		this.getFiltro().validaPercentualMinimoOportunidade();
+		List<Produto> lista =
+		 dao.OportunidadeDia(getFiltro().getDataInicioOportunidade(), "" +
+		 getFiltro().getPercentualMinimoOportunidade());
+		//List<Produto> lista = dao.OportunidadeDiaMediaMinimo(getFiltro().getDataInicioOportunidade());
 		return lista;
 	}
 

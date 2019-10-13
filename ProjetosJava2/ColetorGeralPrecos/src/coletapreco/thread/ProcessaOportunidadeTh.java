@@ -15,7 +15,7 @@ public class ProcessaOportunidadeTh extends Thread {
 			System.out.println("Vai calcular oportunidades...");
 			srv.CalculaOportunidadesHoje();
 			System.out.println("Final de calculando oportunidades...");
-			srv.EnviaParaServidor();
+			//srv.EnviaParaServidor();
 			System.out.println("Final de envio para o servidor...");
 		} catch (DaoException e) {
 			e.printStackTrace();

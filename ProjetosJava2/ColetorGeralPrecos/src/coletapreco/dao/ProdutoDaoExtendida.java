@@ -167,8 +167,8 @@ public  class ProdutoDaoExtendida  extends ProdutoDaoBase implements ProdutoDao 
 				" from " + tabelaSelect() +
 				this.innerJoinPrecoProduto_Possui() +
 				//" inner join preco_produto on preco_produto.id_produto_pa = produto.id_produto "  + 
-				" where preco_produto.data_visita_inicial > '" + dataInicialMySql + "' " +
-				" and preco_produto.data_ultima_visita = current_date() " +
+				" where date(preco_produto.data_visita_inicial) > '" + dataInicialMySql + "' " +
+				" and date(preco_produto.data_ultima_visita) = current_date() " +
 				" and preco_produto.percentual_ajuste > " + percentualMinimo +
 				" and preco_produto.preco_venda = ( " +
 				" select min(preco_produto.preco_venda) from preco_produto " +
@@ -185,7 +185,7 @@ public  class ProdutoDaoExtendida  extends ProdutoDaoBase implements ProdutoDao 
 				//" inner join preco_produto on preco_produto.id_produto_pa = produto.id_produto "  + // PrecoProduto
 				//" inner join marca on marca.id_marca = produto.id_marca_p " + // Marca
 				" where id_produto in ("  + sql1 + " ) " +
-				" and preco_produto.data_visita_inicial >= DATE_SUB( CURRENT_DATE, INTERVAL 6 MONTH ) " +
+				" and date(preco_produto.data_visita_inicial) >= DATE_SUB( CURRENT_DATE, INTERVAL 6 MONTH ) " +
 				" order by produto.id_produto, preco_produto.data_ultima_visita desc";
 		
 		MontadorDaoComposite composto = new MontadorDaoComposite();
