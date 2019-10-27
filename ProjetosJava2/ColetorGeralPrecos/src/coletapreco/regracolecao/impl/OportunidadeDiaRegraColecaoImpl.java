@@ -93,6 +93,9 @@ public class OportunidadeDiaRegraColecaoImpl extends OportunidadeDiaRegraColecao
 		List<Produto> listaProduto = produtoSrv.OportunidadeDia(conexao);
 		System.out.println("Depois de obter a lista de produto");
 		
+		produtoSrv.setListaEntradaItem(listaProduto);
+		produtoSrv.CorrigeImagemLista(conexao);
+		
 		OportunidadeDiaDao dao = getDao(conexao);
 		dao.limparTabela();
 		OportunidadeDia oportunidade = FabricaVo.criaOportunidadeDia();
