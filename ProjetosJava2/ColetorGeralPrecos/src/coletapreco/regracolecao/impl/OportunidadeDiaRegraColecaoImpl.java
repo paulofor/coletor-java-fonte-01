@@ -102,7 +102,7 @@ public class OportunidadeDiaRegraColecaoImpl extends OportunidadeDiaRegraColecao
 		int i = 1;
 		int zerados = 0;
 		for (Produto item : listaProduto) {
-
+			System.out.println("Produto: " + item.getIdProduto());
 			if (item.getListaPrecoProduto_Possui().size() > 1) {
 				PrecoProduto precoAtual = (PrecoProduto) item.getListaPrecoProduto_Possui().get(0);
 				PrecoProduto precoAnterior = (PrecoProduto) item.getListaPrecoProduto_Possui().get(1);
