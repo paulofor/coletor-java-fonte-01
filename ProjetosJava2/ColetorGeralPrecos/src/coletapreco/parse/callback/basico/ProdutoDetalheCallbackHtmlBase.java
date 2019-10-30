@@ -70,7 +70,7 @@ public abstract class ProdutoDetalheCallbackHtmlBase  extends CallbackParseHtml{
 		//if (lista==null) throw new RuntimeException("objeto lista em ProdutoListaCallbackHtmlBase esta null");
 		finalizaObjeto();
 		dadosParse.finalizacaoOkDetalhe();
-		limpaListasInternas();
+		//limpaListasInternas(); // Comentado em 30-10-2019 --> Limpava a lista de preco de um produto com correcao de imagem.
 	}
 	protected void finalizaObjeto() {
 	}

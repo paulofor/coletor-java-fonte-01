@@ -538,7 +538,9 @@ public class ProdutoVo implements Produto
 	}
 	
 	
-	
+	public String toString() {
+		return "" + this.idProduto;
+	}
 	
 	
 	
