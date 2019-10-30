@@ -168,8 +168,8 @@ public  class ProdutoDaoExtendida  extends ProdutoDaoBase implements ProdutoDao 
 				this.innerJoinPrecoProduto_Possui() +
 				//" inner join preco_produto on preco_produto.id_produto_pa = produto.id_produto "  + 
 				" where date(preco_produto.data_visita_inicial) > '" + dataInicialMySql + "' " +
-				//" and date(preco_produto.data_ultima_visita) = current_date() " +
-				" and date(preco_produto.data_ultima_visita) = '2019-10-29' " +
+				" and date(preco_produto.data_ultima_visita) = current_date() " +
+				//" and date(preco_produto.data_ultima_visita) = '2019-10-29' " +
 				" and preco_produto.percentual_ajuste > " + percentualMinimo +
 				" and preco_produto.preco_venda = ( " +
 				" select min(preco_produto.preco_venda) from preco_produto " +
