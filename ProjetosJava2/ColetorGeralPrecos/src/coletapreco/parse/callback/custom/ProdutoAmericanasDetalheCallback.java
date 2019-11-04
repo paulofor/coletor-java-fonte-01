@@ -30,7 +30,19 @@ public class ProdutoAmericanasDetalheCallback extends ProdutoDetalheCallbackHtml
 		}
 		*/
 	}
+	
+	
+	
 
+	@Override
+	protected void meta(String propriedade, String conteudo) {
+		if("og:image".equals(propriedade)) {
+			System.out.println("Imagem:" + conteudo);
+			((ProdutoDadosParse) this.dadosParse).setImagemDetalhe(conteudo);
+		}
+	}
+
+	/*
 	@Override
 	protected void handleImagem(String imagem) {
 		super.handleImagem(imagem);
@@ -40,6 +52,7 @@ public class ProdutoAmericanasDetalheCallback extends ProdutoDetalheCallbackHtml
 			((ProdutoDadosParse) this.dadosParse).setImagemDetalhe(imagem);
 		}
 	}
+	*/
 
 	@Override
 	public void antesLoop() {

@@ -1,6 +1,8 @@
 package br.com.digicom.parse.callback;
 
 import java.net.CookieManager;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.text.MutableAttributeSet;
 import javax.swing.text.html.HTML;
@@ -29,6 +31,21 @@ public abstract class CallbackParseHtml extends HTMLEditorKit.ParserCallback imp
 	
 	private int contLi = 0;
 
+	private String paginaStr = null;
+	private List<String> listaScript = new ArrayList<String>();
+	private int inicioScript;
+	
+	@Override
+	public void setString(String resposta) {
+		// TODO Auto-generated method stub
+		this.paginaStr = resposta;
+	}
+	
+	private String getTrecho(int ini, int termino) {
+		//System.out.println(this.paginaStr.length());
+		return this.paginaStr.substring(ini, termino);
+	}
+	
 	public final ParserThread criaParse() {
 		ParserThread parser = new ParserHtmlTh();
 		parser.setCallback(this);
@@ -144,6 +161,10 @@ public abstract class CallbackParseHtml extends HTMLEditorKit.ParserCallback imp
 		if (HTML.Tag.LI == t) {
 			this.contLi --;
 		}
+		//if (HTML.Tag.SCRIPT == t) {
+		//	String script = this.getTrecho(this.inicioScript,pos);
+		//	this.listaScript.add(script);
+		//}
 		if (ultConteudo != null) {
 			elementoSimples(ultTag, ultId, ultClasse, ultConteudo);
 		}
@@ -156,6 +177,9 @@ public abstract class CallbackParseHtml extends HTMLEditorKit.ParserCallback imp
 		if (HTML.Tag.LI == t) {
 			this.contLi ++;
 		}
+		//if (HTML.Tag.SCRIPT == t) {
+		//	this.inicioScript = pos;
+		//}
 		this.ultAtributoTag2  = this.ultAtributoTag;
 		this.ultAtributoTag = a;
 		String classeNome = ((a.getAttribute(HTML.Attribute.CLASS) != null) ? a.getAttribute(HTML.Attribute.CLASS).toString() : "");
@@ -195,6 +219,16 @@ public abstract class CallbackParseHtml extends HTMLEditorKit.ParserCallback imp
 		if (this.debug) {
 			System.out.print(pos + "-<simples>:" + t);
 		}
+		if (t == HTML.Tag.META) {
+			String propriedade = (String) a.getAttribute("property");
+			String conteudo = (String) a.getAttribute(HTML.Attribute.CONTENT);
+			if (propriedade!=null) {
+				if(this.debug) {
+					System.out.print(pos + "<meta>:" + conteudo + "=" + propriedade);
+				}
+				meta(propriedade,conteudo);
+			}
+		}
 		if (t == HTML.Tag.IMG) {
 			handleImagem(a);
 			String imagem = (a.getAttribute(HTML.Attribute.SRC) != null ? a.getAttribute(HTML.Attribute.SRC).toString().trim() : null);
@@ -205,6 +239,10 @@ public abstract class CallbackParseHtml extends HTMLEditorKit.ParserCallback imp
 		}
 		if (this.debug)
 			System.out.println();
+	}
+	
+	protected void meta(String propriedade, String conteudo) {
+		
 	}
 
 	protected void handleImagem(MutableAttributeSet a) {

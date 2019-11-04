@@ -58,6 +58,7 @@ public class ExecutadorParseApache {
 	}
 
 	public void executa() throws DaoException {
+		System.out.println(this.callbackParse.getClass().getName());
 		this.callbackParse.setDados(this.dadosParse);
 		this.callbackParse.antesLoop();
 		int contaPagina = 0;
@@ -115,6 +116,7 @@ public class ExecutadorParseApache {
 			String responseBody = httpclient.execute(httpget, responseHandler);
 			Reader reader = new StringReader(responseBody);
 			//System.out.println(responseBody);
+			//this.callbackParse.setString(responseBody);
 			this.callbackParse.inicializacao();
 			new ParserDelegator().parse(reader, (HTMLEditorKit.ParserCallback) this.callbackParse, true);
 			this.callbackParse.finalizacaoOk();

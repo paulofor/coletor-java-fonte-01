@@ -10,7 +10,7 @@ import br.com.digicom.parse.ParserThread;
 
 public abstract interface ICallbackParse {
 	
-	
+	public abstract void setString(String resposta);
 	
 	public abstract ParserThread criaParse();
 
