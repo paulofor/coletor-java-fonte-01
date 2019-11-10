@@ -37,6 +37,9 @@ public  class OportunidadeDiaDaoExtendida  extends OportunidadeDiaDaoBase implem
 		+ " ,dataInsercao "
 		+ " ,precoSugestao "
 		+ " ,posicaoProduto"
+		+ " ,dataInicioPrecoAtual"
+		+ " ,dataUltimaPrecoAnterior"
+		+ " ,percentualAjusteVenda"
 		+ " ) ";
 	}
 	
@@ -53,6 +56,9 @@ public  class OportunidadeDiaDaoExtendida  extends OportunidadeDiaDaoBase implem
 				+ " ,'" + DCConvert.getDataAAAA_MM_DD_HHMMSS() + "' "
 				+ " ,'" +  DCConvert.ToDataBase(item.getPrecoSugestao()) + "'  "
 				+ " ," + item.getPosicaoProduto() + "  "
+				+ " ," + (item.getDataInicioPrecoAtual()==null?"null":DCConvert.ToDataSqlAAAA_MM_DD(item.getDataInicioPrecoAtual()) ) + "  "
+				+ " ," + (item.getDataUltimaPrecoAnterior()==null?"null":DCConvert.ToDataSqlAAAA_MM_DD(item.getDataUltimaPrecoAnterior()) ) + "  "
+				+ " ,'" +  DCConvert.ToDataBase(item.getPercentualAjusteVenda()) + "'  "
 				+ " ) ";
 	}
 
