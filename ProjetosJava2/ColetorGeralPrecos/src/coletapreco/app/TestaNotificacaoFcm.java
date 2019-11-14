@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
+import java.net.InetSocketAddress;
+import java.net.Proxy;
 import java.net.URL;
 
 import org.apache.commons.io.IOUtils;
@@ -18,7 +20,7 @@ public class TestaNotificacaoFcm {
 	public static void main(String[] args) {
 		String token = "esoKlL3Jwcg:APA91bGO5D8ATLT5cSC_drNqwegWiOlr49rYsbciujPg62c6CDNKNxG27HlGgUdguqYKpQ_ZGhjgCudE2FFjeu35_wgnNG7NKaoR42ZnNiDna7G797tt_Jn6B4WAsfvpXik6ZPqs0Gl3";
 		String apiKey = "AIzaSyAtjaGGiAnp-HMs15nfXz7DfVwdK0iKS4w";
-		token = "c1Ynk1Wu2Lk:APA91bEgnBwFxASjhVuoUVYkFZh-WBRD3w1i-mIAAPJEzdDB2hWVvag3Ij1hVOpumvfUCooOgdFfh5HGMh_tBH9pu1woxN3CHef4hZCIrwvHQOI_DAakEN48QP4pIiJcBNxG7LKWN9tv";
+		token = "dNSo-99-yr8:APA91bH_P_8Q-zTZ8hM4JOrfTLIj7kLXsvvItd21oUUP3qtdO7_D2b_2ty6HaQY52r6uVbjH5FkYtN4WzwSOcyPxlkhzIEDopYrlDrCaXcGQhSUEhiKC-Mp06FXZbrQ5xo-3UYAC3sdV";
 		JSONObject result = chamaMobileNovo(apiKey,token,"teste");
 		try {
 			int sucesso = result.getInt("success");
@@ -35,6 +37,13 @@ public class TestaNotificacaoFcm {
 		//final String API_KEY = "AIzaSyAak1l-hsYbZ2ZrOLe94xoQzuhEmZJ1Jyo";
 		
 		try {
+			
+			Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("10.21.7.10", 82));
+			System.setProperty("http.proxyUser", "tr626987");
+			System.setProperty("http.proxyPassword", "Mclaren1");
+			System.setProperty("https.proxyUser", "tr626987");
+			System.setProperty("https.proxyPassword", "Mclaren1");
+			
             // Prepare JSON containing the GCM message content. What to send and where to send.
             JSONObject jGcmData = new JSONObject();
             JSONObject jData = new JSONObject();
@@ -46,8 +55,12 @@ public class TestaNotificacaoFcm {
             // Create connection to send GCM Message request.
             //URL url = new URL("https://android.googleapis.com/gcm/send");
             
-            URL url = new URL("https://fcm.googleapis.com/fcm/send");
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            //URL url = new URL("https://fcm.googleapis.com/fcm/send");
+            //HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            
+            HttpURLConnection conn = (HttpURLConnection) new URL("https://fcm.googleapis.com/fcm/send").openConnection(proxy);
+            
+            
             conn.setRequestProperty("Authorization", "key=" + apiKey);
             conn.setRequestProperty("Content-Type", "application/json");
             conn.setRequestMethod("POST");

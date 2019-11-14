@@ -5,7 +5,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
+import java.net.InetSocketAddress;
+import java.net.Proxy;
 import java.net.URL;
+import java.net.URLConnection;
 
 import org.apache.commons.io.IOUtils;
 import org.json.JSONException;
@@ -58,6 +61,8 @@ public  class DispositivoUsuarioRegraColecaoImpl  extends DispositivoUsuarioRegr
 		//final String API_KEY = "AIzaSyAak1l-hsYbZ2ZrOLe94xoQzuhEmZJ1Jyo";
 		
 		try {
+			
+			
             // Prepare JSON containing the GCM message content. What to send and where to send.
             JSONObject jGcmData = new JSONObject();
             JSONObject jData = new JSONObject();
@@ -71,6 +76,8 @@ public  class DispositivoUsuarioRegraColecaoImpl  extends DispositivoUsuarioRegr
             
             URL url = new URL("https://fcm.googleapis.com/fcm/send");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+             
+            
             conn.setRequestProperty("Authorization", "key=" + apiKey);
             conn.setRequestProperty("Content-Type", "application/json");
             conn.setRequestMethod("POST");
