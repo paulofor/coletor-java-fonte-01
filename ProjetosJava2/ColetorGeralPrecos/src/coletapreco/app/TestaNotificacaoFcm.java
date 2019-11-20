@@ -20,7 +20,10 @@ public class TestaNotificacaoFcm {
 	public static void main(String[] args) {
 		String token = "esoKlL3Jwcg:APA91bGO5D8ATLT5cSC_drNqwegWiOlr49rYsbciujPg62c6CDNKNxG27HlGgUdguqYKpQ_ZGhjgCudE2FFjeu35_wgnNG7NKaoR42ZnNiDna7G797tt_Jn6B4WAsfvpXik6ZPqs0Gl3";
 		String apiKey = "AIzaSyAtjaGGiAnp-HMs15nfXz7DfVwdK0iKS4w";
-		token = "dNSo-99-yr8:APA91bH_P_8Q-zTZ8hM4JOrfTLIj7kLXsvvItd21oUUP3qtdO7_D2b_2ty6HaQY52r6uVbjH5FkYtN4WzwSOcyPxlkhzIEDopYrlDrCaXcGQhSUEhiKC-Mp06FXZbrQ5xo-3UYAC3sdV";
+		//Oi
+		//token = "dNSo-99-yr8:APA91bH_P_8Q-zTZ8hM4JOrfTLIj7kLXsvvItd21oUUP3qtdO7_D2b_2ty6HaQY52r6uVbjH5FkYtN4WzwSOcyPxlkhzIEDopYrlDrCaXcGQhSUEhiKC-Mp06FXZbrQ5xo-3UYAC3sdV";
+		//Casa
+		token = "ehR5OHvF0Yc:APA91bG8QnkusUmEd7jilT7ACTmGGJJumF8Yx9AmAPaGMxNiaxJtNGhYpZEA8kzPsxuPvv1tt4Txq2LgociJgiKtQNGBnpd0wh-mrfiUIdPhvv7nsQRhiGvAZnMeaJV3avHf2hzKugj8";
 		JSONObject result = chamaMobileNovo(apiKey,token,"teste");
 		try {
 			int sucesso = result.getInt("success");
@@ -44,22 +47,24 @@ public class TestaNotificacaoFcm {
 			System.setProperty("https.proxyUser", "tr626987");
 			System.setProperty("https.proxyPassword", "Mclaren1");
 			
-            // Prepare JSON containing the GCM message content. What to send and where to send.
-            JSONObject jGcmData = new JSONObject();
-            JSONObject jData = new JSONObject();
-            jGcmData.put("to", mobileKey);
-            // What to send in GCM message.
-            jData.put("tipoSinc", tipoSinc);
-            jGcmData.put("data", jData);
-
-            // Create connection to send GCM Message request.
-            //URL url = new URL("https://android.googleapis.com/gcm/send");
+			
+			JSONObject jNotification = new JSONObject();
+			JSONObject jData = new JSONObject();
+			JSONObject jMensagem = new JSONObject();
+			
+			jNotification.put("title", "Cosmetic Center");
+			jNotification.put("body" , "Chegaram novos produtos para você");
+			jNotification.put("color" , "#ba5b5b");
+			
+			
+			jMensagem.put("to", "/topics/novo");
+			jMensagem.put("collapse_key", "type_a");
+			jMensagem.put("notification" , jNotification);
+			
             
-            //URL url = new URL("https://fcm.googleapis.com/fcm/send");
-            //HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            
-            HttpURLConnection conn = (HttpURLConnection) new URL("https://fcm.googleapis.com/fcm/send").openConnection(proxy);
-            
+            URL url = new URL("https://fcm.googleapis.com/fcm/send");
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            //HttpURLConnection conn = (HttpURLConnection) new URL("https://fcm.googleapis.com/fcm/send").openConnection(proxy);
             
             conn.setRequestProperty("Authorization", "key=" + apiKey);
             conn.setRequestProperty("Content-Type", "application/json");
@@ -68,7 +73,8 @@ public class TestaNotificacaoFcm {
 
             // Send GCM message content.
             OutputStream outputStream = conn.getOutputStream();
-            outputStream.write(jGcmData.toString().getBytes());
+            System.out.println("Send: " + jMensagem.toString());
+            outputStream.write(jMensagem.toString().getBytes());
 
             // Read GCM response.
             InputStream inputStream = conn.getInputStream();
