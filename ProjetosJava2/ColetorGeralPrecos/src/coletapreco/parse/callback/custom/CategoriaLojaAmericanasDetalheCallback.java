@@ -14,12 +14,34 @@ import coletapreco.parse.callback.CategoriaLojaDetalheCallbackHtml;
 
 public class CategoriaLojaAmericanasDetalheCallback extends CategoriaLojaDetalheCallbackHtml {
 
-	private int LIMITE_PAGINA = 500;
-	private int contaPagina;
+	private int LIMITE_PAGINA = 250;
+	private int contaPagina = 1;
+	private String pedacos[] = null;
 
 	public CategoriaLojaAmericanasDetalheCallback() {
 		//this.setDebug();
 	}
+	
+	
+	
+
+	@Override
+	public void inicializacao() {
+		super.inicializacao();
+		contaPagina++;
+		if (pedacos==null) {
+			pedacos = this.getUrlOrigem().split("\\?");
+		}
+		if (contaPagina<=LIMITE_PAGINA) {
+			this.loop = true;
+			this.urlCorrente = pedacos[0] + "/pagina-" + contaPagina +"?" + pedacos[1];
+		} else {
+			this.loop = false;
+		}
+	}
+
+
+
 
 	@Override
 	protected void inicioTag(Tag t, String classeNome, String idNome) {
