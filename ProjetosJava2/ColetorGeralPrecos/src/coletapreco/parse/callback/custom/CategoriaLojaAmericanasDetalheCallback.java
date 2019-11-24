@@ -51,6 +51,7 @@ public class CategoriaLojaAmericanasDetalheCallback extends CategoriaLojaDetalhe
 		}
 	}
 	
+	/*
 	public void handleStartTag(HTML.Tag t, MutableAttributeSet a, int pos) {
 		super.handleStartTag(t, a, pos);
 		if (t==HTML.Tag.SPAN && a.getAttribute("aria-label")!=null ) {
@@ -61,6 +62,7 @@ public class CategoriaLojaAmericanasDetalheCallback extends CategoriaLojaDetalhe
 			}
 		}
 	}
+	*/
 
 	public void handleText(char[] data, int pos) {
 		super.handleText(data, pos);
