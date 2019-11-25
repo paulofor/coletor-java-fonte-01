@@ -9,7 +9,7 @@ import coletapreco.thread.ProcessaOportunidadeTh;
 public class ColetaCosmeticoApp {
 
 	public static void main(String[] args) {
-		System.out.println("Versao: 24-11-2019 (1)");
+		System.out.println("Versao: 25-11-2019 (1)");
 		
 		LojaVirtualRegraColecao srv = FabricaRegra.getInstancia().getLojaVirtualRegraColecao();
 		ContagemProdutoRegraColecao contagemSrv = FabricaRegra.getInstancia().getContagemProdutoRegraColecao();
@@ -19,8 +19,9 @@ public class ColetaCosmeticoApp {
 			
 			srv.AtualizaCosmetico();
 			contagemSrv.RegistraQuantidadesDia();
-			contagemSrv.EnviaParaServidor();
 			oportunidade.run();
+			contagemSrv.EnviaParaServidor();
+			
 
 		} catch (DaoException e) {
 			e.printStackTrace();
