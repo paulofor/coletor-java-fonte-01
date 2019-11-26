@@ -31,6 +31,13 @@ public class RepositorioBase {
 		protected String verificaNomeUrl(String nome) {
 			return "DispositivoUsuarios";
 		}
+		public void cosmeticCenterNotificacao(ListCallback<DispositivoUsuario> callback) {
+			RestContractItem contrato = new RestContractItem("DispositivoUsuarios/cosmeticCenterNotificacao","GET");
+			this.getRestAdapter().getContract().addItem(contrato, "DispositivoUsuario.cosmeticCenterNotificacao");
+	        Map<String, Object> params = new HashMap<String, Object>();
+	        invokeStaticMethod("cosmeticCenterNotificacao", params, new JsonArrayParser<DispositivoUsuario>(this, callback));
+			
+		}
 	}
 	
 	public static class AnuncioAplicacaoResultadoRepository extends ModelRepository<AnuncioAplicacaoResultado>{

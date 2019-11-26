@@ -15,6 +15,8 @@ public class ColetaCosmeticoApp {
 		ContagemProdutoRegraColecao contagemSrv = FabricaRegra.getInstancia().getContagemProdutoRegraColecao();
 		ProcessaOportunidadeTh oportunidade = new ProcessaOportunidadeTh();
 		
+		oportunidade.run();
+		/*
 		try {
 			
 			srv.AtualizaCosmetico();
@@ -23,9 +25,10 @@ public class ColetaCosmeticoApp {
 			contagemSrv.EnviaParaServidor();
 			
 
-		} catch (DaoException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		*/
 	}
 
 }
