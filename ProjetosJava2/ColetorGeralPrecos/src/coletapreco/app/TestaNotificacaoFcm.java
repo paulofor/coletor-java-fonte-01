@@ -56,10 +56,13 @@ public class TestaNotificacaoFcm {
 			jNotification.put("body" , "Chegaram novos produtos para você");
 			jNotification.put("color" , "#ba5b5b");
 			
+			jData.put("tokenNotificacao" , "12345");
+			
 			
 			jMensagem.put("to", "/topics/novo");
 			jMensagem.put("collapse_key", "type_a");
 			jMensagem.put("notification" , jNotification);
+			jMensagem.put("data" , jData);
 			
             
             URL url = new URL("https://fcm.googleapis.com/fcm/send");
