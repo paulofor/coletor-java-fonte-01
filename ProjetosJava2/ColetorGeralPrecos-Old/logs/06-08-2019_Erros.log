@@ -1,0 +1,312 @@
+(2019-8-6 22:19:11) - Batom Tinta Dna Italy Love Lip Color 10ml Cor Love Red 1und ( https://www.americanas.com.br/produto/49934433?pfm_carac=L%C3%A1bios&pfm_index=0&pfm_page=category&pfm_pos=grid&pfm_type=vit_product_grid&sellerId ) 
+(2019-8-6 22:19:11) - br.com.digicom.lib.dao.DaoException: select  produto.id_produto  ,produto.url_origem  ,produto.imagem_local  , DATE_FORMAT(produto.data_inclusao,'%d-%m-%Y %H:%i:%s')  ,produto.url  ,produto.nome  ,produto.posicao_produto  ,produto.imagem  ,produto.verificacao_nome_ok  ,produto.id_loja_virtual_le  ,produto.id_marca_p  from  produto where url = 'https://www.americanas.com.br/produto/49934433?pfm_carac=L%C3%A1bios&pfm_index=0&pfm_page=category&pfm_pos=grid&pfm_type=vit_product_grid&sellerId'Communication link failure: java.io.EOFException, underlying cause: null
+
+** BEGIN NESTED EXCEPTION ** 
+
+java.io.EOFException
+
+STACKTRACE:
+
+java.io.EOFException
+	at com.mysql.jdbc.MysqlIO.readFully(MysqlIO.java:1395)
+	at com.mysql.jdbc.MysqlIO.reuseAndReadPacket(MysqlIO.java:1539)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:1930)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1168)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:1279)
+	at com.mysql.jdbc.MysqlIO.sqlQuery(MysqlIO.java:1225)
+	at com.mysql.jdbc.Connection.execSQL(Connection.java:2278)
+	at com.mysql.jdbc.Connection.execSQL(Connection.java:2225)
+	at com.mysql.jdbc.Statement.execute(Statement.java:906)
+	at br.com.digicom.lib.dao.MySqlDataSource.getListaSql(MySqlDataSource.java:49)
+	at br.com.digicom.lib.dao.MySqlDataSource.getListaSql(MySqlDataSource.java:37)
+	at br.com.digicom.lib.dao.DaoBase.getObjeto(DaoBase.java:143)
+	at br.com.digicom.lib.dao.DaoBase.getObjeto(DaoBase.java:134)
+	at coletapreco.dao.ProdutoDaoExtendida.ObtemPorUrlProduto(ProdutoDaoExtendida.java:64)
+	at coletapreco.regracolecao.impl.ProdutoRegraColecaoImpl.ObtemPorUrlProduto(ProdutoRegraColecaoImpl.java:53)
+	at coletapreco.parse.dados.CategoriaLojaDadosParse.processaProduto(CategoriaLojaDadosParse.java:87)
+	at coletapreco.parse.dados.CategoriaLojaDadosParse.finalizacaoOkDetalhe(CategoriaLojaDadosParse.java:53)
+	at coletapreco.parse.callback.basico.CategoriaLojaDetalheCallbackHtmlBase.finalizacaoOk(CategoriaLojaDetalheCallbackHtmlBase.java:72)
+	at br.com.digicom.parse.ExecutadorParseApache.main(ExecutadorParseApache.java:108)
+	at br.com.digicom.parse.ExecutadorParseApache.executa(ExecutadorParseApache.java:63)
+	at coletapreco.parse.regracolecaoadaptador.CategoriaLojaRegraColecaoAdaptador.atualizaDetalhe(CategoriaLojaRegraColecaoAdaptador.java:100)
+	at coletapreco.desen.TesteLojaApp.main(TesteLojaApp.java:38)
+
+
+** END NESTED EXCEPTION **
+
+ select  produto.id_produto  ,produto.url_origem  ,produto.imagem_local  , DATE_FORMAT(produto.data_inclusao,'%d-%m-%Y %H:%i:%s')  ,produto.url  ,produto.nome  ,produto.posicao_produto  ,produto.imagem  ,produto.verificacao_nome_ok  ,produto.id_loja_virtual_le  ,produto.id_marca_p  from  produto where url = 'https://www.americanas.com.br/produto/49934433?pfm_carac=L%C3%A1bios&pfm_index=0&pfm_page=category&pfm_pos=grid&pfm_type=vit_product_grid&sellerId'Communication link failure: java.io.EOFException, underlying cause: null
+
+** BEGIN NESTED EXCEPTION ** 
+
+java.io.EOFException
+
+STACKTRACE:
+
+java.io.EOFException
+	at com.mysql.jdbc.MysqlIO.readFully(MysqlIO.java:1395)
+	at com.mysql.jdbc.MysqlIO.reuseAndReadPacket(MysqlIO.java:1539)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:1930)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1168)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:1279)
+	at com.mysql.jdbc.MysqlIO.sqlQuery(MysqlIO.java:1225)
+	at com.mysql.jdbc.Connection.execSQL(Connection.java:2278)
+	at com.mysql.jdbc.Connection.execSQL(Connection.java:2225)
+	at com.mysql.jdbc.Statement.execute(Statement.java:906)
+	at br.com.digicom.lib.dao.MySqlDataSource.getListaSql(MySqlDataSource.java:49)
+	at br.com.digicom.lib.dao.MySqlDataSource.getListaSql(MySqlDataSource.java:37)
+	at br.com.digicom.lib.dao.DaoBase.getObjeto(DaoBase.java:143)
+	at br.com.digicom.lib.dao.DaoBase.getObjeto(DaoBase.java:134)
+	at coletapreco.dao.ProdutoDaoExtendida.ObtemPorUrlProduto(ProdutoDaoExtendida.java:64)
+	at coletapreco.regracolecao.impl.ProdutoRegraColecaoImpl.ObtemPorUrlProduto(ProdutoRegraColecaoImpl.java:53)
+	at coletapreco.parse.dados.CategoriaLojaDadosParse.processaProduto(CategoriaLojaDadosParse.java:87)
+	at coletapreco.parse.dados.CategoriaLojaDadosParse.finalizacaoOkDetalhe(CategoriaLojaDadosParse.java:53)
+	at coletapreco.parse.callback.basico.CategoriaLojaDetalheCallbackHtmlBase.finalizacaoOk(CategoriaLojaDetalheCallbackHtmlBase.java:72)
+	at br.com.digicom.parse.ExecutadorParseApache.main(ExecutadorParseApache.java:108)
+	at br.com.digicom.parse.ExecutadorParseApache.executa(ExecutadorParseApache.java:63)
+	at coletapreco.parse.regracolecaoadaptador.CategoriaLojaRegraColecaoAdaptador.atualizaDetalhe(CategoriaLojaRegraColecaoAdaptador.java:100)
+	at coletapreco.desen.TesteLojaApp.main(TesteLojaApp.java:38)
+
+
+** END NESTED EXCEPTION **
+
+
+	at br.com.digicom.lib.dao.MySqlDataSource.getListaSql(MySqlDataSource.java:58)
+	at br.com.digicom.lib.dao.MySqlDataSource.getListaSql(MySqlDataSource.java:37)
+	at br.com.digicom.lib.dao.DaoBase.getObjeto(DaoBase.java:143)
+	at br.com.digicom.lib.dao.DaoBase.getObjeto(DaoBase.java:134)
+	at coletapreco.dao.ProdutoDaoExtendida.ObtemPorUrlProduto(ProdutoDaoExtendida.java:64)
+	at coletapreco.regracolecao.impl.ProdutoRegraColecaoImpl.ObtemPorUrlProduto(ProdutoRegraColecaoImpl.java:53)
+	at coletapreco.parse.dados.CategoriaLojaDadosParse.processaProduto(CategoriaLojaDadosParse.java:87)
+	at coletapreco.parse.dados.CategoriaLojaDadosParse.finalizacaoOkDetalhe(CategoriaLojaDadosParse.java:53)
+	at coletapreco.parse.callback.basico.CategoriaLojaDetalheCallbackHtmlBase.finalizacaoOk(CategoriaLojaDetalheCallbackHtmlBase.java:72)
+	at br.com.digicom.parse.ExecutadorParseApache.main(ExecutadorParseApache.java:108)
+	at br.com.digicom.parse.ExecutadorParseApache.executa(ExecutadorParseApache.java:63)
+	at coletapreco.parse.regracolecaoadaptador.CategoriaLojaRegraColecaoAdaptador.atualizaDetalhe(CategoriaLojaRegraColecaoAdaptador.java:100)
+	at coletapreco.desen.TesteLojaApp.main(TesteLojaApp.java:38)
+(22:19:11) - br.com.digicom.lib.dao.DaoException: select  categoria_loja_produto.id_categoria_loja_produto  , DATE_FORMAT(categoria_loja_produto.data_ultima_visita,'%d-%m-%Y')  ,categoria_loja_produto.id_categoria_loja_ra  ,categoria_loja_produto.id_produto_ra  from  categoria_loja_produto where id_categoria_loja_ra = 999 and  id_produto_ra = 0No operations allowed after connection closed.
+
+Connection was closed due to the following exception:
+
+** BEGIN NESTED EXCEPTION ** 
+
+java.sql.SQLException
+MESSAGE: Communication link failure: java.io.EOFException, underlying cause: null
+
+** BEGIN NESTED EXCEPTION ** 
+
+java.io.EOFException
+
+STACKTRACE:
+
+java.io.EOFException
+	at com.mysql.jdbc.MysqlIO.readFully(MysqlIO.java:1395)
+	at com.mysql.jdbc.MysqlIO.reuseAndReadPacket(MysqlIO.java:1539)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:1930)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1168)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:1279)
+	at com.mysql.jdbc.MysqlIO.sqlQuery(MysqlIO.java:1225)
+	at com.mysql.jdbc.Connection.execSQL(Connection.java:2278)
+	at com.mysql.jdbc.Connection.execSQL(Connection.java:2225)
+	at com.mysql.jdbc.Statement.execute(Statement.java:906)
+	at br.com.digicom.lib.dao.MySqlDataSource.getListaSql(MySqlDataSource.java:49)
+	at br.com.digicom.lib.dao.MySqlDataSource.getListaSql(MySqlDataSource.java:37)
+	at br.com.digicom.lib.dao.DaoBase.getObjeto(DaoBase.java:143)
+	at br.com.digicom.lib.dao.DaoBase.getObjeto(DaoBase.java:134)
+	at coletapreco.dao.ProdutoDaoExtendida.ObtemPorUrlProduto(ProdutoDaoExtendida.java:64)
+	at coletapreco.regracolecao.impl.ProdutoRegraColecaoImpl.ObtemPorUrlProduto(ProdutoRegraColecaoImpl.java:53)
+	at coletapreco.parse.dados.CategoriaLojaDadosParse.processaProduto(CategoriaLojaDadosParse.java:87)
+	at coletapreco.parse.dados.CategoriaLojaDadosParse.finalizacaoOkDetalhe(CategoriaLojaDadosParse.java:53)
+	at coletapreco.parse.callback.basico.CategoriaLojaDetalheCallbackHtmlBase.finalizacaoOk(CategoriaLojaDetalheCallbackHtmlBase.java:72)
+	at br.com.digicom.parse.ExecutadorParseApache.main(ExecutadorParseApache.java:108)
+	at br.com.digicom.parse.ExecutadorParseApache.executa(ExecutadorParseApache.java:63)
+	at coletapreco.parse.regracolecaoadaptador.CategoriaLojaRegraColecaoAdaptador.atualizaDetalhe(CategoriaLojaRegraColecaoAdaptador.java:100)
+	at coletapreco.desen.TesteLojaApp.main(TesteLojaApp.java:38)
+
+
+** END NESTED EXCEPTION **
+
+
+
+STACKTRACE:
+
+java.sql.SQLException: Communication link failure: java.io.EOFException, underlying cause: null
+
+** BEGIN NESTED EXCEPTION ** 
+
+java.io.EOFException
+
+STACKTRACE:
+
+java.io.EOFException
+	at com.mysql.jdbc.MysqlIO.readFully(MysqlIO.java:1395)
+	at com.mysql.jdbc.MysqlIO.reuseAndReadPacket(MysqlIO.java:1539)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:1930)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1168)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:1279)
+	at com.mysql.jdbc.MysqlIO.sqlQuery(MysqlIO.java:1225)
+	at com.mysql.jdbc.Connection.execSQL(Connection.java:2278)
+	at com.mysql.jdbc.Connection.execSQL(Connection.java:2225)
+	at com.mysql.jdbc.Statement.execute(Statement.java:906)
+	at br.com.digicom.lib.dao.MySqlDataSource.getListaSql(MySqlDataSource.java:49)
+	at br.com.digicom.lib.dao.MySqlDataSource.getListaSql(MySqlDataSource.java:37)
+	at br.com.digicom.lib.dao.DaoBase.getObjeto(DaoBase.java:143)
+	at br.com.digicom.lib.dao.DaoBase.getObjeto(DaoBase.java:134)
+	at coletapreco.dao.ProdutoDaoExtendida.ObtemPorUrlProduto(ProdutoDaoExtendida.java:64)
+	at coletapreco.regracolecao.impl.ProdutoRegraColecaoImpl.ObtemPorUrlProduto(ProdutoRegraColecaoImpl.java:53)
+	at coletapreco.parse.dados.CategoriaLojaDadosParse.processaProduto(CategoriaLojaDadosParse.java:87)
+	at coletapreco.parse.dados.CategoriaLojaDadosParse.finalizacaoOkDetalhe(CategoriaLojaDadosParse.java:53)
+	at coletapreco.parse.callback.basico.CategoriaLojaDetalheCallbackHtmlBase.finalizacaoOk(CategoriaLojaDetalheCallbackHtmlBase.java:72)
+	at br.com.digicom.parse.ExecutadorParseApache.main(ExecutadorParseApache.java:108)
+	at br.com.digicom.parse.ExecutadorParseApache.executa(ExecutadorParseApache.java:63)
+	at coletapreco.parse.regracolecaoadaptador.CategoriaLojaRegraColecaoAdaptador.atualizaDetalhe(CategoriaLojaRegraColecaoAdaptador.java:100)
+	at coletapreco.desen.TesteLojaApp.main(TesteLojaApp.java:38)
+
+
+** END NESTED EXCEPTION **
+
+
+	at com.mysql.jdbc.MysqlIO.reuseAndReadPacket(MysqlIO.java:1714)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:1930)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1168)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:1279)
+	at com.mysql.jdbc.MysqlIO.sqlQuery(MysqlIO.java:1225)
+	at com.mysql.jdbc.Connection.execSQL(Connection.java:2278)
+	at com.mysql.jdbc.Connection.execSQL(Connection.java:2225)
+	at com.mysql.jdbc.Statement.execute(Statement.java:906)
+	at br.com.digicom.lib.dao.MySqlDataSource.getListaSql(MySqlDataSource.java:49)
+	at br.com.digicom.lib.dao.MySqlDataSource.getListaSql(MySqlDataSource.java:37)
+	at br.com.digicom.lib.dao.DaoBase.getObjeto(DaoBase.java:143)
+	at br.com.digicom.lib.dao.DaoBase.getObjeto(DaoBase.java:134)
+	at coletapreco.dao.ProdutoDaoExtendida.ObtemPorUrlProduto(ProdutoDaoExtendida.java:64)
+	at coletapreco.regracolecao.impl.ProdutoRegraColecaoImpl.ObtemPorUrlProduto(ProdutoRegraColecaoImpl.java:53)
+	at coletapreco.parse.dados.CategoriaLojaDadosParse.processaProduto(CategoriaLojaDadosParse.java:87)
+	at coletapreco.parse.dados.CategoriaLojaDadosParse.finalizacaoOkDetalhe(CategoriaLojaDadosParse.java:53)
+	at coletapreco.parse.callback.basico.CategoriaLojaDetalheCallbackHtmlBase.finalizacaoOk(CategoriaLojaDetalheCallbackHtmlBase.java:72)
+	at br.com.digicom.parse.ExecutadorParseApache.main(ExecutadorParseApache.java:108)
+	at br.com.digicom.parse.ExecutadorParseApache.executa(ExecutadorParseApache.java:63)
+	at coletapreco.parse.regracolecaoadaptador.CategoriaLojaRegraColecaoAdaptador.atualizaDetalhe(CategoriaLojaRegraColecaoAdaptador.java:100)
+	at coletapreco.desen.TesteLojaApp.main(TesteLojaApp.java:38)
+
+
+** END NESTED EXCEPTION **
+
+ select  categoria_loja_produto.id_categoria_loja_produto  , DATE_FORMAT(categoria_loja_produto.data_ultima_visita,'%d-%m-%Y')  ,categoria_loja_produto.id_categoria_loja_ra  ,categoria_loja_produto.id_produto_ra  from  categoria_loja_produto where id_categoria_loja_ra = 999 and  id_produto_ra = 0No operations allowed after connection closed.
+
+Connection was closed due to the following exception:
+
+** BEGIN NESTED EXCEPTION ** 
+
+java.sql.SQLException
+MESSAGE: Communication link failure: java.io.EOFException, underlying cause: null
+
+** BEGIN NESTED EXCEPTION ** 
+
+java.io.EOFException
+
+STACKTRACE:
+
+java.io.EOFException
+	at com.mysql.jdbc.MysqlIO.readFully(MysqlIO.java:1395)
+	at com.mysql.jdbc.MysqlIO.reuseAndReadPacket(MysqlIO.java:1539)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:1930)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1168)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:1279)
+	at com.mysql.jdbc.MysqlIO.sqlQuery(MysqlIO.java:1225)
+	at com.mysql.jdbc.Connection.execSQL(Connection.java:2278)
+	at com.mysql.jdbc.Connection.execSQL(Connection.java:2225)
+	at com.mysql.jdbc.Statement.execute(Statement.java:906)
+	at br.com.digicom.lib.dao.MySqlDataSource.getListaSql(MySqlDataSource.java:49)
+	at br.com.digicom.lib.dao.MySqlDataSource.getListaSql(MySqlDataSource.java:37)
+	at br.com.digicom.lib.dao.DaoBase.getObjeto(DaoBase.java:143)
+	at br.com.digicom.lib.dao.DaoBase.getObjeto(DaoBase.java:134)
+	at coletapreco.dao.ProdutoDaoExtendida.ObtemPorUrlProduto(ProdutoDaoExtendida.java:64)
+	at coletapreco.regracolecao.impl.ProdutoRegraColecaoImpl.ObtemPorUrlProduto(ProdutoRegraColecaoImpl.java:53)
+	at coletapreco.parse.dados.CategoriaLojaDadosParse.processaProduto(CategoriaLojaDadosParse.java:87)
+	at coletapreco.parse.dados.CategoriaLojaDadosParse.finalizacaoOkDetalhe(CategoriaLojaDadosParse.java:53)
+	at coletapreco.parse.callback.basico.CategoriaLojaDetalheCallbackHtmlBase.finalizacaoOk(CategoriaLojaDetalheCallbackHtmlBase.java:72)
+	at br.com.digicom.parse.ExecutadorParseApache.main(ExecutadorParseApache.java:108)
+	at br.com.digicom.parse.ExecutadorParseApache.executa(ExecutadorParseApache.java:63)
+	at coletapreco.parse.regracolecaoadaptador.CategoriaLojaRegraColecaoAdaptador.atualizaDetalhe(CategoriaLojaRegraColecaoAdaptador.java:100)
+	at coletapreco.desen.TesteLojaApp.main(TesteLojaApp.java:38)
+
+
+** END NESTED EXCEPTION **
+
+
+
+STACKTRACE:
+
+java.sql.SQLException: Communication link failure: java.io.EOFException, underlying cause: null
+
+** BEGIN NESTED EXCEPTION ** 
+
+java.io.EOFException
+
+STACKTRACE:
+
+java.io.EOFException
+	at com.mysql.jdbc.MysqlIO.readFully(MysqlIO.java:1395)
+	at com.mysql.jdbc.MysqlIO.reuseAndReadPacket(MysqlIO.java:1539)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:1930)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1168)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:1279)
+	at com.mysql.jdbc.MysqlIO.sqlQuery(MysqlIO.java:1225)
+	at com.mysql.jdbc.Connection.execSQL(Connection.java:2278)
+	at com.mysql.jdbc.Connection.execSQL(Connection.java:2225)
+	at com.mysql.jdbc.Statement.execute(Statement.java:906)
+	at br.com.digicom.lib.dao.MySqlDataSource.getListaSql(MySqlDataSource.java:49)
+	at br.com.digicom.lib.dao.MySqlDataSource.getListaSql(MySqlDataSource.java:37)
+	at br.com.digicom.lib.dao.DaoBase.getObjeto(DaoBase.java:143)
+	at br.com.digicom.lib.dao.DaoBase.getObjeto(DaoBase.java:134)
+	at coletapreco.dao.ProdutoDaoExtendida.ObtemPorUrlProduto(ProdutoDaoExtendida.java:64)
+	at coletapreco.regracolecao.impl.ProdutoRegraColecaoImpl.ObtemPorUrlProduto(ProdutoRegraColecaoImpl.java:53)
+	at coletapreco.parse.dados.CategoriaLojaDadosParse.processaProduto(CategoriaLojaDadosParse.java:87)
+	at coletapreco.parse.dados.CategoriaLojaDadosParse.finalizacaoOkDetalhe(CategoriaLojaDadosParse.java:53)
+	at coletapreco.parse.callback.basico.CategoriaLojaDetalheCallbackHtmlBase.finalizacaoOk(CategoriaLojaDetalheCallbackHtmlBase.java:72)
+	at br.com.digicom.parse.ExecutadorParseApache.main(ExecutadorParseApache.java:108)
+	at br.com.digicom.parse.ExecutadorParseApache.executa(ExecutadorParseApache.java:63)
+	at coletapreco.parse.regracolecaoadaptador.CategoriaLojaRegraColecaoAdaptador.atualizaDetalhe(CategoriaLojaRegraColecaoAdaptador.java:100)
+	at coletapreco.desen.TesteLojaApp.main(TesteLojaApp.java:38)
+
+
+** END NESTED EXCEPTION **
+
+
+	at com.mysql.jdbc.MysqlIO.reuseAndReadPacket(MysqlIO.java:1714)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:1930)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1168)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:1279)
+	at com.mysql.jdbc.MysqlIO.sqlQuery(MysqlIO.java:1225)
+	at com.mysql.jdbc.Connection.execSQL(Connection.java:2278)
+	at com.mysql.jdbc.Connection.execSQL(Connection.java:2225)
+	at com.mysql.jdbc.Statement.execute(Statement.java:906)
+	at br.com.digicom.lib.dao.MySqlDataSource.getListaSql(MySqlDataSource.java:49)
+	at br.com.digicom.lib.dao.MySqlDataSource.getListaSql(MySqlDataSource.java:37)
+	at br.com.digicom.lib.dao.DaoBase.getObjeto(DaoBase.java:143)
+	at br.com.digicom.lib.dao.DaoBase.getObjeto(DaoBase.java:134)
+	at coletapreco.dao.ProdutoDaoExtendida.ObtemPorUrlProduto(ProdutoDaoExtendida.java:64)
+	at coletapreco.regracolecao.impl.ProdutoRegraColecaoImpl.ObtemPorUrlProduto(ProdutoRegraColecaoImpl.java:53)
+	at coletapreco.parse.dados.CategoriaLojaDadosParse.processaProduto(CategoriaLojaDadosParse.java:87)
+	at coletapreco.parse.dados.CategoriaLojaDadosParse.finalizacaoOkDetalhe(CategoriaLojaDadosParse.java:53)
+	at coletapreco.parse.callback.basico.CategoriaLojaDetalheCallbackHtmlBase.finalizacaoOk(CategoriaLojaDetalheCallbackHtmlBase.java:72)
+	at br.com.digicom.parse.ExecutadorParseApache.main(ExecutadorParseApache.java:108)
+	at br.com.digicom.parse.ExecutadorParseApache.executa(ExecutadorParseApache.java:63)
+	at coletapreco.parse.regracolecaoadaptador.CategoriaLojaRegraColecaoAdaptador.atualizaDetalhe(CategoriaLojaRegraColecaoAdaptador.java:100)
+	at coletapreco.desen.TesteLojaApp.main(TesteLojaApp.java:38)
+
+
+** END NESTED EXCEPTION **
+
+
+	at br.com.digicom.lib.dao.MySqlDataSource.getListaSql(MySqlDataSource.java:58)
+	at br.com.digicom.lib.dao.MySqlDataSource.getListaSql(MySqlDataSource.java:37)
+	at br.com.digicom.lib.dao.DaoBase.getObjeto(DaoBase.java:143)
+	at br.com.digicom.lib.dao.DaoBase.getObjeto(DaoBase.java:134)
+	at coletapreco.dao.CategoriaLojaProdutoDaoExtendida.ObtemPorRelacionamento(CategoriaLojaProdutoDaoExtendida.java:28)
+	at coletapreco.regracolecao.impl.CategoriaLojaProdutoRegraColecaoImpl.AtualizaRelacionamento(CategoriaLojaProdutoRegraColecaoImpl.java:21)
+	at coletapreco.parse.dados.CategoriaLojaDadosParse.finalizacaoOkDetalhe(CategoriaLojaDadosParse.java:57)
+	at coletapreco.parse.callback.basico.CategoriaLojaDetalheCallbackHtmlBase.finalizacaoOk(CategoriaLojaDetalheCallbackHtmlBase.java:72)
+	at br.com.digicom.parse.ExecutadorParseApache.main(ExecutadorParseApache.java:108)
+	at br.com.digicom.parse.ExecutadorParseApache.executa(ExecutadorParseApache.java:63)
+	at coletapreco.parse.regracolecaoadaptador.CategoriaLojaRegraColecaoAdaptador.atualizaDetalhe(CategoriaLojaRegraColecaoAdaptador.java:100)
+	at coletapreco.desen.TesteLojaApp.main(TesteLojaApp.java:38)

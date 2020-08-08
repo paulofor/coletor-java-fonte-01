@@ -3,8 +3,10 @@ package coletapreco.app;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.Authenticator;
 import java.net.HttpURLConnection;
 import java.net.InetSocketAddress;
+import java.net.PasswordAuthentication;
 import java.net.Proxy;
 import java.net.URL;
 
@@ -53,21 +55,31 @@ public class TestaNotificacaoFcm {
 			JSONObject jMensagem = new JSONObject();
 			
 			jNotification.put("title", "Cosmetic Center");
-			jNotification.put("body" , "Chegaram novos produtos para você");
+			jNotification.put("body" , "Chegaram novos produtos para voce");
 			jNotification.put("color" , "#ba5b5b");
+			jNotification.put("click_action","FCM_PLUGIN_ACTIVITY");
 			
-			jData.put("tokenNotificacao" , "12345");
+			jData.put("tokenNotificacao" , "12349");
 			
 			
 			jMensagem.put("to", "/topics/novo");
 			jMensagem.put("collapse_key", "type_a");
+			jMensagem.put("priority", "high");
 			jMensagem.put("notification" , jNotification);
 			jMensagem.put("data" , jData);
 			
+			URL url = new URL("https://fcm.googleapis.com/fcm/send");
             
-            URL url = new URL("https://fcm.googleapis.com/fcm/send");
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            
+            Authenticator authenticator = new Authenticator() {
+
+                public PasswordAuthentication getPasswordAuthentication() {
+                    return (new PasswordAuthentication("tr626987", "Mclaren1".toCharArray()));
+                }
+            };
+            Authenticator.setDefault(authenticator);    
             //HttpURLConnection conn = (HttpURLConnection) new URL("https://fcm.googleapis.com/fcm/send").openConnection(proxy);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             
             conn.setRequestProperty("Authorization", "key=" + apiKey);
             conn.setRequestProperty("Content-Type", "application/json");
